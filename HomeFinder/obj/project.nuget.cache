@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "xLvXFAPTlplXXyF69SMrsQCdRhjhTi2tUbYCOjTgSEnhAQdcLGeSHzaYaxpjoI1NRNFNHvIyn6m3JkrrVvJ+3w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\simot\\Desktop\\Webutveckling 2022\\ProjectHomeFinder\\HomeFinder\\HomeFinder.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\simot\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}
