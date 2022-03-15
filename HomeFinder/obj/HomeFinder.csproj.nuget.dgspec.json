@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\simot\\Desktop\\Webutveckling 2022\\ProjectHomeFinder\\HomeFinder\\HomeFinder.csproj": {}
+    "C:\\Users\\Fredrik\\Source\\Repos\\Grupp9_HomeFinder\\HomeFinder\\HomeFinder.csproj": {}
   },
   "projects": {
-    "C:\\Users\\simot\\Desktop\\Webutveckling 2022\\ProjectHomeFinder\\HomeFinder\\HomeFinder.csproj": {
+    "C:\\Users\\Fredrik\\Source\\Repos\\Grupp9_HomeFinder\\HomeFinder\\HomeFinder.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\simot\\Desktop\\Webutveckling 2022\\ProjectHomeFinder\\HomeFinder\\HomeFinder.csproj",
+        "projectUniqueName": "C:\\Users\\Fredrik\\Source\\Repos\\Grupp9_HomeFinder\\HomeFinder\\HomeFinder.csproj",
         "projectName": "HomeFinder",
-        "projectPath": "C:\\Users\\simot\\Desktop\\Webutveckling 2022\\ProjectHomeFinder\\HomeFinder\\HomeFinder.csproj",
-        "packagesPath": "C:\\Users\\simot\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\simot\\Desktop\\Webutveckling 2022\\ProjectHomeFinder\\HomeFinder\\obj\\",
+        "projectPath": "C:\\Users\\Fredrik\\Source\\Repos\\Grupp9_HomeFinder\\HomeFinder\\HomeFinder.csproj",
+        "packagesPath": "C:\\Users\\Fredrik\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Fredrik\\Source\\Repos\\Grupp9_HomeFinder\\HomeFinder\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\simot\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Fredrik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
