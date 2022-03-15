@@ -1,0 +1,28 @@
+﻿@model IEnumerable<HomeFinder.Models.RealEstate>
+
+@{
+    ViewData["Title"] = "Ojects";
+}
+
+<h2 class="my-4">Objects</h2>
+
+<div class="row">
+    @foreach (var realEstate in Model)
+    {
+        <div class="col-3">
+            <div class="card gallery-card">
+                <a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@realEstate.Id">
+                    <img src="@realEstate.Pictures" class="card-img-top card-img-custom" />
+                    <div class="card-body" style="height: 6em">
+                        <h5 class="mb-3">@realEstate.Address</h5>
+                        <span class="card-text">@realEstate.NumberOfRooms rooms</span>
+                        <span class="card-text">@realEstate.LivingArea kvm</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-text">@realEstate.Price.ToString("c")</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>

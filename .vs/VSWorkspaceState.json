@@ -1,7 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\HomeFinder",
+    "\\HomeFinder\\Controllers",
+    "\\HomeFinder\\Migrations",
+    "\\HomeFinder\\Models",
+    "\\HomeFinder\\Views",
+    "\\HomeFinder\\Views\\RealEstates"
   ],
-  "SelectedNode": "\\HomeFinder.sln",
+  "SelectedNode": "\\HomeFinder\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -7149,23 +7149,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\simot\\.nuget\\packages\\": {},
+    "C:\\Users\\madel\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\simot\\Desktop\\Webutveckling 2022\\ProjectHomeFinder\\HomeFinder\\HomeFinder.csproj",
+      "projectUniqueName": "C:\\Users\\madel\\source\\repos\\Grupp9_HomeFinder\\HomeFinder\\HomeFinder.csproj",
       "projectName": "HomeFinder",
-      "projectPath": "C:\\Users\\simot\\Desktop\\Webutveckling 2022\\ProjectHomeFinder\\HomeFinder\\HomeFinder.csproj",
-      "packagesPath": "C:\\Users\\simot\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\simot\\Desktop\\Webutveckling 2022\\ProjectHomeFinder\\HomeFinder\\obj\\",
+      "projectPath": "C:\\Users\\madel\\source\\repos\\Grupp9_HomeFinder\\HomeFinder\\HomeFinder.csproj",
+      "packagesPath": "C:\\Users\\madel\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\madel\\source\\repos\\Grupp9_HomeFinder\\HomeFinder\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\simot\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\madel\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7226,7 +7226,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.12, 5.0.12]"
+            "version": "[5.0.14, 5.0.14]"
           }
         ],
         "frameworkReferences": {
@@ -7237,7 +7237,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
