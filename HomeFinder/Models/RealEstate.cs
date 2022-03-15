@@ -15,7 +15,7 @@ namespace HomeFinder.Models
         [Required]
         public string FormOfLease { get; set; }
         [DataType(DataType.Currency)]
-        public decimal Price { get; set; }
+        public int Price { get; set; }
         [Display(Name = "Rooms")]
         public int NumberOfRooms { get; set; }
         [Display(Name = "Living Area")]

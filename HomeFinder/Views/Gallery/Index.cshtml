@@ -4,13 +4,13 @@
     ViewData["Title"] = "Ojects";
 }
 
-<h2 class="my-4">Objects</h2>
+<h2 class="my-4">All Objects</h2>
 
 <div class="row">
     @foreach (var realEstate in Model)
     {
-        <div class="col-3">
-            <div class="card gallery-card">
+        <div class="col-4">
+            <div class="card my-3 gallery-card">
                 <a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@realEstate.Id">
                     <img src="@realEstate.Pictures" class="card-img-top card-img-custom" />
                     <div class="card-body" style="height: 6em">
