@@ -21,12 +21,13 @@ namespace HomeFinder.Controllers
         // GET: RealEstates
         public async Task<IActionResult> Index(string searchTerm)
         {
-            var realEstates = from r in _context.RealEstate select r;
-            if (!String.IsNullOrEmpty(searchTerm))
+            var realEstates = _context.RealEstate.Select(r => r);
+;
+            if (!string.IsNullOrEmpty(searchTerm))
             {
-                realEstates = realEstates.Where(x => x.Address.Contains(searchTerm));
+                realEstates = realEstates.Where(r => r.Address.Contains(searchTerm) || r.Description.Contains(searchTerm));
             }
-            return View(await _context.RealEstate.ToListAsync());
+            return View(await realEstates.ToListAsync());
         }
 
         // GET: RealEstates/Details/5

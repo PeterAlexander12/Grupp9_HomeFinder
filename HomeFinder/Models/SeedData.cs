@@ -24,7 +24,7 @@ namespace HomeFinder.Models
                     {
                         Address = "Storgatan 6",
                         Pictures = "https://cdn.pixabay.com/photo/2019/10/13/20/07/house-4547140_960_720.jpg",
-                        Description = "A house",
+                        Description = "An appartment",
                         FormOfLease = "Bostadsrätt på engelska",
                         Price = 6500000M,
                         NumberOfRooms = 7,
