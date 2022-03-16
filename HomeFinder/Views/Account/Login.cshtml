@@ -1,0 +1,39 @@
+﻿@model LoginViewModel;
+@{
+	ViewData["Title"] = "Logga in";
+}
+
+<h1>Logga in</h1>
+
+<div class="row">
+	<div class="col-md-12">
+		<form method="post">
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Email"></label>
+				<input asp-for="Email" class="form-control" />
+				<span asp-validation-for="Email" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Password"></label>
+				<input asp-for="Password" class="form-control" />
+				<span asp-validation-for="Password" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<div class="checkbox">
+				<label asp-for="RememberMe">
+				<input asp-for="RememberMe"/>
+				@Html.DisplayNameFor(m => m.RememberMe)
+				</label>
+				</div>
+				<button type="submit" class="btn btn-primary">Logga in</button>
+		</form>
+	</div>
+</div>
+
+<div>
+	<h4>Saknar du konto?</h4>
+	<a asp-area="" asp-controller="Account" asp-action="Register">
+		<input type="button" class="btn btn-secondary" value="Registrera" />
+	</a>
+</div>
