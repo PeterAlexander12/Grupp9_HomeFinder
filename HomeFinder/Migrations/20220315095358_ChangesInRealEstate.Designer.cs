@@ -4,14 +4,16 @@ using HomeFinder.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HomeFinder.Migrations
 {
     [DbContext(typeof(HomeFinderContext))]
-    partial class HomeFinderContextModelSnapshot : ModelSnapshot
+    [Migration("20220315095358_ChangesInRealEstate")]
+    partial class ChangesInRealEstate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,13 +51,8 @@ namespace HomeFinder.Migrations
                     b.Property<string>("Pictures")
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,4)");
-=======
                     b.Property<int>("Price")
                         .HasColumnType("int");
->>>>>>> b1ce262c168580b947cc65dd8a322588cb7aae3d
 
                     b.Property<DateTime>("ShowDate")
                         .HasColumnType("datetime2");
