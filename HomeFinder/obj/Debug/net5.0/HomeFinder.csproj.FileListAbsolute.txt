@@ -468,3 +468,14 @@ C:\Users\madel\source\repos\Grupp9_HomeFinder\HomeFinder\obj\Debug\net5.0\HomeFi
 C:\Users\madel\source\repos\Grupp9_HomeFinder\HomeFinder\obj\Debug\net5.0\Razor\Views\Gallery\Index.cshtml.g.cs
 C:\Users\madel\source\repos\Grupp9_HomeFinder\HomeFinder\obj\Debug\net5.0\Razor\Views\Gallery\Details.cshtml.g.cs
 >>>>>>> b1ce262c168580b947cc65dd8a322588cb7aae3d
+C:\Users\Mattias Åberg\source\repos\Grupp9_HomeFinder\HomeFinder\obj\Debug\net5.0\HomeFinder.csproj.AssemblyReference.cache
+C:\Users\Mattias Åberg\source\repos\Grupp9_HomeFinder\HomeFinder\obj\Debug\net5.0\HomeFinder.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mattias Åberg\source\repos\Grupp9_HomeFinder\HomeFinder\obj\Debug\net5.0\HomeFinder.AssemblyInfoInputs.cache
+C:\Users\Mattias Åberg\source\repos\Grupp9_HomeFinder\HomeFinder\obj\Debug\net5.0\HomeFinder.AssemblyInfo.cs
+C:\Users\Mattias Åberg\source\repos\Grupp9_HomeFinder\HomeFinder\obj\Debug\net5.0\HomeFinder.csproj.CoreCompileInputs.cache
+C:\Users\Mattias Åberg\source\repos\Grupp9_HomeFinder\HomeFinder\obj\Debug\net5.0\HomeFinder.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Mattias Åberg\source\repos\Grupp9_HomeFinder\HomeFinder\obj\Debug\net5.0\HomeFinder.RazorAssemblyInfo.cache
+C:\Users\Mattias Åberg\source\repos\Grupp9_HomeFinder\HomeFinder\obj\Debug\net5.0\HomeFinder.RazorAssemblyInfo.cs
+C:\Users\Mattias Åberg\source\repos\Grupp9_HomeFinder\HomeFinder\obj\Debug\net5.0\HomeFinder.dll
+C:\Users\Mattias Åberg\source\repos\Grupp9_HomeFinder\HomeFinder\obj\Debug\net5.0\ref\HomeFinder.dll
+C:\Users\Mattias Åberg\source\repos\Grupp9_HomeFinder\HomeFinder\obj\Debug\net5.0\HomeFinder.pdb
