@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using HomeFinder.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace HomeFinder.Data
 {
-    public class HomeFinderContext : DbContext
+    public class HomeFinderContext : IdentityDbContext
     {
         public HomeFinderContext (DbContextOptions<HomeFinderContext> options)
             : base(options)
@@ -18,6 +19,5 @@ namespace HomeFinder.Data
 
         public DbSet<RegistrationOfInterest> RegistrationOfInterest { get; set; }
 
-        public DbSet<User> User { get; set; }
     }
 }
