@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\simot\\Desktop\\Webutveckling 2022\\ProjectHomeFinder\\HomeFinder\\HomeFinder.csproj": {}
+    "C:\\Users\\Mattias Åberg\\source\\repos\\Grupp9_HomeFinder\\HomeFinder\\HomeFinder.csproj": {}
   },
   "projects": {
-    "C:\\Users\\simot\\Desktop\\Webutveckling 2022\\ProjectHomeFinder\\HomeFinder\\HomeFinder.csproj": {
+    "C:\\Users\\Mattias Åberg\\source\\repos\\Grupp9_HomeFinder\\HomeFinder\\HomeFinder.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\simot\\Desktop\\Webutveckling 2022\\ProjectHomeFinder\\HomeFinder\\HomeFinder.csproj",
+        "projectUniqueName": "C:\\Users\\Mattias Åberg\\source\\repos\\Grupp9_HomeFinder\\HomeFinder\\HomeFinder.csproj",
         "projectName": "HomeFinder",
-        "projectPath": "C:\\Users\\simot\\Desktop\\Webutveckling 2022\\ProjectHomeFinder\\HomeFinder\\HomeFinder.csproj",
-        "packagesPath": "C:\\Users\\simot\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\simot\\Desktop\\Webutveckling 2022\\ProjectHomeFinder\\HomeFinder\\obj\\",
+        "projectPath": "C:\\Users\\Mattias Åberg\\source\\repos\\Grupp9_HomeFinder\\HomeFinder\\HomeFinder.csproj",
+        "packagesPath": "C:\\Users\\Mattias Åberg\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mattias Åberg\\source\\repos\\Grupp9_HomeFinder\\HomeFinder\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\simot\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Mattias Åberg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -44,6 +40,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.15, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -78,7 +78,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.12, 5.0.12]"
+              "version": "[5.0.13, 5.0.13]"
             }
           ],
           "frameworkReferences": {
@@ -89,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

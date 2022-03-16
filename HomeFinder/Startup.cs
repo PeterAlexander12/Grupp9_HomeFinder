@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using HomeFinder.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace HomeFinder
 {
@@ -29,6 +30,8 @@ namespace HomeFinder
 
             services.AddDbContext<HomeFinderContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("HomeFinderContext")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<HomeFinderContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +51,7 @@ namespace HomeFinder
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
