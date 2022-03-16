@@ -4,14 +4,16 @@ using HomeFinder.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HomeFinder.Migrations
 {
     [DbContext(typeof(HomeFinderContext))]
-    partial class HomeFinderContextModelSnapshot : ModelSnapshot
+    [Migration("20220315095920_added_Identity")]
+    partial class added_Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +29,6 @@ namespace HomeFinder.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ConstructionYear")
@@ -37,7 +38,6 @@ namespace HomeFinder.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FormOfLease")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LivingArea")
@@ -49,8 +49,8 @@ namespace HomeFinder.Migrations
                     b.Property<string>("Pictures")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("ShowDate")
                         .HasColumnType("datetime2");
