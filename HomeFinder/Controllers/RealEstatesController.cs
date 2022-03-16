@@ -13,16 +13,21 @@ namespace HomeFinder.Controllers
     public class RealEstatesController : Controller
     {
         private readonly HomeFinderContext _context;
-
         public RealEstatesController(HomeFinderContext context)
         {
             _context = context;
         }
 
         // GET: RealEstates
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchTerm)
         {
-            return View(await _context.RealEstate.ToListAsync());
+            var realEstates = _context.RealEstate.Select(r => r);
+;
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                realEstates = realEstates.Where(r => r.Address.Contains(searchTerm) || r.Description.Contains(searchTerm));
+            }
+            return View(await realEstates.ToListAsync());
         }
 
         // GET: RealEstates/Details/5

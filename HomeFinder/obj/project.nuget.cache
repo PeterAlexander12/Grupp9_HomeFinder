@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yS0rfjL7dGdm0dDTaKiHV1nISFsVz3OHt3g67lz59i1+HUi7hC4f4rtQa6sUrum7z3+42tdU5xzuIxK9oEojJg==",
+  "dgSpecHash": "B16qXvmqcIHLEj6dhITafCFIVVWsXBkeDcD0MaPCmb+2WQ0DWULE4AiSTqunX/twPr7SPFKZ3/M21jzQjkzjYQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Mattias Åberg\\source\\repos\\Grupp9_HomeFinder\\HomeFinder\\HomeFinder.csproj",
   "expectedPackageFiles": [
@@ -24,8 +24,8 @@
     "C:\\Users\\Mattias Åberg\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.15\\microsoft.entityframeworkcore.analyzers.5.0.15.nupkg.sha512",
     "C:\\Users\\Mattias Åberg\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.15\\microsoft.entityframeworkcore.design.5.0.15.nupkg.sha512",
     "C:\\Users\\Mattias Åberg\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.15\\microsoft.entityframeworkcore.relational.5.0.15.nupkg.sha512",
-    "C:\\Users\\Mattias Åberg\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.12\\microsoft.entityframeworkcore.sqlserver.5.0.12.nupkg.sha512",
-    "C:\\Users\\Mattias Åberg\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\5.0.12\\microsoft.entityframeworkcore.tools.5.0.12.nupkg.sha512",
+    "C:\\Users\\Mattias Åberg\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.15\\microsoft.entityframeworkcore.sqlserver.5.0.15.nupkg.sha512",
+    "C:\\Users\\Mattias Åberg\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\5.0.15\\microsoft.entityframeworkcore.tools.5.0.15.nupkg.sha512",
     "C:\\Users\\Mattias Åberg\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\Mattias Åberg\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
     "C:\\Users\\Mattias Åberg\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
@@ -130,5 +130,12 @@
     "C:\\Users\\Mattias Åberg\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
     "C:\\Users\\Mattias Åberg\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Mattias Åberg\\source\\repos\\Grupp9_HomeFinder\\HomeFinder\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

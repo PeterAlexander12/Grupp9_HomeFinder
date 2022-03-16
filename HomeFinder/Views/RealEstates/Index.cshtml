@@ -5,7 +5,14 @@
 }
 
 <h1>Index</h1>
+<form asp-action="Index">
+    <div class="m-1">
+            <input type="text" name="searchTerm" placeholder="Search for..."/>
+            <input type="submit" value="Filter" class="btn btn-primary"/>
+    </div>
 
+
+</form>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -14,12 +21,6 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pictures)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FormOfLease)
@@ -47,12 +48,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pictures)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FormOfLease)
