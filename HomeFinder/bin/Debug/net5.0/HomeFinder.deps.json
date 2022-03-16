@@ -33,6 +33,7 @@
     ".NETCoreApp,Version=v5.0": {
       "HomeFinder/1.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.15",
           "Microsoft.EntityFrameworkCore.Design": "5.0.15",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.12",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.12",

@@ -17,5 +17,9 @@ namespace HomeFinder.Models
         public DateTime ConstructionYear { get; set; }
         public DateTime ShowDate { get; set; }
         public List<RegistrationOfInterest> RegistrationsOfInterest{ get; set; }
+
+        
+        public RealEstateTypes RealEstateType { get; set; }
+
     }
 }

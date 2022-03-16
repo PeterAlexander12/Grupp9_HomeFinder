@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\HomeFinder",
+    "\\HomeFinder\\Controllers",
+    "\\HomeFinder\\Data",
+    "\\HomeFinder\\Migrations",
+    "\\HomeFinder\\Models"
   ],
-  "SelectedNode": "\\HomeFinder.sln",
+  "SelectedNode": "\\HomeFinder\\Controllers\\RealEstatesController.cs",
   "PreviewInSolutionExplorer": false
 }
