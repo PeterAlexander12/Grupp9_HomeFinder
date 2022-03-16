@@ -5,7 +5,14 @@
 }
 
 <h1>Index</h1>
+<form asp-action="Index">
+    <div class="m-1">
+            <input type="text" name="searchTerm" placeholder="Search for..."/>
+            <input type="submit" value="Filter" class="btn btn-primary"/>
+    </div>
 
+
+</form>
 <p>
     <a asp-action="Create">Create New</a>
 </p>

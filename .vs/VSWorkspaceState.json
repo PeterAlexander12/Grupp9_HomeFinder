@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\HomeFinder",
+    "\\HomeFinder\\Views",
+    "\\HomeFinder\\Views\\Home",
+    "\\HomeFinder\\Views\\RealEstates"
   ],
-  "SelectedNode": "\\HomeFinder.sln",
+  "SelectedNode": "\\HomeFinder\\HomeFinder.sln",
   "PreviewInSolutionExplorer": false
 }
