@@ -49,13 +49,8 @@ namespace HomeFinder.Migrations
                     b.Property<string>("Pictures")
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,4)");
-=======
                     b.Property<int>("Price")
                         .HasColumnType("int");
->>>>>>> b1ce262c168580b947cc65dd8a322588cb7aae3d
 
                     b.Property<DateTime>("ShowDate")
                         .HasColumnType("datetime2");
