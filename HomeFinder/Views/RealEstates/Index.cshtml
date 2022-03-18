@@ -10,9 +10,23 @@
             <input type="text" name="searchTerm" placeholder="Search for..."/>
             <input type="submit" value="Filter" class="btn btn-primary"/>
     </div>
-
-
 </form>
+<form asp-action="Index">
+    <div class="m-1">
+         <h5> Set Max Price </h5>
+        <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="10000000" value="2500000" step="50000" oninput="maxpricetext.value=maxpriceslide.value"/>
+    </div>
+    <div class="m-1">
+        <input id="maxpricetext" type="number" value="2500000" min="0" max="10000000" oninput="maxpriceslide.value=maxpricetext.value" readonly/>
+    </div>
+</form>
+<form asp-action="Index">
+    <div class="m-1">
+            <input value="Remove filter" type="submit" class="btn btn-danger"/>
+    </div>
+</form>
+
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>
