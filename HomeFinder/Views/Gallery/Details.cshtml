@@ -4,4 +4,73 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>Details for @Model.Address</h2>
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <img src="@Model.Pictures" class="card-img-top card-img-custom" />
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <h5 class="mb-3">@Model.Address</h5>
+                        <span>PLATS FÖR KARTA</span>
+                    </div>
+                    <div class="col-8">
+                        <h5 style="border-bottom: 2px solid black">About</h5>
+                        <div class="row">
+                            <div class="col">
+                                <table class="table table-borderless">
+                                    <tr class="table-row-underlined">
+                                        <th>Address</th>
+                                        <td>@Model.Address</td>
+                                    </tr>
+                                    <tr class="table-row-underlined">
+                                        <th>Form of lease</th>
+                                        <td>@Model.FormOfLease</td>
+                                    </tr>
+                                    <tr class="table-row-underlined">
+                                        <th>Rooms</th>
+                                        <td>@Model.NumberOfRooms</td>
+                                    </tr>
+                                    <tr class="table-row-underlined">
+                                        <th>Living Area</th>
+                                        <td>@Model.LivingArea m<sup>2</sup></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col">
+                                <table class="table table-borderless">
+                                    <tr class="table-row-underlined">
+                                        <th>Construction year</th>
+                                        <td>@Model.ConstructionYear.Year</td>
+                                    </tr>
+                                    <tr class="table-row-underlined">
+                                        <th>Show date</th>
+                                        <td>@Model.ShowDate.ToString("d")</td>
+                                    </tr>
+                                    <tr class="table-row-underlined">
+                                        <th>Price</th>
+                                        <td>@Model.Price.ToString("c")</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <p>(Description) @Model.Description</p>
+                        <div>
+
+                            @*När man trycker på knappen:
+                            1. Kolla så att användaren är inloggad
+                            2. Om inloggad: Skapa en ny RegistrationOfInterest och spara till databasen
+                            OBS! En RegistrationOfInterest ska ha en User. En user-> Många RegistrationOfInterest.
+                            Till vilken controller ska man "gå" och hur ska funktionen se ut?*@
+
+	                        <a @*asp-area="" asp-controller="RegistrationOfInterests" asp-action="Create"*@>
+		                        <input type="button" class="btn btn-primary" value="Register interest" />
+	                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
