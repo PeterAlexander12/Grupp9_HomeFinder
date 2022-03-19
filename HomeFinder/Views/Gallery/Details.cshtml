@@ -4,6 +4,12 @@
     ViewData["Title"] = "Details";
 }
 
+@{
+
+    string mapUri = new Uri($"https://maps.google.com/maps?q={Model.Address}&output=embed").AbsoluteUri;
+}
+
+
 <h2>Details for @Model.Address</h2>
 <div class="row">
     <div class="col">
@@ -13,7 +19,12 @@
                 <div class="row">
                     <div class="col-4">
                         <h5 class="mb-3">@Model.Address</h5>
-                        <span>PLATS FÖR KARTA</span>
+
+                        <iframe src=@mapUri
+                                style="border:0"                            
+                                loading="lazy">
+                        </iframe>
+
                     </div>
                     <div class="col-8">
                         <h5 style="border-bottom: 2px solid black">About</h5>
@@ -57,14 +68,7 @@
                         </div>
                         <p>(Description) @Model.Description</p>
                         <div>
-
-                            @*När man trycker på knappen:
-                            1. Kolla så att användaren är inloggad
-                            2. Om inloggad: Skapa en ny RegistrationOfInterest och spara till databasen
-                            OBS! En RegistrationOfInterest ska ha en User. En user-> Många RegistrationOfInterest.
-                            Till vilken controller ska man "gå" och hur ska funktionen se ut?*@
-
-	                        <a @*asp-area="" asp-controller="RegistrationOfInterests" asp-action="Create"*@>
+	                        <a asp-area="" asp-controller="" asp-action="">
 		                        <input type="button" class="btn btn-primary" value="Register interest" />
 	                        </a>
                         </div>
