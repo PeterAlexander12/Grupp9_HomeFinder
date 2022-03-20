@@ -52,6 +52,9 @@ namespace HomeFinder.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
+                    b.Property<int>("RealEstateType")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("ShowDate")
                         .HasColumnType("datetime2");
 

@@ -28,5 +28,9 @@ namespace HomeFinder.Models
         [DataType(DataType.Date)]
         public DateTime ShowDate { get; set; }
         public List<RegistrationOfInterest> RegistrationsOfInterest{ get; set; }
+
+        
+        public RealEstateTypes RealEstateType { get; set; }
+
     }
 }
