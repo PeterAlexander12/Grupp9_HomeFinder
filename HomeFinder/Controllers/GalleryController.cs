@@ -15,9 +15,21 @@ namespace HomeFinder.Controllers
         {
             _context = context; 
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchTerm, string maxSlide)
         {
-            return View(await _context.RealEstate.ToListAsync());
+            var realEstates = _context.RealEstate.Select(r => r);
+
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                realEstates = realEstates.Where(r => r.Address.Contains(searchTerm) || r.Description.Contains(searchTerm));
+            }
+            if (!string.IsNullOrEmpty(maxSlide))
+            {
+                int maxPrice = int.Parse(maxSlide);
+                realEstates = realEstates.Where(r => r.Price <= maxPrice);
+            }
+            return View(await realEstates.ToListAsync());
         }
 
         public async Task<IActionResult> Details(int? id)
