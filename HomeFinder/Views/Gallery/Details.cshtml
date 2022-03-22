@@ -4,4 +4,73 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+@{
+
+    string mapUri = new Uri($"https://maps.google.com/maps?q={Model.Address}&output=embed").AbsoluteUri;
+}
+
+
+<h2>Detaljer för @Model.Address</h2>
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <img src="@Model.CoverPictureURL" class="card-img-top card-img-custom" />
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <h5 class="mb-3">@Model.Address</h5>
+
+                        <iframe src=@mapUri
+                                style="border:0"                            
+                                loading="lazy">
+                        </iframe>
+
+                    </div>
+                    <div class="col-8">
+                        <h5 style="border-bottom: 2px solid black">About</h5>
+                        <div class="row">
+                            <div class="col">
+                                <table class="table table-borderless">
+                                    <tr class="table-row-underlined">
+                                        <th>Address</th>
+                                        <td>@Model.Address</td>
+                                    </tr>
+                                    <tr class="table-row-underlined">
+                                        <th>Antal rum</th>
+                                        <td>@Model.NumberOfRooms</td>
+                                    </tr>
+                                    <tr class="table-row-underlined">
+                                        <th>Bostadsyta</th>
+                                        <td>@Model.LivingArea m<sup>2</sup></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col">
+                                <table class="table table-borderless">
+                                    <tr class="table-row-underlined">
+                                        <th>Byggår</th>
+                                        <td>@Model.ConstructionYear.Year</td>
+                                    </tr>
+                                    <tr class="table-row-underlined">
+                                        <th>Visningsdatum</th>
+                                        <td>@Model.ShowDate.ToString("d")</td>
+                                    </tr>
+                                    <tr class="table-row-underlined">
+                                        <th>Pris</th>
+                                        <td>@Model.Price.ToString("c")</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <p>(Description) @Model.Description</p>
+                        <div>
+	                        <a asp-area="" asp-controller="" asp-action="">
+		                        <input type="button" class="btn btn-primary" value="Anmäl intresse" />
+	                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

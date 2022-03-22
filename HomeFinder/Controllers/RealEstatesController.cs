@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HomeFinder.Data;
 using HomeFinder.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
 
 namespace HomeFinder.Controllers
 {
@@ -59,7 +62,7 @@ namespace HomeFinder.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Address,Pictures,Description,FormOfLease,Price,NumberOfRooms,LivingArea,ConstructionYear,ShowDate")] RealEstate realEstate)
+        public async Task<IActionResult> Create([Bind("Id,Address,CoverPictureURL,Description,Price,NumberOfRooms,LivingArea,ConstructionYear,ShowDate")] RealEstate realEstate)
         {
             if (ModelState.IsValid)
             {
@@ -68,6 +71,43 @@ namespace HomeFinder.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(realEstate);
+        }
+
+        [HttpPost]
+        public IActionResult Index(List<IFormFile> files)
+        {
+            if (files != null)
+            {
+                foreach (var file in files)
+                {
+                    if (file.Length > 0)
+                    {
+                        //Getting FileName
+                        var fileName = Path.GetFileName(file.FileName);
+
+                        //Assigning Unique Filename (Guid)
+                        var myUniqueFileName = Convert.ToString(Guid.NewGuid());
+
+                        //Getting file Extension
+                        var fileExtension = Path.GetExtension(fileName);
+
+                        // concatenating  FileName + FileExtension
+                        var newFileName = String.Concat(myUniqueFileName, fileExtension);
+
+                        // Combines two strings into a path.
+                        var filepath =
+       new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "RealEstateImages")).Root + $@"\{newFileName}";
+
+                        using (FileStream fs = System.IO.File.Create(filepath))
+                        {
+                            file.CopyTo(fs);
+                            fs.Flush();
+                        }
+
+                    }
+                }
+            }
+            return View();
         }
 
         // GET: RealEstates/Edit/5
