@@ -30,6 +30,8 @@ namespace HomeFinder.Models
         [Display(Name = "Upplåtelseform")]
 
         public RealEstateTypes RealEstateType { get; set; }
+        public ICollection<RealEstateImage> RealEstateImages { get; set; }
+
 
     }
 }

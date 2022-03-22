@@ -19,5 +19,7 @@ namespace HomeFinder.Data
 
         public DbSet<RegistrationOfInterest> RegistrationOfInterest { get; set; }
 
+        public DbSet<RealEstateImage> RealEstateImages { get; set; }
+
     }
 }
