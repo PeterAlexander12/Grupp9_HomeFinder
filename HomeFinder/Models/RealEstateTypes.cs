@@ -3,8 +3,9 @@
     public enum RealEstateTypes
     {
 
-        House,
-        Apartment, 
+        Hus,
+        Lägenhet, 
+        Gård
 
 
 

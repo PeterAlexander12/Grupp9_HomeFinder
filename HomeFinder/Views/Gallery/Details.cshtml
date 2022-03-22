@@ -10,11 +10,11 @@
 }
 
 
-<h2>Details for @Model.Address</h2>
+<h2>Detaljer för @Model.Address</h2>
 <div class="row">
     <div class="col">
         <div class="card">
-            <img src="@Model.Pictures" class="card-img-top card-img-custom" />
+            <img src="@Model.CoverPictureURL" class="card-img-top card-img-custom" />
             <div class="card-body">
                 <div class="row">
                     <div class="col-4">
@@ -36,15 +36,11 @@
                                         <td>@Model.Address</td>
                                     </tr>
                                     <tr class="table-row-underlined">
-                                        <th>Form of lease</th>
-                                        <td>@Model.FormOfLease</td>
-                                    </tr>
-                                    <tr class="table-row-underlined">
-                                        <th>Rooms</th>
+                                        <th>Antal rum</th>
                                         <td>@Model.NumberOfRooms</td>
                                     </tr>
                                     <tr class="table-row-underlined">
-                                        <th>Living Area</th>
+                                        <th>Bostadsyta</th>
                                         <td>@Model.LivingArea m<sup>2</sup></td>
                                     </tr>
                                 </table>
@@ -52,15 +48,15 @@
                             <div class="col">
                                 <table class="table table-borderless">
                                     <tr class="table-row-underlined">
-                                        <th>Construction year</th>
+                                        <th>Byggår</th>
                                         <td>@Model.ConstructionYear.Year</td>
                                     </tr>
                                     <tr class="table-row-underlined">
-                                        <th>Show date</th>
+                                        <th>Visningsdatum</th>
                                         <td>@Model.ShowDate.ToString("d")</td>
                                     </tr>
                                     <tr class="table-row-underlined">
-                                        <th>Price</th>
+                                        <th>Pris</th>
                                         <td>@Model.Price.ToString("c")</td>
                                     </tr>
                                 </table>
@@ -69,7 +65,7 @@
                         <p>(Description) @Model.Description</p>
                         <div>
 	                        <a asp-area="" asp-controller="" asp-action="">
-		                        <input type="button" class="btn btn-primary" value="Register interest" />
+		                        <input type="button" class="btn btn-primary" value="Anmäl intresse" />
 	                        </a>
                         </div>
                     </div>
