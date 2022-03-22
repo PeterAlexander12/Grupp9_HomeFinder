@@ -12,9 +12,11 @@ namespace HomeFinder.Models
         public string Address { get; set; }
         public string CoverPictureURL { get; set; }
         public string Description { get; set; }
+
         [DataType(DataType.Currency)]
         [Display(Name = "Utgångspris")]
         public int Price { get; set; }
+
         [Display(Name = "Rooms")]
         public int NumberOfRooms { get; set; }
         [Display(Name = "Living Area")]

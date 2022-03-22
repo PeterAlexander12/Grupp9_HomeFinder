@@ -3,12 +3,12 @@
 	ViewData["Title"] = "Logga in";
 }
 
-<h1>Logga in</h1>
 
-<div class="row">
-	<div class="col-md-12">
-		<form method="post">
-			<div asp-validation-summary="All" class="text-danger"></div>
+<div class="d-xl-flex flex-column justify-content-center align-items-center">
+<h1>Logga in</h1>
+	<div class="row border m-4 p-2 pb-4 w-50">
+		<div class="col-md-12">
+			<form method="post">
 			<div class="form-group">
 				<label asp-for="Email"></label>
 				<input asp-for="Email" class="form-control" />
@@ -26,14 +26,30 @@
 				@Html.DisplayNameFor(m => m.RememberMe)
 				</label>
 				</div>
+			</div>
 				<button type="submit" class="btn btn-primary">Logga in</button>
-		</form>
+				<button asp-controller="account" asp-action="GoogleLogin" class="btn btn-primary ml-3">Logga in med Google<i class="fa fa-google ml-2" aria-hidden="true"></i></button>
+			</form>
+		</div>
 	</div>
-</div>
 
-<div>
-	<h4>Saknar du konto?</h4>
-	<a asp-area="" asp-controller="Account" asp-action="Register">
-		<input type="button" class="btn btn-secondary" value="Registrera" />
-	</a>
+		<h4>Saknar du konto?</h4>
+	<div class="row m-4 p-2 w-50">
+		<h5>Hitta din bostad enklare än någonsin</h5>
+		<ul>
+			<li class="fa fa-check">
+				Marknadens enklaste och smidigaste sökmotor för bostäder
+			</li>
+			<li class="fa fa-check">
+				Spara bostadsannonser och få live uppdateringar vid nyheter om din favorit annons
+			</li>
+			<li class="fa fa-check">
+				Mäklarnas favorittjänst vid försäljning av bostäder
+			</li>
+		</ul>
+		<a asp-area="" asp-controller="Account" asp-action="Register">
+			<input type="button" class="btn btn-secondary" value="Registrera" />
+		</a>
+	</div>
+
 </div>
