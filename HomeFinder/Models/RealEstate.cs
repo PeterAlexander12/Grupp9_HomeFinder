@@ -10,23 +10,28 @@ namespace HomeFinder.Models
         public int Id { get; set; }
         [Required]
         public string Address { get; set; }
-        public string Pictures { get; set; }
+        public string CoverPictureURL { get; set; }
         public string Description { get; set; }
-        [Display(Name = "Form Of Lease")]
-        [Required]
-        public string FormOfLease { get; set; }
+
         [DataType(DataType.Currency)]
+        [Display(Name = "Utgångspris")]
         public int Price { get; set; }
+
         [Display(Name = "Rooms")]
         public int NumberOfRooms { get; set; }
         [Display(Name = "Living Area")]
         public int LivingArea { get; set; }
-        [Display(Name = "Construction Year")]
+        [Display(Name = "Byggår")]
         [DataType(DataType.Date)]
         public DateTime ConstructionYear { get; set; }
-        [Display(Name = "Show Date")]
+        [Display(Name = "Visningsdatum")]
         [DataType(DataType.Date)]
         public DateTime ShowDate { get; set; }
         public List<RegistrationOfInterest> RegistrationsOfInterest{ get; set; }
+
+        [Display(Name = "Upplåtelseform")]
+
+        public RealEstateTypes RealEstateType { get; set; }
+
     }
 }

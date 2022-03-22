@@ -4,14 +4,16 @@ using HomeFinder.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HomeFinder.Migrations
 {
     [DbContext(typeof(HomeFinderContext))]
-    partial class HomeFinderContextModelSnapshot : ModelSnapshot
+    [Migration("20220320054145_added_props_to_user")]
+    partial class added_props_to_user
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,10 +35,11 @@ namespace HomeFinder.Migrations
                     b.Property<DateTime>("ConstructionYear")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CoverPictureURL")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("FormOfLease")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LivingArea")
@@ -45,10 +48,10 @@ namespace HomeFinder.Migrations
                     b.Property<int>("NumberOfRooms")
                         .HasColumnType("int");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<string>("Pictures")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RealEstateType")
+                    b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ShowDate")

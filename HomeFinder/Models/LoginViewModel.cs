@@ -11,14 +11,10 @@ namespace HomeFinder.Models
 
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name ="Lösenord")]
         public string Password { get; set; }
 
-        //[DataType(DataType.Password)]
-        //[Display(Name = "Confirm Password")]
-        //[Compare("Password",
-        //    ErrorMessage = "Your password does not match,")]
-        //public string ConfirmPassword { get; set; }
-
+        [Display(Name = "Kom ihåg mig")]
         public bool RememberMe { get; set; }
     }
 }

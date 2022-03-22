@@ -1,8 +1,13 @@
 ﻿using HomeFinder.Data;
 using HomeFinder.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace HomeFinder.Controllers
@@ -22,6 +27,7 @@ namespace HomeFinder.Controllers
 
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
@@ -38,17 +44,16 @@ namespace HomeFinder.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (string.IsNullOrEmpty(model.RealtorCode))
-                {
-                    model.IsRealtor = false;
-                }
 
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+                var user = new IdentityUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber };
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
-                    _context.SaveChanges();
+                    if (_signInManager.IsSignedIn(User) && User.IsInRole("admin"))
+                    {
+                        return RedirectToAction("ListUsers", "Administration");
+                    }
                     await _signInManager.SignInAsync(user, false);
                     return Redirect("/");
                 }
@@ -60,6 +65,36 @@ namespace HomeFinder.Controllers
 
             return View(model);
 
+        }
+
+        [HttpGet]
+        public IActionResult RegisterRealtor()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> RegisterRealtor(User model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var user = new IdentityUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber };
+                var result = await _userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(user, "realtor");
+                    await _signInManager.SignInAsync(user, false);
+                    return Redirect("/");
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+
+            return View(model);
         }
 
         [HttpGet]
@@ -92,11 +127,81 @@ namespace HomeFinder.Controllers
             return View(model);
         }
 
+
+        public IActionResult GoogleLogin()
+        {
+            string redirectUrl = Url.Action("GoogleResponse", "Account");
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
+            return new ChallengeResult("Google", properties);
+        }
+
+        public async Task<IActionResult> GoogleResponse()
+        {
+            ExternalLoginInfo info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
+            string[] userInfo =
+            {
+                info.Principal.FindFirst(ClaimTypes.Name).Value,
+                info.Principal.FindFirst(ClaimTypes.Email).Value
+            };
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                IdentityUser user = new IdentityUser
+                {
+                    Email = info.Principal.FindFirst(ClaimTypes.Email).Value,
+                    UserName = info.Principal.FindFirst(ClaimTypes.Email).Value
+                };
+
+                IdentityResult identityResult = await _userManager.CreateAsync(user);
+                if (identityResult.Succeeded)
+                {
+                    identityResult = await _userManager.AddLoginAsync(user, info);
+                    if (identityResult.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, false);
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                return RedirectToAction("Error", "Shared");
+            }
+
+        }
+
+
         [Authorize]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return Redirect("/");
         }
+
+        public IActionResult MyPage()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public async Task<IActionResult> MyDetails()
+        {
+
+            var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+
+            return View(user);
+        }
+
+        [HttpGet]
+        public IActionResult EditDetails()
+        {
+            return View();
+        }
+
     }
 }

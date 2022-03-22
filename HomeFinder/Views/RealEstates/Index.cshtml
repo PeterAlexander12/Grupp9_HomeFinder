@@ -37,9 +37,6 @@
                 @Html.DisplayNameFor(model => model.Address)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FormOfLease)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
@@ -54,6 +51,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.ShowDate)
             </th>
+             <th>
+                @Html.DisplayNameFor(model => model.RealEstateType)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -62,9 +62,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FormOfLease)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
@@ -80,6 +77,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ShowDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealEstateType)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

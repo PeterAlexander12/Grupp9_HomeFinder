@@ -1,0 +1,77 @@
+﻿@model EditUserViewModel;
+@{
+	ViewData["Title"] = "Ändra användare";
+}
+
+<h1>Ändra användare</h1>
+
+<form method="post" class="mt-3">
+	<div class="form-group row">
+		<label asp-for="Id" class="col-sm-2 col-form-label"></label>
+		<div class="col-sm-10">
+				<input asp-for="Id" disabled class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label asp-for="Email" class="col-sm-2 col-form-label"></label>
+		<div class="col-sm-10">
+			<input asp-for="Email" class="form-control" />
+			<span asp-validation-for="Email" class="text-danger"></span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label asp-for="UserName" class="col-sm-2 col-form-label"></label>
+		<div class="col-sm-10">
+			<input asp-for="UserName" class="form-control" />
+			<span asp-validation-for="UserName" class="text-danger"></span>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<div class="col-sm-10">
+			<button type="submit" class="btn btn-primary">Ändra</button>
+			<a asp-action="ListUsers" class="btn btn-primary">Avbryt</a>
+		</div>
+	</div>
+
+		<div class="card">
+			<div class="card-header">Roller</div>
+			<div class="card-body">
+			@if(Model.Roles.Any())
+			{
+					foreach(var role in Model.Roles)
+					{
+					<h5 class="card-title">@role</h5>
+					}	
+			}
+			else	
+			{
+				<h5 class="card-title">Inga roller för denna användare</h5>
+			}
+		</div>
+			<div class="card-footer">
+				<a href="#" class="btn btn-primary">Ändra roll</a>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-header">Claims</div>
+			<div class="card-body">
+			@if(Model.Claims.Any())
+			{
+					foreach(var claim in Model.Claims)
+					{
+					<h5 class="card-title">@claim</h5>
+					}	
+			}
+			else	
+			{
+				<h5 class="card-title">Inga claims för denna användare</h5>
+			}
+		</div>
+			<div class="card-footer">
+				<a href="#" class="btn btn-primary">Ändra roll</a>
+			</div>
+		</div>
+
+</form>

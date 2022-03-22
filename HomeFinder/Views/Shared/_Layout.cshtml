@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/myCss.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
@@ -36,8 +37,13 @@
                     <ul class="navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {
-                         <li class="nav-item">
-                             <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logga ut</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mitt konto</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                   <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">Hem</a>
+                                   <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="MyDetails">Mina uppgifter</a>
+                                  <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logga ut</a>
+                                </div>
                             </li>
                         }
                         else

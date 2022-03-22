@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IdentityUser;
+@{
+	ViewData["Title"] = "Mina uppgifter";
+}
+
+<h1>Konto</h1>
+
+<div class="d-xl-flex flex-column justify-content-left align-items-left">
+	<div class="p-2 m-4">
+		<div class="col-md-12">
+				<h5>E-post:</h5>
+				<p class="text-center">@Model.Email</p>
+				<h5>Telefonnummer:</h5>@Model.PhoneNumber
+			<a asp-action="EditDetails" class="btn btn-primary">Ändra kontouppgifter</a>
+		</div>
+	</div>
+	<div class="p-2 m-4">
+		<h3>Mina sparade objekt</h3>
+	</div>
+</div>
