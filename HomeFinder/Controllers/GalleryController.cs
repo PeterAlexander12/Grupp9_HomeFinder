@@ -15,7 +15,7 @@ namespace HomeFinder.Controllers
         {
             _context = context; 
         }
-        public async Task<IActionResult> Index(string searchTerm, string maxSlide)
+        public async Task<IActionResult> Index(string searchTerm, string maxSlide, string minSlide)
         {
             var realEstates = _context.RealEstate.Select(r => r);
 
@@ -29,6 +29,12 @@ namespace HomeFinder.Controllers
                 int maxPrice = int.Parse(maxSlide);
                 realEstates = realEstates.Where(r => r.Price <= maxPrice);
             }
+            if (!string.IsNullOrEmpty(minSlide))
+            {
+                int minPrice = int.Parse(minSlide);
+                realEstates = realEstates.Where(r => r.Price >= minPrice);
+            }
+
             return View(await realEstates.ToListAsync());
         }
 
