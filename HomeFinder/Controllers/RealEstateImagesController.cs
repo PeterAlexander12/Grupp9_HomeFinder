@@ -55,7 +55,7 @@ namespace HomeFinder.Controllers
         public IActionResult Create()
         {
             ProImages vm = new ProImages();
-            ViewBag.images = new SelectList(_context.RealEstate.ToList(), "Id", "Address");
+            ViewBag.realEstates = new SelectList(_context.RealEstate.ToList(), "Id", "Address");
             return View(vm);
         }
 

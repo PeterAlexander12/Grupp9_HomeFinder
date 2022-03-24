@@ -25,3 +25,7 @@ a.a-cleanup:hover{
 .table-row-underlined {
     border-bottom: 1px solid lightgray;
 }
+
+.carousel-inner-custom{
+    max-height: 80px; 
+}
