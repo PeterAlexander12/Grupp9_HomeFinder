@@ -5,21 +5,46 @@
 }
 
 <h2 class="my-4">Alla objekt</h2>
+<script type="text/javascript">
+    function EnableDisable(chbox, id) {
+        var disablechange = document.getElementById(id);
+        disablechange.disabled = chbox.checked ? false : true;
+        if (!disablechange.disabled) {
+            disablechange.focus();
+        }
+    }
+</script>
+<form asp-action="Index">
+    <div class="container">
+        <div class="m-1">
+                <input type="text" name="searchTerm" placeholder="Search for..."/>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <div class="m-1">
+                    <h5> Set Min Price </h5>
+                    <input id="minpriceslide" type="range" name="minSlide" min="0" max="10000000" value="2500000" step="50000" disabled="disabled" oninput="minpricetext.value=minpriceslide.value"/>
+                    <input type="checkbox" id="checkboxTest" name="checkbox" value="true" onclick="EnableDisable(this, minpriceslide.id)"/>
+                </div>
+                <div class="m-1">
+                    <input id="minpricetext" type="number" value="2500000" min="0" max="10000000" oninput="minpriceslide.value=minpricetext.value" readonly/>
+                </div>
+            </div>
+            <div class="col">
+                <div class="m-1">
+                    <h5> Set Max Price </h5>
+                    <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="10000000" value="2500000" step="50000" disabled="disabled" oninput="maxpricetext.value=maxpriceslide.value"/>
+                    <input type="checkbox" id="checkboxTest" name="checkbox" value="true" onclick="EnableDisable(this, maxpriceslide.id)"/>
+                </div>
+                <div class="m-1">
+                    <input id="maxpricetext" type="number" value="2500000" min="0" max="10000000" oninput="maxpriceslide.value=maxpricetext.value" readonly/>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<form asp-action="Index">
     <div class="m-1">
-            <input type="text" name="searchTerm" placeholder="Sök efter..."/>
-            <input type="submit" value="Filter" class="btn btn-primary"/>
-    </div>
-</form>
-<form asp-action="Index">
-    <div class="m-1">
-         <h5> Set Max Price </h5>
-        <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="10000000" value="2500000" step="50000" oninput="maxpricetext.value=maxpriceslide.value"/>
-    </div>
-    <div class="m-1">
-        <input id="maxpricetext" type="number" value="2500000" min="0" max="10000000" oninput="maxpriceslide.value=maxpricetext.value" readonly/>
-        <input type="submit" value="Filter" class="btn btn-primary"/>
+    <input type="submit" value="Filter" class="btn btn-primary"/>
     </div>
 </form>
 <form asp-action="Index">
