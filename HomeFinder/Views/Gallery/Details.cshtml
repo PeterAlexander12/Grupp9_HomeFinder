@@ -10,21 +10,23 @@
 }
 
 
-<h2>Detaljer för @Model.Address</h2>
+<h2>Details for @Model.Address</h2>
 <div class="row">
     <div class="col">
         <div class="card">
-            <img src="@Model.CoverPictureURL" class="card-img-top card-img-custom" />
+            <img src="@Model.Pictures" class="details-card-img" />
             <div class="card-body">
                 <div class="row">
-                    <div class="col-4">
-                        <h5 class="mb-3">@Model.Address</h5>
-
-                        <iframe src=@mapUri
-                                style="border:0"                            
-                                loading="lazy">
-                        </iframe>
-
+                    <div class="col-4" id="object-description">
+                        <div>
+                            <h5 class="mb-3">@Model.Address</h5>
+                            <p>(Description) @Model.Description</p>
+                        </div>
+                        <div>
+	                        <a asp-area="" asp-controller="" asp-action="">
+		                        <input type="button" class="btn btn-primary" value="Register interest" />
+	                        </a>
+                        </div>
                     </div>
                     <div class="col-8">
                         <h5 style="border-bottom: 2px solid black">About</h5>
@@ -36,11 +38,15 @@
                                         <td>@Model.Address</td>
                                     </tr>
                                     <tr class="table-row-underlined">
-                                        <th>Antal rum</th>
+                                        <th>Form of lease</th>
+                                        <td>@Model.FormOfLease</td>
+                                    </tr>
+                                    <tr class="table-row-underlined">
+                                        <th>Rooms</th>
                                         <td>@Model.NumberOfRooms</td>
                                     </tr>
                                     <tr class="table-row-underlined">
-                                        <th>Bostadsyta</th>
+                                        <th>Living Area</th>
                                         <td>@Model.LivingArea m<sup>2</sup></td>
                                     </tr>
                                 </table>
@@ -48,26 +54,25 @@
                             <div class="col">
                                 <table class="table table-borderless">
                                     <tr class="table-row-underlined">
-                                        <th>Byggår</th>
+                                        <th>Construction year</th>
                                         <td>@Model.ConstructionYear.Year</td>
                                     </tr>
                                     <tr class="table-row-underlined">
-                                        <th>Visningsdatum</th>
+                                        <th>Show date</th>
                                         <td>@Model.ShowDate.ToString("d")</td>
                                     </tr>
                                     <tr class="table-row-underlined">
-                                        <th>Pris</th>
+                                        <th>Price</th>
                                         <td>@Model.Price.ToString("c")</td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
-                        <p>(Description) @Model.Description</p>
-                        <div>
-	                        <a asp-area="" asp-controller="" asp-action="">
-		                        <input type="button" class="btn btn-primary" value="Anmäl intresse" />
-	                        </a>
-                        </div>
+                        <iframe id="map"
+                                src=@mapUri
+                                style="border:0"                            
+                                loading="lazy">
+                        </iframe>
                     </div>
                 </div>
             </div>
