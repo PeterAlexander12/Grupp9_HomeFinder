@@ -14,7 +14,29 @@
 <div class="row">
     <div class="col">
         <div class="card">
-            <img src="@Model.CoverPictureURL" class="details-card-img" />
+            @*<img src="@Model.CoverPictureURL" class="details-card-img" />*@
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active carousel-item-custom">
+                        <img src="@Model.CoverPictureURL" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item carousel-item-custom">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item carousel-item-custom">
+                        <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="...">
+                    </div>
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-4" id="object-description">
@@ -23,9 +45,9 @@
                             <p>(Description) @Model.Description</p>
                         </div>
                         <div>
-	                        <a asp-area="" asp-controller="" asp-action="">
-		                        <input type="button" class="btn btn-primary" value="Register interest" />
-	                        </a>
+                            <a asp-area="" asp-controller="" asp-action="">
+                                <input type="button" class="btn btn-primary" value="Register interest" />
+                            </a>
                         </div>
                     </div>
                     <div class="col-8">
@@ -70,7 +92,7 @@
                         </div>
                         <iframe id="map"
                                 src=@mapUri
-                                style="border:0"                            
+                                style="border:0"
                                 loading="lazy">
                         </iframe>
                     </div>
