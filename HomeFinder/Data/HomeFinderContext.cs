@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace HomeFinder.Data
 {
-    public class HomeFinderContext : IdentityDbContext
+    public class HomeFinderContext : IdentityDbContext<ApplicationUser>
     {
         public HomeFinderContext (DbContextOptions<HomeFinderContext> options)
             : base(options)

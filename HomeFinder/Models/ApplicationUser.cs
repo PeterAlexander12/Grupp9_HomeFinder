@@ -1,15 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace HomeFinder.Models
 {
-    public class User
+    public class ApplicationUser : IdentityUser
     {
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        //[Required]
+        //[EmailAddress]
+        //public string Email { get; set; }
 
-        [Display(Name ="Användarnamn")]
-        public string? UserName { get; set; }
+        //[Display(Name ="Användarnamn")]
+        //public string? UserName { get; set; }
 
         [Required]
         [Display(Name = "Förnamn")]
@@ -18,9 +19,9 @@ namespace HomeFinder.Models
         [Display(Name = "Efternamn")]
         public string SurName { get; set; }
 
-        [Phone]
-        [Display(Name = "Telefonnummer")]
-        public string? PhoneNumber { get; set; }
+        //[Phone]
+        //[Display(Name = "Telefonnummer")]
+        //public string? PhoneNumber { get; set; }
 
         [Required]
         [Display(Name = "Lösenord")]

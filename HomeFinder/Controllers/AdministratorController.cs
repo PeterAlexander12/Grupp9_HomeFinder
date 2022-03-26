@@ -179,7 +179,7 @@ namespace HomeFinder.Controllers
                 {
                     ModelState.AddModelError("", error.Description);
                 }
-            return View(model);
+                return View(model);
             }
         }
 
