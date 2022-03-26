@@ -40,12 +40,21 @@ namespace HomeFinder.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(ApplicationUser model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber };
+                var user = new ApplicationUser 
+                    {   Email = model.Email, 
+                        UserName = model.Email, 
+                        GivenName = model.GivenName, 
+                        SurName = model.SurName,
+                        PhoneNumber = model.PhoneNumber,
+                        Password = model.Password,
+                        ConfirmPassword = model.ConfirmPassword
+                    };
+
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
