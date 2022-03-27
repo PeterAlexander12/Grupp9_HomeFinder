@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Threading.Tasks;
 using HomeFinder.Data;
 using HomeFinder.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HomeFinder.Controllers
 {
@@ -18,7 +20,7 @@ namespace HomeFinder.Controllers
         }
 
         // GET: RegistrationOfInterestsController
-        public ActionResult Index(int RealEstateId)
+        public ActionResult Index()
         {
 
             return View();
@@ -39,17 +41,23 @@ namespace HomeFinder.Controllers
         // POST: RegistrationOfInterestsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(RegistrationOfInterest roi)
+        public async Task<IActionResult> Create(string message, int? id)
         {
+            var realEstate = _context.RealEstate.FirstOrDefault(r => r.Id == id);
 
             if (ModelState.IsValid)
-            {   
-                roi.Date = DateTime.Now;
+            {
+                var roi = new RegistrationOfInterest
+                {
+                    Date = DateTime.Now,
+                    RealEstate = realEstate,
+                    Message = message
+                };
                 _context.Add(roi);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index","Gallery");
-
+                return RedirectToAction("Index", "Gallery");
             }
+
 
             return View();
         }
