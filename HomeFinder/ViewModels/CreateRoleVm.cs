@@ -2,7 +2,7 @@
 
 namespace HomeFinder.Models
 {
-    public class CreateRoleViewModel
+    public class CreateRoleVm
     {
         [Required]
         public string RoleName { get; set; }

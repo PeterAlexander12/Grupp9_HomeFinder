@@ -2,7 +2,7 @@
 
 namespace HomeFinder.Models
 {
-    public class RegisterViewModel
+    public class RegisterVm
     {
         [Required]
         [EmailAddress]

@@ -1,6 +1,6 @@
 ﻿namespace HomeFinder.Models
 {
-    public class UserRoleViewModel
+    public class UserRoleVm
     {
         public string UserId { get; set; }
         public string UserName { get; set; }

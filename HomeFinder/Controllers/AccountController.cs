@@ -40,7 +40,7 @@ namespace HomeFinder.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterVm model)
         {
             if (ModelState.IsValid)
             {
@@ -113,7 +113,7 @@ namespace HomeFinder.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<IActionResult> Login(LoginVm model, string returnUrl)
         {
             if (ModelState.IsValid)
             {

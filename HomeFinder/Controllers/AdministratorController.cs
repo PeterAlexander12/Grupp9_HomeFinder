@@ -27,7 +27,7 @@ namespace HomeFinder.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
+        public async Task<IActionResult> CreateRole(CreateRoleVm model)
         {
 
             if (ModelState.IsValid)
@@ -85,7 +85,7 @@ namespace HomeFinder.Controllers
             var userClaims = await _userManager.GetClaimsAsync(user);
             var userRoles = await _userManager.GetRolesAsync(user);
 
-            var model = new EditUserViewModel
+            var model = new EditUserVm
             {
                 Id = user.Id,
                 UserName = user.UserName,
@@ -98,7 +98,7 @@ namespace HomeFinder.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditUser(EditUserViewModel model)
+        public async Task<IActionResult> EditUser(EditUserVm model)
         {
             var user = await _userManager.FindByIdAsync(model.Id);
 
@@ -138,7 +138,7 @@ namespace HomeFinder.Controllers
                 return View("Error");
             }
 
-            var model = new EditRoleViewModel
+            var model = new EditRoleVm
             {
                 Id = role.Id,
                 RoleName = role.Name
@@ -156,7 +156,7 @@ namespace HomeFinder.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditRole(EditRoleViewModel model)
+        public async Task<IActionResult> EditRole(EditRoleVm model)
         {
             var role = await _roleManager.FindByIdAsync(model.Id);
 
@@ -196,11 +196,11 @@ namespace HomeFinder.Controllers
                 return View("Error");
             }
 
-            var model = new List<UserRoleViewModel>();
+            var model = new List<UserRoleVm>();
 
             foreach (var user in _userManager.Users)
             {
-                var userRoleViewModel = new UserRoleViewModel
+                var userRoleViewModel = new UserRoleVm
                 {
                     UserId = user.Id,
                     UserName = user.UserName
@@ -222,7 +222,7 @@ namespace HomeFinder.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel>model, string roleId)
+        public async Task<IActionResult> EditUsersInRole(List<UserRoleVm>model, string roleId)
         {
             var role = await _roleManager.FindByIdAsync(roleId);
 
