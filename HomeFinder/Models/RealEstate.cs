@@ -7,6 +7,7 @@ namespace HomeFinder.Models
 {
     public class RealEstate
     {
+
         public int Id { get; set; }
         [Required]
         public string Address { get; set; }
@@ -27,6 +28,7 @@ namespace HomeFinder.Models
         [Display(Name = "Visningsdatum")]
         [DataType(DataType.Date)]
         public DateTime ShowDate { get; set; }
+
         public List<RegistrationOfInterest> RegistrationsOfInterest{ get; set; }
 
         [Display(Name = "Upplåtelseform")]

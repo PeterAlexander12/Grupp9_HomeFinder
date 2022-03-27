@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using HomeFinder.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Reflection.Metadata;
+using Microsoft.Extensions.Hosting;
 
 namespace HomeFinder.Data
 {
@@ -19,6 +20,17 @@ namespace HomeFinder.Data
         public DbSet<RealEstate> RealEstate { get; set; }
 
         public DbSet<RegistrationOfInterest> RegistrationOfInterest { get; set; }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<RegistrationOfInterest>()
+        //        .HasOne(i => i.RealEstate)
+        //        .WithMany(r => r.RegistrationsOfInterest)
+        //        .HasForeignKey(i => i.Id)
+        //        .HasPrincipalKey(r => r.Id);
+        //    base.OnModelCreating(modelBuilder);
+
+        //}
 
     }
 }
