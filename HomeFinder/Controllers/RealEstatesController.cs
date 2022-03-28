@@ -62,7 +62,7 @@ namespace HomeFinder.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Address,CoverPictureURL,Description,Price,NumberOfRooms,LivingArea,ConstructionYear,ShowDate")] RealEstate realEstate)
+        public async Task<IActionResult> Create([Bind("Id,Address,CoverPictureURL,Description,Price,NumberOfRooms,LivingArea,ConstructionYear,ShowDate,RealEstateType")] RealEstate realEstate)
         {
             if (ModelState.IsValid)
             {
@@ -131,7 +131,7 @@ namespace HomeFinder.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Address,Pictures,Description,FormOfLease,Price,NumberOfRooms,LivingArea,ConstructionYear,ShowDate")] RealEstate realEstate)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Address,CoverPictureURL,Description,Price,NumberOfRooms,LivingArea,ConstructionYear,ShowDate,RealEstateType")] RealEstate realEstate)
         {
             if (id != realEstate.Id)
             {
