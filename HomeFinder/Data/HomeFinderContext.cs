@@ -21,16 +21,7 @@ namespace HomeFinder.Data
 
         public DbSet<RegistrationOfInterest> RegistrationOfInterest { get; set; }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<RegistrationOfInterest>()
-        //        .HasOne(i => i.RealEstate)
-        //        .WithMany(r => r.RegistrationsOfInterest)
-        //        .HasForeignKey(i => i.Id)
-        //        .HasPrincipalKey(r => r.Id);
-        //    base.OnModelCreating(modelBuilder);
 
-        //}
 
     }
 }
