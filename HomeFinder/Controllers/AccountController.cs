@@ -40,7 +40,7 @@ namespace HomeFinder.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterVm model)
+        public async Task<IActionResult> Register(ApplicationUser model)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace HomeFinder.Controllers
                 }
             }
 
-            return View(model);
+            return View();
 
         }
 
@@ -103,7 +103,7 @@ namespace HomeFinder.Controllers
                 }
             }
 
-            return View(model);
+            return View();
         }
 
         [HttpGet]

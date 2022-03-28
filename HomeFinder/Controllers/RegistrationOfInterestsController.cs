@@ -45,21 +45,18 @@ namespace HomeFinder.Controllers
         {
             var realEstate = _context.RealEstate.FirstOrDefault(r => r.Id == id);
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View();
+            var roi = new RegistrationOfInterest
             {
-                var roi = new RegistrationOfInterest
-                {
-                    Date = DateTime.Now,
-                    RealEstate = realEstate,
-                    Message = message
-                };
-                _context.Add(roi);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Gallery");
-            }
+                Date = DateTime.Now,
+                RealEstate = realEstate,
+                Message = message
+            };
+            _context.Add(roi);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Gallery");
 
 
-            return View();
         }
 
 
