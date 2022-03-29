@@ -54,6 +54,10 @@ namespace HomeFinder.Controllers
 
             return View(realEstate);
         }
+        public async Task<IActionResult> AdvSearch()
+        {
+            return View(await _context.RealEstate.ToListAsync());
+        }
 
     }
 }
