@@ -54,9 +54,8 @@
             </div>
             
            <select asp-for="RealEstateType" asp-items="Html.GetEnumSelectList<RealEstateTypes>()">
-    <option selected="selected" value="">Select type</option></select>
-                     
-       
+                <option selected="selected" value="">Select type</option>
+           </select>
 
             <div class="form-group  pt-5">
                 <input type="submit" value="Create" class="btn btn-primary" />
