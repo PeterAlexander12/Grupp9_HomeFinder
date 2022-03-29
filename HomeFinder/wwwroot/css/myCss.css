@@ -21,11 +21,11 @@ a.a-cleanup:hover{
     transform: scale(1.03);
     box-shadow: lightgray 2px 2px; 
 }
-
 .table-row-underlined {
     border-bottom: 1px solid lightgray;
 }
 
-.carousel-inner-custom{
-    max-height: 80px; 
+.carousel-item-custom img {
+    height: 70vh;
+    object-fit: cover;
 }

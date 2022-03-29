@@ -12,10 +12,10 @@
 
 
 
-<h2>Detaljer för @Model.Address</h2>
+<h2>@Model.Address</h2>
 <div class="row">
     <div class="col">
-        <div class="card card-img-top card-img-custom">
+        <div class="card card-img-top">
 
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
@@ -38,7 +38,6 @@
                 </a>
             </div>
 
-            @*<img src="@Model.CoverPictureURL" class="card-img-top card-img-custom" />*@
             <div class="card-body">
                 <div class="row">
                     <div class="col-4">
@@ -51,12 +50,12 @@
 
                     </div>
                     <div class="col-8">
-                        <h5 style="border-bottom: 2px solid black">About</h5>
+                        <h5 style="border-bottom: 2px solid black">Information</h5>
                         <div class="row">
                             <div class="col">
                                 <table class="table table-borderless">
                                     <tr class="table-row-underlined">
-                                        <th>Address</th>
+                                        <th>Adress</th>
                                         <td>@Model.Address</td>
                                     </tr>
                                     <tr class="table-row-underlined">
@@ -86,7 +85,7 @@
                                 </table>
                             </div>
                         </div>
-                        <p>(Description) @Model.Description</p>
+                        <p> (Beskrivning) @Model.Description</p>
                         <div>
                             <a asp-area="" asp-controller="" asp-action="">
                                 <input type="button" class="btn btn-primary" value="Anmäl intresse" />
