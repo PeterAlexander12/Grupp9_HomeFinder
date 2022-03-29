@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HomeFinder.Models
 {
-    public class EditUserViewModel
+    public class EditUserVm
     {
 
         public string Id { get; set; }
@@ -15,7 +15,7 @@ namespace HomeFinder.Models
         public List<string> Claims { get; set; }
         public IList<string> Roles { get; set; }
     
-        public EditUserViewModel()
+        public EditUserVm()
         {
             Claims = new List<string>();
             Roles = new List<string>();

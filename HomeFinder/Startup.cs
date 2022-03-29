@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using HomeFinder.Data;
+using HomeFinder.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -32,7 +33,7 @@ namespace HomeFinder
             services.AddDbContext<HomeFinderContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("HomeFinderContext")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<HomeFinderContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<HomeFinderContext>();
 
             services.AddAuthentication(options =>
             {
@@ -75,7 +76,7 @@ namespace HomeFinder
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

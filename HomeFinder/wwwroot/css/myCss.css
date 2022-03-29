@@ -25,3 +25,22 @@ a.a-cleanup:hover{
 .table-row-underlined {
     border-bottom: 1px solid lightgray;
 }
+
+.details-card-img {
+    max-height:50vh;
+    object-fit: cover;
+}
+
+#map{
+    width: 100%;
+}
+
+#object-description{
+    display: flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+#object-description input{
+    width:100%;
+}

@@ -52,12 +52,11 @@
                 <input asp-for="ShowDate" class="form-control" />
                 <span asp-validation-for="ShowDate" class="text-danger"></span>
             </div>
-            
-           <select asp-for="RealEstateType" asp-items="Html.GetEnumSelectList<RealEstateTypes>()">
-    <option selected="selected" value="">Select type</option></select>
-                     
-       
-
+            <div class="form-group">
+                <label asp-for="RealEstateType" class="control-label"></label>
+                <select class="form-control" asp-for="RealEstateType" asp-items="Html.GetEnumSelectList<RealEstateTypes>()">
+                <option selected="selected" value="">Select type</option></select>
+            </div>
             <div class="form-group  pt-5">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

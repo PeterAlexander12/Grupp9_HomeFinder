@@ -2,7 +2,7 @@
 
 namespace HomeFinder.Models
 {
-    public class LoginViewModel
+    public class LoginVm
     {
 
         [Required]

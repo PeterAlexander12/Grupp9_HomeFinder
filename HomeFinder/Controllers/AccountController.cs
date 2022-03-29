@@ -15,11 +15,11 @@ namespace HomeFinder.Controllers
     public class AccountController : Controller
     {
 
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly HomeFinderContext _context;
 
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, HomeFinderContext context)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, HomeFinderContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -40,19 +40,28 @@ namespace HomeFinder.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(User model)
+        public async Task<IActionResult> Register(ApplicationUser model)
         {
             if (ModelState.IsValid)
             {
 
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber };
+                var user = new ApplicationUser 
+                    {   Email = model.Email, 
+                        UserName = model.Email, 
+                        GivenName = model.GivenName, 
+                        SurName = model.SurName,
+                        PhoneNumber = model.PhoneNumber,
+                        Password = model.Password,
+                        ConfirmPassword = model.ConfirmPassword
+                    };
+
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
                     if (_signInManager.IsSignedIn(User) && User.IsInRole("admin"))
                     {
-                        return RedirectToAction("ListUsers", "Administration");
+                        return RedirectToAction("ListUsers", "Administrator");
                     }
                     await _signInManager.SignInAsync(user, false);
                     return Redirect("/");
@@ -63,7 +72,7 @@ namespace HomeFinder.Controllers
                 }
             }
 
-            return View(model);
+            return View();
 
         }
 
@@ -74,12 +83,12 @@ namespace HomeFinder.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> RegisterRealtor(User model)
+        public async Task<IActionResult> RegisterRealtor(ApplicationUser model)
         {
             if (ModelState.IsValid)
             {
 
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber };
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
@@ -94,7 +103,7 @@ namespace HomeFinder.Controllers
                 }
             }
 
-            return View(model);
+            return View();
         }
 
         [HttpGet]
@@ -104,7 +113,7 @@ namespace HomeFinder.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<IActionResult> Login(LoginVm model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -154,7 +163,7 @@ namespace HomeFinder.Controllers
             }
             else
             {
-                IdentityUser user = new IdentityUser
+                ApplicationUser user = new ApplicationUser
                 {
                     Email = info.Principal.FindFirst(ClaimTypes.Email).Value,
                     UserName = info.Principal.FindFirst(ClaimTypes.Email).Value
