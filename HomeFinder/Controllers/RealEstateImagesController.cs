@@ -54,7 +54,7 @@ namespace HomeFinder.Controllers
         // GET: RealEstateImages/Create
         public IActionResult Create()
         {
-            ProImages vm = new ProImages();
+            ImageViewModel vm = new ImageViewModel();
             ViewBag.realEstates = new SelectList(_context.RealEstate.ToList(), "Id", "Address");
             return View(vm);
         }
@@ -64,7 +64,7 @@ namespace HomeFinder.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(ProImages vm)
+        public IActionResult Create(ImageViewModel vm)
         {
 
             try

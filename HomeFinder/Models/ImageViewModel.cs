@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeFinder.Models
 {
-    public class ProImages
+    public class ImageViewModel
     {
         public List<IFormFile> Images { get; set; }
         public RealEstate RealEstate { get; set; }
