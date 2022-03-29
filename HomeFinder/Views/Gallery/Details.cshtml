@@ -10,6 +10,8 @@
 }
 
 
+
+
 <h2>Detaljer för @Model.Address</h2>
 <div class="row">
     <div class="col">
@@ -20,12 +22,11 @@
                     <div class="carousel-item active carousel-item-custom">
                         <img src="@Model.CoverPictureURL" class="d-block w-100" alt="...">
                     </div>
-                    <div class="carousel-item carousel-item-custom">
-                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item carousel-item-custom">
-                        <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="...">
-                    </div>
+                    @foreach(var image in Model.RealEstateImages){
+                        <div class="carousel-item carousel-item-custom">
+                            <img src="~/uploads/@image.ImageURL" class="d-block w-100" alt="...">
+                        </div>
+                    }
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

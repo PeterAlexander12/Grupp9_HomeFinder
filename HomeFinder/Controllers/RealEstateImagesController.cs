@@ -66,17 +66,25 @@ namespace HomeFinder.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(ProImages vm)
         {
-            foreach (var item in vm.Images)
+
+            try
             {
-                string stringFileName = UploadFile(item);
-                var realEstateImage = new RealEstateImage
+                foreach (var item in vm.Images)
                 {
-                    ImageURL = stringFileName,
-                    RealEstate = vm.RealEstate
-                };
-                _context.RealEstateImages.Add(realEstateImage);
+                    string stringFileName = UploadFile(item);
+                    var realEstateImage = new RealEstateImage
+                    {
+                        ImageURL = stringFileName,
+                        RealEstate = _context.RealEstate.First(r => r.Id == vm.RealEstate.Id)
+                    };
+                    _context.Add(realEstateImage);
+                }
+                _context.SaveChanges();
             }
-            _context.SaveChanges();
+            catch (Exception)
+            {
+                throw;
+            }
             return RedirectToAction("Index");
         }
 
