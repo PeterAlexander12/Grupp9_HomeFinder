@@ -25,7 +25,6 @@ a.a-cleanup:hover{
     border-bottom: 1px solid lightgray;
 }
 
-<<<<<<< HEAD
 .details-card-img {
     max-height:50vh;
     object-fit: cover;
@@ -44,9 +43,9 @@ a.a-cleanup:hover{
 #object-description input{
     width:100%;
 }
-=======
+
 .carousel-item-custom img {
     height: 70vh;
     object-fit: cover;
 }
->>>>>>> multipleImages
+
