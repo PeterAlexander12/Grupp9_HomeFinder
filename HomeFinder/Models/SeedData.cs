@@ -24,18 +24,11 @@ namespace HomeFinder.Models
                 context.RealEstate.AddRange(
                     new RealEstate
                     {
-<<<<<<< HEAD
-                        Address = "Storgatan 6",
 
-                        CoverPictureURL = "https://cdn.pixabay.com/photo/2019/10/13/20/07/house-4547140_960_720.jpg",
-                        Description = "En lägenhet",
-                        Price = 10000000,
-=======
                         Address = "Eslöv 288",
                         CoverPictureURL = "https://images.unsplash.com/photo-1431287991645-d6583750a66c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80",
                         Description = "En gård",
                         Price = 8500000,
->>>>>>> multipleImages
                         NumberOfRooms = 5,
                         LivingArea = 220,
                         ConstructionYear = DateTime.Parse("1997-5-5"),
