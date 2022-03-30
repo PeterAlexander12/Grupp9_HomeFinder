@@ -178,6 +178,26 @@ namespace HomeFinder.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RealEstateImages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RealEstateId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RealEstateImages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RealEstateImages_RealEstate_RealEstateId",
+                        column: x => x.RealEstateId,
+                        principalTable: "RealEstate",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RegistrationOfInterest",
                 columns: table => new
                 {
@@ -245,6 +265,11 @@ namespace HomeFinder.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RealEstateImages_RealEstateId",
+                table: "RealEstateImages",
+                column: "RealEstateId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RegistrationOfInterest_RealEstateId",
                 table: "RegistrationOfInterest",
                 column: "RealEstateId");
@@ -271,6 +296,9 @@ namespace HomeFinder.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "RealEstateImages");
 
             migrationBuilder.DropTable(
                 name: "RegistrationOfInterest");
