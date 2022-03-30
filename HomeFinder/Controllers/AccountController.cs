@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -222,7 +223,14 @@ namespace HomeFinder.Controllers
 
         public IActionResult MyPage()
         {
-            return View();
+            // SKICKA ADRESS OCH BILDLÄNK TILL VIEW
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            var regOfInt = _context.RegistrationOfInterest.Where(r => r.User == user).Select(r => r.RealEstate).ToList();
+            //regOfInt = regOfInt.Where(r => r.User == user);
+
+            return View(regOfInt);
+            
         }
 
         [Authorize]
