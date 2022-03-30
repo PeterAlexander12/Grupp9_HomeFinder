@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using HomeFinder.Data;
 using HomeFinder.Models;
@@ -44,13 +45,16 @@ namespace HomeFinder.Controllers
         public async Task<IActionResult> Create(string message, int? id)
         {
             var realEstate = _context.RealEstate.FirstOrDefault(r => r.Id == id);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
 
             if (!ModelState.IsValid) return View();
             var roi = new RegistrationOfInterest
             {
                 Date = DateTime.Now,
                 RealEstate = realEstate,
-                Message = message
+                Message = message,
+                User = user
             };
             _context.Add(roi);
             await _context.SaveChangesAsync();
