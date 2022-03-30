@@ -24,6 +24,7 @@ namespace HomeFinder.Models
         public string PhoneNumber { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
         [Display(Name = "Lösenord")]
         public string Password  { get; set; }
 

@@ -35,20 +35,18 @@ namespace HomeFinder
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<HomeFinderContext>();
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            })
-            .AddCookie(options =>
-            {
-                options.LoginPath = "/account/google-login";
-            })
-            .AddGoogle(googleOptions =>
-            {
-                googleOptions.ClientId = Configuration["Google:ClientId"];
-                googleOptions.ClientSecret = Configuration["Google:ClientSecret"];
-                googleOptions.SignInScheme = IdentityConstants.ExternalScheme;
-            });
+
+            services.AddAuthentication()
+                    .AddGoogle(googleOptions =>
+                    {
+                        googleOptions.ClientId = Configuration["Google:ClientId"];
+                        googleOptions.ClientSecret = Configuration["Google:ClientSecret"];
+                    })
+                    .AddFacebook(facebookOptions =>
+                    {
+                        facebookOptions.AppId = Configuration["Facebook:AppId"];
+                        facebookOptions.AppSecret = Configuration["Facebook:AppSecret"];
+                    });
 
         }
 
@@ -65,6 +63,7 @@ namespace HomeFinder
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

@@ -28,7 +28,10 @@
 				</div>
 			</div>
 				<button type="submit" class="btn btn-primary">Logga in</button>
-				<button asp-controller="account" asp-action="GoogleLogin" class="btn btn-primary ml-3">Logga in med Google<i class="fa fa-google ml-2" aria-hidden="true"></i></button>
+			</form>
+			<form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+				<button type="submit" class="btn btn-primary" name="provider" value="Google" title="Login using Google">Google</button>
+				<button type="submit" class="btn btn-primary" name="provider" value="Facebook" title="Login using Facebook">Facebook</button>
 			</form>
 		</div>
 	</div>

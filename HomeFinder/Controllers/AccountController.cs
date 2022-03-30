@@ -107,9 +107,15 @@ namespace HomeFinder.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public async Task<IActionResult> Login(string returnUrl)
         {
-            return View();
+            LoginVm model = new LoginVm
+            {
+                ReturnUrl = returnUrl,
+                ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
+            };
+
+            return View(model);
         }
 
         [HttpPost]
@@ -137,55 +143,77 @@ namespace HomeFinder.Controllers
         }
 
 
-        public IActionResult GoogleLogin()
+        [HttpPost]
+        public IActionResult ExternalLogin(string provider, string returnUrl)
         {
-            string redirectUrl = Url.Action("GoogleResponse", "Account");
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
-            return new ChallengeResult("Google", properties);
+            var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
+
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+            return new ChallengeResult(provider, properties);
         }
 
-        public async Task<IActionResult> GoogleResponse()
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
-            ExternalLoginInfo info = await _signInManager.GetExternalLoginInfoAsync();
+            returnUrl = returnUrl ?? Url.Content("~/");
+
+            LoginVm loginViewModel = new LoginVm
+            {
+                ReturnUrl = returnUrl,
+                ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
+            };
+
+            if (remoteError != null)
+            {
+                ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
+                return View("Login", loginViewModel);
+            }
+
+            var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                return RedirectToAction("Login", "Account");
+                ModelState.AddModelError(string.Empty, "Error loading external login information");
+
+                return View("Login", loginViewModel);
             }
-            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
-            string[] userInfo =
+
+            var signInResult = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+            if (signInResult.Succeeded)
             {
-                info.Principal.FindFirst(ClaimTypes.Name).Value,
-                info.Principal.FindFirst(ClaimTypes.Email).Value
-            };
-            if (result.Succeeded)
-            {
-                return RedirectToAction("Index", "Home");
+                return LocalRedirect(returnUrl);
             }
             else
             {
-                ApplicationUser user = new ApplicationUser
-                {
-                    Email = info.Principal.FindFirst(ClaimTypes.Email).Value,
-                    UserName = info.Principal.FindFirst(ClaimTypes.Email).Value
-                };
+                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
 
-                IdentityResult identityResult = await _userManager.CreateAsync(user);
-                if (identityResult.Succeeded)
+                if (email != null)
                 {
-                    identityResult = await _userManager.AddLoginAsync(user, info);
-                    if (identityResult.Succeeded)
+                    var user = await _userManager.FindByEmailAsync(email);
+
+                    if (user == null)
                     {
-                        await _signInManager.SignInAsync(user, false);
-                        return RedirectToAction("Index", "Home");
+                        user = new ApplicationUser
+                        {
+                            Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+                            UserName = info.Principal.FindFirstValue(ClaimTypes.Email)
+                        };
+
+                        await _userManager.CreateAsync(user);
                     }
+
+                    await _userManager.AddLoginAsync(user, info);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    return LocalRedirect(returnUrl);
                 }
-                return RedirectToAction("Error", "Shared");
             }
 
+            ViewBag.ErrorTitle = $"We could not retreive your email from {info.LoginProvider}";
+            ViewBag.ErrorMessage = "Please contact us for more information";
+
+            return View("/home/index");
         }
 
-
-        [Authorize]
+    [Authorize]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

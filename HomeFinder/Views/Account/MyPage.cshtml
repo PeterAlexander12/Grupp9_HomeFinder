@@ -3,7 +3,18 @@
 	ViewData["Title"] = "Mina sidor";
 }
 
-<h1>Välkommen @User.Identity.Name!</h1>
+@if(string.IsNullOrEmpty(Model.GivenName))
+{
+	<h1> 
+		Välkommen @Model.Email!
+	</h1>
+}
+else
+{
+	<h1>
+		Välkommen @Model.GivenName!
+	</h1>
+}
 
 <div>
 	<a href="#" class="btn btn-primary">Sparade objekt</a>
