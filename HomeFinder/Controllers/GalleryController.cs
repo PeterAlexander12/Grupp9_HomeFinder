@@ -45,7 +45,7 @@ namespace HomeFinder.Controllers
                 return NotFound();
             }
 
-            var realEstate = await _context.RealEstate
+            var realEstate = await _context.RealEstate.Include(x => x.RealEstateImages)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (realEstate == null)
             {
