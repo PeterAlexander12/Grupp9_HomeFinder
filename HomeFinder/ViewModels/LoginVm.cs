@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Authentication;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace HomeFinder.Models
 {
@@ -16,5 +18,9 @@ namespace HomeFinder.Models
 
         [Display(Name = "Kom ihåg mig")]
         public bool RememberMe { get; set; }
+
+        public string ReturnUrl { get; set; }
+
+        public IList<AuthenticationScheme> ExternalLogins { get; set; }
     }
 }
