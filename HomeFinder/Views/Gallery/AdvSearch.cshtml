@@ -76,9 +76,10 @@
                 <div class="m-1">
                     <h5> Select form of lease</h5>
                     <Select name="RealEstateType" id="RealEstateType">
-                        <option>Alla</option>
-                        <option>Hus</option>
-                        <option>Lägenhet</option>
+                        <option value="@null">Alla</option>
+                        <option value="@RealEstateTypes.Hus">Hus</option>
+                        <option value="@RealEstateTypes.Lägenhet">Lägenhet</option>
+                        <option value="@RealEstateTypes.Gård">Gård</option>
                     </Select>
                 </div>
             </div>
