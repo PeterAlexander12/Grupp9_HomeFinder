@@ -25,10 +25,10 @@ a.a-cleanup:hover{
     border-bottom: 1px solid lightgray;
 }
 
-.details-card-img {
+/*.details-card-img {
     max-height:50vh;
     object-fit: cover;
-}
+}*/
 
 .card-img-small {
     width: 100%;
@@ -44,6 +44,7 @@ a.a-cleanup:hover{
     display: flex;
     flex-direction:column;
     justify-content:space-between;
+    float: right;
 }
 
 #object-description input{
@@ -54,4 +55,5 @@ a.a-cleanup:hover{
     height: 70vh;
     object-fit: cover;
 }
+
 
