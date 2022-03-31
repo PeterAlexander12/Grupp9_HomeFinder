@@ -20,14 +20,14 @@ namespace HomeFinder.Models
                     return;
                 }
 
-      
+
                 context.RealEstate.AddRange(
                     new RealEstate
                     {
 
                         Address = "Eslöv 288",
                         CoverPictureURL = "https://images.unsplash.com/photo-1431287991645-d6583750a66c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80",
-                        Description = "En gård",
+                        Description = "En gård. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Price = 8500000,
                         NumberOfRooms = 5,
                         LivingArea = 220,
@@ -41,7 +41,7 @@ namespace HomeFinder.Models
                     {
                         Address = "Gatan 5",
                         CoverPictureURL = "https://cdn.pixabay.com/photo/2016/08/26/15/06/home-1622401_960_720.jpg",
-                        Description = "Ett hus",
+                        Description = "Ett hus. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. ",
                         Price = 7000000,
                         NumberOfRooms = 4,
                         LivingArea = 110,
@@ -105,7 +105,7 @@ namespace HomeFinder.Models
                          RealEstateType = RealEstateTypes.Lägenhet
 
                      }
-                );
+                ) ;
 
                 context.SaveChanges();
             }

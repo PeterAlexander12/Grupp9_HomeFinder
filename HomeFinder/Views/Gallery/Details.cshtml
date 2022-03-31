@@ -41,23 +41,28 @@
 
             <div class="card-body">
                 <div class="row">
-                    <div class="col-4">
-                        <h5 class="mb-3">@Model.Address</h5>
+                    <div class="col-lg-4 col-md-12">
+                        <h5 class="mb-3">Hitta till @Model.Address</h5>
 
                         <iframe src=@mapUri
-                                style="border:0"
-                                loading="lazy">
+                                style="border: 0; width: 100%; float: left;"
+                                loading="lazy"
+                                >
                         </iframe>
 
                     </div>
-                    <div class="col-8">
-                        <h5 style="border-bottom: 2px solid black">Information</h5>
+                    <div class="col-lg-8 col-md-12"">
+                        <h5 style="border-bottom: 2px solid black; margin-top:10px">Information</h5>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-md-6 col-sm-12">
                                 <table class="table table-borderless">
                                     <tr class="table-row-underlined">
                                         <th>Adress</th>
                                         <td>@Model.Address</td>
+                                    </tr>
+                                    <tr class="table-row-underlined">
+                                        <th>Bostadstyp</th>
+                                        <td>@Model.RealEstateType</td>
                                     </tr>
                                     <tr class="table-row-underlined">
                                         <th>Antal rum</th>
@@ -69,7 +74,7 @@
                                     </tr>
                                 </table>
                             </div>
-                            <div class="col">
+                            <div class="col-md-6 col-sm-12">
                                 <table class="table table-borderless">
                                     <tr class="table-row-underlined">
                                         <th>Byggår</th>
@@ -86,7 +91,7 @@
                                 </table>
                             </div>
                         </div>
-                        <p> (Beskrivning) @Model.Description</p>
+                        <p> @Model.Description</p>
                         <div>
                             <a asp-area="" asp-controller="" asp-action="">
                                 <input type="button" class="btn btn-primary" value="Anmäl intresse" />
