@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeFinder.Migrations
 {
     [DbContext(typeof(HomeFinderContext))]
-    [Migration("20220327172626_init")]
+    [Migration("20220331151932_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -136,6 +136,26 @@ namespace HomeFinder.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RealEstate");
+                });
+
+            modelBuilder.Entity("HomeFinder.Models.RealEstateImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ImageURL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RealEstateId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RealEstateId");
+
+                    b.ToTable("RealEstateImages");
                 });
 
             modelBuilder.Entity("HomeFinder.Models.RegistrationOfInterest", b =>
@@ -297,6 +317,15 @@ namespace HomeFinder.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("HomeFinder.Models.RealEstateImage", b =>
+                {
+                    b.HasOne("HomeFinder.Models.RealEstate", "RealEstate")
+                        .WithMany("RealEstateImages")
+                        .HasForeignKey("RealEstateId");
+
+                    b.Navigation("RealEstate");
+                });
+
             modelBuilder.Entity("HomeFinder.Models.RegistrationOfInterest", b =>
                 {
                     b.HasOne("HomeFinder.Models.RealEstate", "RealEstate")
@@ -365,6 +394,8 @@ namespace HomeFinder.Migrations
 
             modelBuilder.Entity("HomeFinder.Models.RealEstate", b =>
                 {
+                    b.Navigation("RealEstateImages");
+
                     b.Navigation("RegistrationsOfInterest");
                 });
 #pragma warning restore 612, 618

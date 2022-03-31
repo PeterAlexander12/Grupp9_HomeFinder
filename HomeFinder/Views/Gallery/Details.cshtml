@@ -1,6 +1,6 @@
 ﻿@model HomeFinder.Models.RealEstate
 
-@{ 
+@{
     ViewData["Title"] = "Details";
 }
 
@@ -10,23 +10,24 @@
 }
 
 
-<h2>Details for @Model.Address</h2>
+
+
+<h2>@Model.Address</h2>
 <div class="row">
     <div class="col">
-        <div class="card">
-            @*<img src="@Model.CoverPictureURL" class="details-card-img" />*@
+        <div class="card card-img-top">
+
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active carousel-item-custom">
                         <img src="@Model.CoverPictureURL" class="d-block w-100" alt="...">
                     </div>
-                    <div class="carousel-item carousel-item-custom">
-                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item carousel-item-custom">
-                        <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="...">
-                    </div>
-
+                    @foreach (var image in Model.RealEstateImages)
+                    {
+                        <div class="carousel-item carousel-item-custom">
+                            <img src="~/uploads/@image.ImageURL" class="d-block w-100" alt="...">
+                        </div>
+                    }
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -37,38 +38,33 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
+
             <div class="card-body">
                 <div class="row">
-                    <div class="col-4" id="object-description">
-                        <div>
-                            <h5 class="mb-3">@Model.Address</h5>
-                            <p>(Description) @Model.Description</p>
-                        </div>
-                        <div>
-                            <a asp-area="" asp-controller="RegistrationOfInterests" asp-action="Create" asp-route-id="@Model.Id">
-                                <input type="button" class="btn btn-primary" value="Registrera Intresse" />
-                            </a>
-                        </div>
+                    <div class="col-4">
+                        <h5 class="mb-3">@Model.Address</h5>
+
+                        <iframe src=@mapUri
+                                style="border:0"
+                                loading="lazy">
+                        </iframe>
+
                     </div>
                     <div class="col-8">
-                        <h5 style="border-bottom: 2px solid black">About</h5>
+                        <h5 style="border-bottom: 2px solid black">Information</h5>
                         <div class="row">
                             <div class="col">
                                 <table class="table table-borderless">
                                     <tr class="table-row-underlined">
-                                        <th>Address</th>
+                                        <th>Adress</th>
                                         <td>@Model.Address</td>
                                     </tr>
                                     <tr class="table-row-underlined">
-                                        <th>Form of lease</th>
-                                        <td>@Model.RealEstateType</td>
-                                    </tr>
-                                    <tr class="table-row-underlined">
-                                        <th>Rooms</th>
+                                        <th>Antal rum</th>
                                         <td>@Model.NumberOfRooms</td>
                                     </tr>
                                     <tr class="table-row-underlined">
-                                        <th>Living Area</th>
+                                        <th>Bostadsyta</th>
                                         <td>@Model.LivingArea m<sup>2</sup></td>
                                     </tr>
                                 </table>
@@ -76,25 +72,26 @@
                             <div class="col">
                                 <table class="table table-borderless">
                                     <tr class="table-row-underlined">
-                                        <th>Construction year</th>
+                                        <th>Byggår</th>
                                         <td>@Model.ConstructionYear.Year</td>
                                     </tr>
                                     <tr class="table-row-underlined">
-                                        <th>Show date</th>
+                                        <th>Visningsdatum</th>
                                         <td>@Model.ShowDate.ToString("d")</td>
                                     </tr>
                                     <tr class="table-row-underlined">
-                                        <th>Price</th>
+                                        <th>Pris</th>
                                         <td>@Model.Price.ToString("c")</td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
-                        <iframe id="map"
-                                src=@mapUri
-                                style="border:0"
-                                loading="lazy">
-                        </iframe>
+                        <p> (Beskrivning) @Model.Description</p>
+                        <div>
+                            <a asp-area="" asp-controller="" asp-action="">
+                                <input type="button" class="btn btn-primary" value="Anmäl intresse" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

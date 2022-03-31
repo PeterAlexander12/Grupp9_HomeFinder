@@ -1,10 +1,56 @@
-﻿@model ApplicationUser;
+﻿@model IEnumerable<HomeFinder.Models.RealEstate>
+
 @{
-	ViewData["Title"] = "Mina sidor";
+    ViewData["Title"] = "Mina sidor";
 }
 
-<h1>Välkommen @User.Identity.Name!</h1>
+<h9>Personlig sida för @User.Identity.Name</h9>
+<br/>
+<br/>
 
-<div>
-	<a href="#" class="btn btn-primary">Sparade objekt</a>
+<h3>Dina intresseanmälningar</h3>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-image">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Adress</th>
+                    <th scope="col">Visningsdatum</th>
+                    <th scope="col">Mäklare</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="w-25">
+
+                            <a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@item.Id">
+                                <img src="@item.CoverPictureURL" class="card-img-top card-img-small"/>
+                            </a>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.DisplayFor(modelItem => item.ShowDate)
+                            </div>
+                        </td>
+                        <td>Mäklare här</td>
+                    </tr>
+                }
+
+                </tbody>
+            </table>   
+        </div>
+    </div>
 </div>
+

@@ -10,6 +10,7 @@ namespace HomeFinder.Models
 
         public int Id { get; set; }
         [Required]
+        [Display(Name = "Adress")]
         public string Address { get; set; }
         public string CoverPictureURL { get; set; }
         public string Description { get; set; }
@@ -34,6 +35,8 @@ namespace HomeFinder.Models
         [Display(Name = "Upplåtelseform")]
 
         public RealEstateTypes RealEstateType { get; set; }
+        public ICollection<RealEstateImage> RealEstateImages { get; set; }
+
 
     }
 }
