@@ -71,6 +71,24 @@
                     </div>
                     <div class="card-body">
                         <span class="card-text">@realEstate.Price.ToString("c")</span>
+                        <span>
+                            @if (realEstate.RealEstateType == RealEstateTypes.Hus)
+                            {
+                                <i class="fa-solid fa-house float-right"></i>
+                            }
+                            else if (realEstate.RealEstateType == RealEstateTypes.Lägenhet)
+                            {
+                                <i class="fa-regular fa-building float-right"></i>
+                            }
+                            else if (realEstate.RealEstateType == RealEstateTypes.Gård)
+                            {
+                                <i class="fa-solid fa-tree-city float-right"></i>
+                            }
+                            else
+                            {
+                                <i class="fa-regular fa-circle-question float-right"></i>
+                            }
+                        </span>
                     </div>
                 </a>
             </div>
