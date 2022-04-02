@@ -3,10 +3,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HomeFinder.Migrations
 {
-    public partial class init : Migration
+    public partial class added_Identity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_RegistrationOfInterest_User_UserId",
+                table: "RegistrationOfInterest");
+
+            migrationBuilder.DropTable(
+                name: "User");
+
+            migrationBuilder.DropIndex(
+                name: "IX_RegistrationOfInterest_UserId",
+                table: "RegistrationOfInterest");
+
+            migrationBuilder.DropColumn(
+                name: "UserId",
+                table: "RegistrationOfInterest");
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -26,10 +41,6 @@ namespace HomeFinder.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    GivenName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SurName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConfirmPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -48,27 +59,6 @@ namespace HomeFinder.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RealEstate",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CoverPictureURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<int>(type: "int", nullable: false),
-                    NumberOfRooms = table.Column<int>(type: "int", nullable: false),
-                    LivingArea = table.Column<int>(type: "int", nullable: false),
-                    ConstructionYear = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ShowDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RealEstateType = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RealEstate", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -177,54 +167,6 @@ namespace HomeFinder.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "RealEstateImages",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RealEstateId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RealEstateImages", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RealEstateImages_RealEstate_RealEstateId",
-                        column: x => x.RealEstateId,
-                        principalTable: "RealEstate",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RegistrationOfInterest",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RealEstateId = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Message = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RegistrationOfInterest", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RegistrationOfInterest_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_RegistrationOfInterest_RealEstate_RealEstateId",
-                        column: x => x.RealEstateId,
-                        principalTable: "RealEstate",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -263,21 +205,6 @@ namespace HomeFinder.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RealEstateImages_RealEstateId",
-                table: "RealEstateImages",
-                column: "RealEstateId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RegistrationOfInterest_RealEstateId",
-                table: "RegistrationOfInterest",
-                column: "RealEstateId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RegistrationOfInterest_UserId",
-                table: "RegistrationOfInterest",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -298,19 +225,44 @@ namespace HomeFinder.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "RealEstateImages");
-
-            migrationBuilder.DropTable(
-                name: "RegistrationOfInterest");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
-            migrationBuilder.DropTable(
-                name: "RealEstate");
+            migrationBuilder.AddColumn<int>(
+                name: "UserId",
+                table: "RegistrationOfInterest",
+                type: "int",
+                nullable: true);
+
+            migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RegistrationOfInterest_UserId",
+                table: "RegistrationOfInterest",
+                column: "UserId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_RegistrationOfInterest_User_UserId",
+                table: "RegistrationOfInterest",
+                column: "UserId",
+                principalTable: "User",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
         }
     }
 }
