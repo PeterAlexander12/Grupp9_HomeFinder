@@ -131,6 +131,9 @@ namespace HomeFinder.Migrations
                     b.Property<DateTime>("ShowDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("TestField")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("RealEstate");

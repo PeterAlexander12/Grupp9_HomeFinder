@@ -15,6 +15,8 @@ namespace HomeFinder.Models
         public string CoverPictureURL { get; set; }
         public string Description { get; set; }
 
+        public string TestField { get; set; }
+
         [DataType(DataType.Currency)]
         [Display(Name = "Utgångspris")]
         public int Price { get; set; }
