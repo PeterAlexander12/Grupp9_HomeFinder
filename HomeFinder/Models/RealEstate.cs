@@ -30,7 +30,7 @@ namespace HomeFinder.Models
         [DataType(DataType.Date)]
         public DateTime ShowDate { get; set; }
 
-        public List<RegistrationOfInterest> RegistrationsOfInterest{ get; set; }
+        public ICollection<RegistrationOfInterest> RegistrationsOfInterest{ get; set; }
 
         [Display(Name = "Upplåtelseform")]
 
