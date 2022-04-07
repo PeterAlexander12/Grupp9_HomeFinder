@@ -309,3 +309,22 @@ img {
     padding-bottom: 20px;
     border-color: #E6AF2A;
 }
+#AdvSearch-body {
+    background: url(../Pictures/House_AdvSearch.jpg);
+    width: 100%;
+    height: auto;
+    background-position: top;
+    opacity: 0.9;
+}
+#container-adv{
+    display: flex;
+    justify-content:center;
+    align-content:center;
+    width: 75%;
+    height: auto;
+    background-color: darkgoldenrod;
+}
+#adv-rows{
+    justify-content: space-evenly;
+    align-content: center;
+}
