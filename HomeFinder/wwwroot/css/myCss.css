@@ -342,3 +342,11 @@ img {
     border-radius: 5px;
     background-color: white;
 }
+
+/*-------------------------register user css-------------------------*/
+
+.input-requirements{
+    font-size: 8pt;
+    color: red;
+    margin-top: 0.7%;
+}
