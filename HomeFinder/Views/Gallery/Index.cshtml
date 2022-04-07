@@ -5,6 +5,14 @@
 }
 
 @{
+        int maxPrice = 0;
+    foreach (var realestate in Model)
+    {
+        if(realestate.Price > maxPrice)
+        {
+            maxPrice = realestate.Price;
+        }
+    }
 }
 
 
@@ -27,21 +35,21 @@
             <div class="col-3">
                 <div class="m-1">
                     <h5> Set Min Price </h5>
-                    <input id="minpriceslide" type="range" name="minSlide" min="0" max="10000000" value="2500000" step="50000" disabled="disabled" oninput="minpricetext.value=minpriceslide.value"/>
+                    <input id="minpriceslide" type="range" name="minSlide" min="0" max="@maxPrice" value="2500000" step="50000" disabled="disabled" oninput="minpricetext.value=minpriceslide.value"/>
                     <input type="checkbox" id="checkboxTest" name="checkbox" value="true" onclick="EnableDisable(this, minpriceslide.id)"/>
                 </div>
                 <div class="m-1">
-                    <input id="minpricetext" type="number" value="2500000" min="0" max="10000000" oninput="minpriceslide.value=minpricetext.value" readonly/>
+                    <input id="minpricetext" type="number" value="2500000" min="0" max="@maxPrice" oninput="minpriceslide.value=minpricetext.value" readonly/>
                 </div>
             </div>
             <div class="col">
                 <div class="m-1">
                     <h5> Set Max Price </h5>
-                    <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="10000000" value="2500000" step="50000" disabled="disabled" oninput="maxpricetext.value=maxpriceslide.value"/>
+                    <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="@maxPrice" value="2500000" step="50000" disabled="disabled" oninput="maxpricetext.value=maxpriceslide.value"/>
                     <input type="checkbox" id="checkboxTest" name="checkbox" value="true" onclick="EnableDisable(this, maxpriceslide.id)"/>
                 </div>
                 <div class="m-1">
-                    <input id="maxpricetext" type="number" value="2500000" min="0" max="10000000" oninput="maxpriceslide.value=maxpricetext.value" readonly/>
+                    <input id="maxpricetext" type="number" value="2500000" min="0" max="@maxPrice" oninput="maxpriceslide.value=maxpricetext.value" readonly/>
                 </div>
             </div>
         </div>
