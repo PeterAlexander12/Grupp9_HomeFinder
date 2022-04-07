@@ -86,6 +86,5 @@ namespace HomeFinder.Controllers
         {
             return View(await _context.RealEstate.ToListAsync());
         }
-
     }
 }

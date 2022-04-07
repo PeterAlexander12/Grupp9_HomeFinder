@@ -20,11 +20,10 @@
     }
 
 }
-<header>
         <link rel="stylesheet" href="~/css/myCss.css" />
-</header>
+        <link rel="stylesheet" href="~/css/site.css" />
 
-<body id="AdvSearch-body">
+<div id="AdvSearch-body">
 <form asp-action="Index">
 <div class="container" id="container-adv">
     <div class="container my-3 justify-content-center text-center">
@@ -121,7 +120,43 @@
     </div>
 </div>
 </form>
-</body>
-<footer>
+<div class="container" id="container-adv2">
+     @foreach (var realEstate in Model)
+    {
+        <div class="col-12">
+            <div class="card m-2 gallery-card">
+                <a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@realEstate.Id">
+                    <img src="@realEstate.CoverPictureURL" class="card-img-top card-img-custom" />
+                    <div class="card-body" style="height: 6em">
+                        <h5 class="mb-3">@realEstate.Address</h5>
+                        <span class="card-text">@realEstate.NumberOfRooms rum</span>
+                        <span class="card-text">@realEstate.LivingArea kvm</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-text">@realEstate.Price.ToString("c")</span>
+                        <span>
+                            @if (realEstate.RealEstateType == RealEstateTypes.Hus)
+                            {
+                                <i class="fa-solid fa-house float-right"></i>
+                            }
+                            else if (realEstate.RealEstateType == RealEstateTypes.Lägenhet)
+                            {
+                                <i class="fa-regular fa-building float-right"></i>
+                            }
+                            else if (realEstate.RealEstateType == RealEstateTypes.Gård)
+                            {
+                                <i class="fa-solid fa-tree-city float-right"></i>
+                            }
+                            else
+                            {
+                                <i class="fa-regular fa-circle-question float-right"></i>
+                            }
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+</div>
    <script src="~/js/Custom.js"></script>
-</footer>

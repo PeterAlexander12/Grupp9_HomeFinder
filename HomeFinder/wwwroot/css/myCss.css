@@ -311,18 +311,33 @@ img {
 }
 #AdvSearch-body {
     background: url(../Pictures/House_AdvSearch.jpg);
-    width: 100%;
-    height: auto;
+    min-width: 100vw;
+    min-height: 100vh;
     background-position: top;
     opacity: 0.9;
 }
 #container-adv{
     display: flex;
     justify-content:center;
-    align-content:center;
-    width: 75%;
-    height: auto;
+    align-items:center;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 50%;
+    height: 60%;
     background-color: darkgoldenrod;
+    opacity: 0.9;
+}
+#container-adv2{
+    display: flex;
+    position:absolute;
+    top: 50%;
+    left:75%;
+    transform:translate(-50%, -50%);
+    background-color:darkgoldenrod;
+    width: 50%;
+    height: 60%;
+    opacity: 0.9;
 }
 #adv-rows{
     justify-content: space-evenly;
