@@ -18,7 +18,6 @@
             maxPrice = realestate.Price;
         }
     }
-
 }
         <link rel="stylesheet" href="~/css/myCss.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -40,21 +39,19 @@
              <div class="col-3">
                 <div class="m-1 text-nowrap">
                     <h4> Välj min pris </h4>
-                    <input id="minpriceslide" type="range" name="minSlide" min="0" max="@maxPrice" value="2500000" step="50000" disabled="disabled" oninput="minpricetext.value=minpriceslide.value"/>
-                    <input type="checkbox" id="checkboxTest" name="checkbox" value="true" onclick="EnableDisable(this, minpriceslide.id);"/>
+                    <input id="minpriceslide" type="range" name="minSlide" min="0" max="@maxPrice" value="0" step="50000" oninput="minpricetext.value=minpriceslide.value"/>
                 </div>
                 <div class="m-1">
-                    <input id="minpricetext" type="number" value="2500000" min="0" max="@maxPrice" oninput="minpriceslide.value=minpricetext.value" readonly/>
+                    <input id="minpricetext" type="number" value="0" min="0" max="@maxPrice" oninput="minpriceslide.value=minpricetext.value"/>
                 </div>
             </div>
             <div class="col-3">
                 <div class="m-1 text-nowrap">
                     <h4> Välj max pris </h4>
-                    <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="@maxPrice" value="2500000" step="50000" disabled="disabled" oninput="maxpricetext.value=maxpriceslide.value"/>
-                    <input type="checkbox" id="checkboxTest" name="checkbox" value="true" onclick="EnableDisable(this, maxpriceslide.id);"/>
+                    <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="@maxPrice" value="0" step="50000" oninput="maxpricetext.value=maxpriceslide.value"/>
                 </div>
                 <div class="m-1">
-                    <input id="maxpricetext" type="number" value="2500000" min="0" max="@maxPrice" oninput="maxpriceslide.value=maxpricetext.value" readonly/>
+                    <input id="maxpricetext" type="number" value="0" min="0" max="@maxPrice" oninput="maxpriceslide.value=maxpricetext.value"/>
                 </div>
             </div>
         </div>
@@ -63,11 +60,10 @@
              <div class="col-3">
                 <div class="m-1 text-nowrap">
                     <h4> Välj min boarea </h4>
-                    <input id="minLivingArea" type="range" name="minLivingSlide" min="0" max="@maxLivingArea" value="75" step="5" disabled="disabled" oninput="minLivingtext.value=minLivingArea.value"/>
-                    <input type="checkbox" id="checkboxTest" name="checkbox" value="true" onclick="EnableDisable(this, minLivingArea.id);"/>
+                    <input id="minLivingArea" type="range" name="minLivingSlide" min="0" max="@maxLivingArea" value="0" step="5" oninput="minLivingtext.value=minLivingArea.value"/>
                 </div>
                 <div class="m-1">
-                    <input id="minLivingtext" type="number" value="75" min="0" max="@maxLivingArea" oninput="minLivingArea.value=minLivingtext.value" readonly/>
+                    <input id="minLivingtext" type="number" value="0" min="0" max="@maxLivingArea" oninput="minLivingArea.value=minLivingtext.value"/>
                 </div>
             </div>
 

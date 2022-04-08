@@ -97,17 +97,27 @@ namespace HomeFinder.Controllers
             if (!string.IsNullOrEmpty(maxSlide))
             {
                 int maxPrice = int.Parse(maxSlide);
-                realEstates = realEstates.Where(r => r.Price <= maxPrice);
+                if (maxPrice != 0)
+                {
+                    realEstates = realEstates.Where(r => r.Price <= maxPrice);
+                }
             }
             if (!string.IsNullOrEmpty(minSlide))
             {
                 int minPrice = int.Parse(minSlide);
-                realEstates = realEstates.Where(r => r.Price >= minPrice);
+
+                if (minPrice != 0)
+                {
+                    realEstates = realEstates.Where(r => r.Price >= minPrice);
+                }
             }
             if (!string.IsNullOrEmpty(minLivingSlide))
             {
                 int minLivingArea = int.Parse(minLivingSlide);
-                realEstates = realEstates.Where(r => r.LivingArea >= minLivingArea);
+                if (minLivingArea != 0)
+                {
+                    realEstates = realEstates.Where(r => r.LivingArea >= minLivingArea);
+                }
             }
             if (!string.IsNullOrEmpty(NumberOfRooms))
             {

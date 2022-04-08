@@ -5,6 +5,14 @@
 }
 
 @{
+        int maxPrice = 0;
+    foreach (var realestate in Model)
+    {
+        if(realestate.Price > maxPrice)
+        {
+            maxPrice = realestate.Price;
+        }
+    }
 }
 
 <div class="gallery-container pb-0 min-vh-100">
@@ -14,15 +22,6 @@
         <div class="d-flex flex-column search-container w-50 align-items-center mt-2">
 
         <h2 class="my-4 text-center">Sök efter ditt drömboende</h2>
-        <script type="text/javascript">
-            function EnableDisable(chbox, id) {
-                var disablechange = document.getElementById(id);
-                disablechange.disabled = chbox.checked ? false : true;
-                if (!disablechange.disabled) {
-                    disablechange.focus();
-                }
-            }
-        </script>
         <form asp-action="Index" class="w-50">
             <div>
                 <div class="m-1 d-flex justify-content-center">
@@ -33,19 +32,19 @@
                         <div>
                             <div class="m-1">
                                 <h5> Set Min Price </h5>
-                                <input id="minpriceslide" type="range" name="minSlide" min="0" max="100000000" value="0" step="50000" oninput="minpricetext.value=minpriceslide.value"/>
+                                <input id="minpriceslide" type="range" name="minSlide" min="0" max="@maxPrice" value="0" step="50000" oninput="minpricetext.value=minpriceslide.value"/>
                             </div>
                             <div class="m-1">
-                                <input id="minpricetext" type="number" value="0" min="0" max="100000000" step="50000" oninput="minpriceslide.value=minpricetext.value"/>
+                                <input id="minpricetext" type="number" value="0" min="0" max="@maxPrice" step="50000" oninput="minpriceslide.value=minpricetext.value"/>
                             </div>
                         </div>
                         <div>
                             <div class="m-1">
                                 <h5> Set Max Price </h5>
-                                <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="100000000" value="0" step="50000" oninput="maxpricetext.value=maxpriceslide.value"/>
+                                <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="@maxPrice" value="0" step="50000" oninput="maxpricetext.value=maxpriceslide.value"/>
                             </div>
                             <div class="m-1">
-                                <input id="maxpricetext" type="number" value="0" min="0" max="100000000" step="50000" oninput="maxpriceslide.value=maxpricetext.value"/>
+                                <input id="maxpricetext" type="number" value="0" min="0" max="@maxPrice" step="50000" oninput="maxpriceslide.value=maxpricetext.value"/>
                             </div>
                         </div>
                     </div>
