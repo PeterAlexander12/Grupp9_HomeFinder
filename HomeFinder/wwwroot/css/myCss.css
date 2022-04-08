@@ -1,4 +1,32 @@
-﻿.a-cleanup{
+﻿/*.rich-black {
+    color: #0A0908;
+}
+
+.gunmetal {
+    color: #22333B;
+}
+
+.almond {
+    color: #EAE0D5;
+}
+
+.khaki-web {
+    color: #C6AC8F;
+}
+
+.umber {
+    color: #5E503F;
+}*/
+
+#navbar-color {
+    background-color: #E9B44C;
+}
+
+.footer-size{
+    min-height: 10vh;
+}
+
+.a-cleanup{
     color: inherit; 
 }
 
@@ -44,6 +72,7 @@ a.a-cleanup:hover{
     display: flex;
     flex-direction:column;
     justify-content:space-between;
+    float: right;
 }
 
 #object-description input{
@@ -55,3 +84,274 @@ a.a-cleanup:hover{
     object-fit: cover;
 }
 
+.start-container{
+    height: 93vh;
+}
+
+.alternate-container{
+    height: 45vh;
+}
+
+.background-image-start {
+    background: url(../Pictures/House_start_image.jpg);
+    width: 100%;
+    height: auto;
+    background-position: top;
+    opacity: 0.7;
+}
+
+.word {
+    position: absolute;
+    width: 220px;
+    opacity: 0;
+}
+
+.letter {
+    display: inline-block;
+    position: relative;
+    float: left;
+    transform: translateZ(25px);
+    transform-origin: 50% 50% 25px;
+}
+
+    .letter.out {
+        transform: rotateX(90deg);
+        transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+
+    .letter.behind {
+        transform: rotateX(-90deg);
+    }
+
+    .letter.in {
+        transform: rotateX(0deg);
+        transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+.paragraph {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+}
+
+.text {
+    font-size: 18pt;
+    opacity: 1;
+}
+
+.rich-black {
+    color: #0A0908;
+}
+
+.gunmetal {
+    color: #22333B;
+}
+
+.almond {
+    color: #EAE0D5;
+}
+
+.khaki-web {
+    color: #C6AC8F;
+}
+
+.umber {
+    color: #5E503F;
+}
+
+.realtor-info {
+    background-image: linear-gradient(to bottom right, #5E503F, #C6AC8F);
+}
+
+.img-slide {
+    height: 35vh;
+    width: 52.5vh;
+    object-fit: cover;
+}
+
+.card-textbox-size {
+    height: 35vh;
+    width: 30vh;
+    object-fit: cover;
+}
+
+.slideshow-container {
+    flex-basis: 45%;
+    max-width: 1000px;
+    position: relative;
+}
+
+.mySlides{
+    display: none;
+}
+
+#max-width-40vh{
+    max-width: 30vh;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0.4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .text{
+        font-size: 32pt;
+    }
+}
+
+.register-realtor-container{
+    min-height: 150vh;
+}
+
+.register-realtor-background {
+    background-image: url(https://images.unsplash.com/photo-1590764964275-aec963c59944?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXJiYW4lMjBsYW5kc2NhcGV8ZW58MHx8MHx8&w=1000&q=80);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.register-realtor-form {
+    background-color: rgba(234, 224, 213, .6);
+    border-radius: 5px;
+}
+
+.input-background-transparent{
+    background-color: rgba(0,0,0,0);
+    border: 1px solid black;
+}
+
+/*-------------------------------*/
+.align-center {
+    text-align: center;
+}
+.hash-list {
+    display: block;
+    padding: 0;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px){
+    .hash-list.cols-3 > li:nth-last-child(-n+3) {
+        border-bottom: none;
+    }
+}
+@media (min-width: 768px){
+    .hash-list.cols-3 > li {
+        width: 33.3333%;
+    }
+}
+.hash-list > li {
+    display: block;
+    float: left;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.pad-30, .pad-30-all > * {
+    padding: 30px;
+}
+img {
+    border: 0;
+}
+.mgb-20, .mgb-20-all > * {
+    margin-bottom: 20px;
+}
+.wpx-100, .wpx-100-after:after {
+    width: 100px;
+}
+.img-round, .img-rel-round {
+    border-radius: 50%;
+}
+.padb-30, .padb-30-all > * {
+    padding-bottom: 30px;
+}
+
+.mgb-40, .mgb-40-all > * {
+    margin-bottom: 40px;
+}
+.align-center {
+    text-align: center;
+}
+[class*="line-b"] {
+    position: relative;
+    padding-bottom: 20px;
+    border-color: #E6AF2A;
+}
+
+/*---------------CSS gallery---------------------*/
+
+.gallery-container {
+    height: 100%;
+    background-image: url(https://croatia.hr/sites/default/files/styles/image_full_width/public/2018-08/stari-grad-dubrovnik-pogled-sa-srdja-luka-esenko.jpg?itok=W7lMG60z);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.search-container {
+    background-color: #C6AC8F;
+}
+
+.hide-checkbox{
+    visibility: hidden;
+}
+
+.accomodation-type-checkbox {
+    width: 20vh;
+    height: 3vh;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+}
+
+#house-button, #apartment-button, #farm-button{
+    cursor: pointer !important;
+}
+
+
+/*-------------------------register user css-------------------------*/
+
+.input-requirements{
+    font-size: 8pt;
+    color: red;
+    margin-top: 0.7%;
+}

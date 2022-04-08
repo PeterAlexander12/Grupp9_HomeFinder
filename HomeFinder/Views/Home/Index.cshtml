@@ -1,25 +1,125 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<RealEstate>
+@{
+	ViewData["Title"] = "Home Page";
+	var realEstate = new List<RealEstate>();
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="d-flex flex-column">
+
+	<div class="start-container">
+		<div class="background-image-start d-flex flex-column h-100">
+			<div class="d-flex align-items-center justify-content-center h-100">
+				<p class="text-white paragraph text">
+						We are experts on&nbsp;
+					<span class="word gunmetal">sales</span>
+					<span class="word almond">marketing</span>
+					<span class="word khaki-web">lettings</span>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="d-flex flex-row alternate-container">
+
+		<div class="slideshow-container p-5">
+
+				@for (var i = Model.Count(); i >= Model.Count() - 5; i--)
+				{
+					realEstate.Add(Model.ElementAt(i - 1));
+				}
+
+
+			@foreach (var accomodation in realEstate)
+			{
+			<div class="mySlides">
+				<div class="card my-3 gallery-card">
+					<a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@accomodation.Id">
+						<div class="d-flex flex-row">
+						
+							<div class="card-picture-size">
+								<img src="@accomodation.CoverPictureURL" class="card-img-top img-slide" />
+							</div>
+							
+							<div class="card-textbox-size">
+								<div class="card-body">
+									<h5 class="mb-3">@accomodation.Address</h5>
+									<span class="card-text">@accomodation.NumberOfRooms rum</span>
+									<span class="card-text">@accomodation.LivingArea kvm</span>
+								</div>
+								<div class="card-body">
+									<span class="card-text">@accomodation.Price.ToString("c")</span>
+									<span>
+										@if (accomodation.RealEstateType == RealEstateTypes.Hus)
+										{
+											<i class="fa-solid fa-house float-right"></i>
+										}
+										else if (accomodation.RealEstateType == RealEstateTypes.Lägenhet)
+										{
+											<i class="fa-regular fa-building float-right"></i>
+										}
+										else if (accomodation.RealEstateType == RealEstateTypes.Gård)
+										{
+											<i class="fa-solid fa-tree-city float-right"></i>
+										}
+										else
+										{
+											<i class="fa-regular fa-circle-question float-right"></i>
+										}
+									</span>
+							</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			}
+
+			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+			<a class="next" onclick="plusSlides(1)">&#10095;</a>
+	</div>
+
+			<div class="d-flex flex-column m-4 align-items-center justify-content-center w-100">
+			<h3 class="text-center">
+				Find your dream accomodation
+			</h3>
+			<p>
+				<a class="text-decoration-none text-dark" asp-action="index" asp-controller="Gallery">
+				With our easy to use search engine you can actualize your dream. With a few easy clicks you can search for a number of real estates in your prefered area.
+				Check out our latest arrivals to the left or click here to search on your own.
+				</a>
+			</p>
+		</div>
+
+	</div>
+	
+	<div class="alternate-container h-100 m-0">
+		<div class="d-flex flex-row flex-nowrap realtor-info">
+			<div class="text-center align-self-center">
+				<h3>
+					The best service out there for everything real estate
+				</h3>
+				<p>
+					If you are interested in buying, selling or renting, we have everything that you need.
+					We only work with certified realtors from the best real estate firms all over the world.
+					Do you want to know more about us? Click here for more information.
+				</p>
+			</div>
+			<div class="card align-self-end m-2">
+				<a asp-controller="account" asp-action="registerrealtor" class="box">
+					<img class="card-img-top" src="https://cdn.pixabay.com/photo/2021/02/16/04/40/realtor-6019792__340.png" alt="Bilden kunde tyvärr inte visas"/>
+						<div class="card-header">
+							<h5 class="text-center">
+							Are you a realtor and want to use our service?<br />
+							Register your account here!
+							</h5>
+						</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
 </div>
 
-		<div class="card" style="width:30vh">
-				    <a asp-controller="account" asp-action="registerrealtor" class="box">
-					    <img  style="width:30vh" class="image-top" src="https://cdn.pixabay.com/photo/2021/02/16/04/40/realtor-6019792__340.png" alt="Bilden kunde tyvärr inte visas"/>
-			<div class="card-header">
-				<h5 class="text-center">
-					Är du mäklare och vill använda vår tjänst?<br />
-					Skapa ditt konto här!
-				</h5>
-				</div>
-					</a>
-				@*<div class="card-body">
-				</div>
-			<div class="card-footer">
-				<a class="btn btn-primary" asp-controller="Account" asp-action="RegisterRealtor">Skapa ditt konto här!</a>
-			</div>
-		</div>*@
+@section Scripts{
+	<script src="~/js/HomePage.js"></script>
+}

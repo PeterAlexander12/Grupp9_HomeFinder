@@ -13,10 +13,10 @@ namespace HomeFinder.Models
         //public string? UserName { get; set; }
 
         //[Required]
-        //[Display(Name = "Förnamn")]
+        [Display(Name = "Given name")]
         public string GivenName { get; set; }
         //[Required]
-        //[Display(Name = "Efternamn")]
+        [Display(Name = "Surname")]
         public string SurName { get; set; }
 
         //[Phone]
@@ -29,7 +29,7 @@ namespace HomeFinder.Models
         public string Password { get; set; }
 
         //[DataType(DataType.Password)]
-        //[Display(Name = "Bekräfta lösenord")]
+        [Display(Name = "Confirm password")]
         //[Compare("Password", ErrorMessage = "Your password does not match,")]
         public string ConfirmPassword { get; set; }
 
