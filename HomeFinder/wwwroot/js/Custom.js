@@ -11,6 +11,7 @@
         $('#' + confirmDeleteSpan).hide();
     }
 }
+
 function EnableDisable(chbox, id) {
     var disablechange = document.getElementById(id);
     disablechange.disabled = chbox.checked ? false : true;

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/css/myCss.css" />
 <link rel="stylesheet" href="~/lib/fontawesome-free-6.1.1-web/css/all.css" />
 </head>
-<body class="d-flex flex-column p-0 m-0">
+<body class="d-flex flex-column p-0 m-0 min-vh-100">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow" id="navbar-color">
             <div class="container-fluid">
@@ -62,8 +62,8 @@
         </main>
     </div>
 
-    <footer class="m-0 h-100 footer-size" id="navbar-color">
-        <div class="container d-flex flex-row">
+    <footer class="m-0 h-100 footer-size mt-auto" id="navbar-color">
+        <div class="container d-flex flex-row justify-content-center">
             <div class="d-flex flex-column m-3">
                     <h5>For customers</h5>
                         <span class="mb-1 text-light">
@@ -81,7 +81,24 @@
                 <span class="mb-1 text-light">
                         <a class="text-light" asp-controller="Account" asp-action="RegisterRealtor">Register realtor</a>
                 </span>
+                </div>  
+                <div class="d-flex flex-column m-3">
+                    <h5>Follow us</h5>
+                    <span class="text-light">
+                    <i class="fa-brands fa-facebook"></i> <a class="text-light" href="https://www.facebook.se" target="_blank">Facebook</a>
+                    </span>
+                    <span class="text-light">
+                    <i class="fa-brands fa-instagram"></i> <a class="text-light" href="https://www.instagram.com/" target="_blank">Instagram</a>
+                    </span>
+                    <span class="text-light">
+                    <i class="fa-brands fa-twitter"></i> <a class="text-light" href="https://www.twitter.com" target="_blank">Twitter</a>
+                    </span>
+                    <span class="text-light">
+                    <i class="fa-brands fa-linkedin"></i> <a class="text-light" href="https://se.linkedin.com/" target="_blank">LinkedIn</a>
+                    </span>
             </div>
+        </div>
+        <div class="d-flex flex-row justify-content-center">
                      <span class="m-1 text-center text-light">
                             &copy; 2022 - HomeFinder - <a class="text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </span>

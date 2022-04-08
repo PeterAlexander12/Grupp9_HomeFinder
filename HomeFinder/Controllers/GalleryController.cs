@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using HomeFinder.Data;
-using HomeFinder.Models;
+using HomeFinder.Data; 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using HomeFinder.Models;
 
 namespace HomeFinder.Controllers
 {
@@ -16,11 +16,15 @@ namespace HomeFinder.Controllers
         {
             _context = context; 
         }
-        
-        public async Task<IActionResult> Index(string searchTerm, string maxSlide, string minSlide, string minLivingSlide, string RealEstateType, string NumberOfRooms, string Ålderpåhus)
+        public async Task<IActionResult> Index(string searchTerm, string maxSlide, string minSlide, List<int> realEstateType, string removeFilter)
         {
             var realEstates = _context.RealEstate.Select(r => r);
-            
+
+            if (!string.IsNullOrEmpty(removeFilter) && removeFilter.Equals("Rensa filter"))
+            {
+                return View(await realEstates.ToListAsync());
+            }
+
             if (!string.IsNullOrEmpty(searchTerm))
             {
                 realEstates = realEstates.Where(r => r.Address.Contains(searchTerm) || r.Description.Contains(searchTerm));
@@ -28,38 +32,38 @@ namespace HomeFinder.Controllers
             if (!string.IsNullOrEmpty(maxSlide))
             {
                 int maxPrice = int.Parse(maxSlide);
+                if(maxPrice != 0)
+                {
                 realEstates = realEstates.Where(r => r.Price <= maxPrice);
+                }
             }
             if (!string.IsNullOrEmpty(minSlide))
             {
                 int minPrice = int.Parse(minSlide);
-                realEstates = realEstates.Where(r => r.Price >= minPrice);
-            }
-            if (!string.IsNullOrEmpty(minLivingSlide))
-            {
-                int minLivingArea = int.Parse(minLivingSlide);
-                realEstates = realEstates.Where(r => r.LivingArea >= minLivingArea);
-            }
-            if (!string.IsNullOrEmpty(NumberOfRooms))
-            {
-                int numbOfRooms = int.Parse(NumberOfRooms);
-                realEstates = realEstates.Where(r => r.NumberOfRooms >= numbOfRooms);
-            }
 
-            if (!string.IsNullOrEmpty(RealEstateType))
-            {
-                RealEstateTypes test = (RealEstateTypes)Enum.Parse(typeof(RealEstateTypes), RealEstateType);
-                realEstates = realEstates.Where(r => r.RealEstateType.Equals(test));
-            }
-
-            if (!string.IsNullOrEmpty(Ålderpåhus))
-            {
-                if(Ålderpåhus != "Ingen")
+                if(minPrice != 0)
                 {
-                    int _Ålderpåhus = int.Parse(Ålderpåhus);
+                realEstates = realEstates.Where(r => r.Price >= minPrice);
+                }
+            }
+            if(realEstateType.Count > 0)
+            {
 
-                    int Condition = DateTime.Now.Year - _Ålderpåhus;
-                    realEstates = realEstates.Where(r => r.ConstructionYear.Year >= Condition);
+                if (realEstateType.Count == 1)
+                {
+                    realEstates = realEstates.Where(r => (int)r.RealEstateType == realEstateType.ElementAt(0));
+                }
+
+                if(realEstateType.Count == 2)
+                {
+                    realEstates = realEstates.Where(r => (int)r.RealEstateType == realEstateType.ElementAt(0) || (int)r.RealEstateType == realEstateType.ElementAt(1));
+                }
+
+                if (realEstateType.Count == 3)
+                {
+                    realEstates = realEstates.Where(r => (int)r.RealEstateType == realEstateType.ElementAt(0) 
+                    || (int)r.RealEstateType == realEstateType.ElementAt(1)
+                    || (int)r.RealEstateType == realEstateType.ElementAt(2));
                 }
             }
 
@@ -67,7 +71,7 @@ namespace HomeFinder.Controllers
         }
 
         public async Task<IActionResult> Details(int? id)
-        {
+        {   
             if (id == null)
             {
                 return NotFound();
@@ -82,9 +86,6 @@ namespace HomeFinder.Controllers
 
             return View(realEstate);
         }
-        public async Task<IActionResult> AdvSearch()
-        {
-            return View(await _context.RealEstate.ToListAsync());
-        }
+
     }
 }

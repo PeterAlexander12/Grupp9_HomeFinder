@@ -5,101 +5,121 @@
 }
 
 @{
-        int maxPrice = 0;
-    foreach (var realestate in Model)
-    {
-        if(realestate.Price > maxPrice)
-        {
-            maxPrice = realestate.Price;
-        }
-    }
 }
 
+<div class="gallery-container pb-0 min-vh-100">
 
-<h2 class="my-4">Alla objekt</h2>
-<script type="text/javascript">
-    function EnableDisable(chbox, id) {
-        var disablechange = document.getElementById(id);
-        disablechange.disabled = chbox.checked ? false : true;
-        if (!disablechange.disabled) {
-            disablechange.focus();
-        }
-    }
-</script>
-<form asp-action="Index">
-    <div class="container">
-        <div class="m-1">
-                <input type="text" name="searchTerm" placeholder="Search for..."/>
-        </div>
-        <div class="row">
-            <div class="col-3">
-                <div class="m-1">
-                    <h5> Set Min Price </h5>
-                    <input id="minpriceslide" type="range" name="minSlide" min="0" max="@maxPrice" value="2500000" step="50000" disabled="disabled" oninput="minpricetext.value=minpriceslide.value"/>
-                    <input type="checkbox" id="checkboxTest" name="checkbox" value="true" onclick="EnableDisable(this, minpriceslide.id)"/>
-                </div>
-                <div class="m-1">
-                    <input id="minpricetext" type="number" value="2500000" min="0" max="@maxPrice" oninput="minpriceslide.value=minpricetext.value" readonly/>
-                </div>
-            </div>
-            <div class="col">
-                <div class="m-1">
-                    <h5> Set Max Price </h5>
-                    <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="@maxPrice" value="2500000" step="50000" disabled="disabled" oninput="maxpricetext.value=maxpriceslide.value"/>
-                    <input type="checkbox" id="checkboxTest" name="checkbox" value="true" onclick="EnableDisable(this, maxpriceslide.id)"/>
-                </div>
-                <div class="m-1">
-                    <input id="maxpricetext" type="number" value="2500000" min="0" max="@maxPrice" oninput="maxpriceslide.value=maxpricetext.value" readonly/>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>@Html.ActionLink("Advanced Search Options","AdvSearch")</div>
-    <div class="m-1">
-    <input type="submit" value="Apply filters" class="btn btn-primary"/>
-    </div>
-</form>
-<form asp-action="Index">
-    <div class="m-1">
-            <input value="Remove filter" type="submit" class="btn btn-danger"/>
-    </div>
-</form>
+    <div class="d-flex justify-content-center">
 
-<div class="row">
-    @foreach (var realEstate in Model)
-    {
-        <div class="col-4">
-            <div class="card my-3 gallery-card">
-                <a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@realEstate.Id">
-                    <img src="@realEstate.CoverPictureURL" class="card-img-top card-img-custom" />
-                    <div class="card-body" style="height: 6em">
-                        <h5 class="mb-3">@realEstate.Address</h5>
-                        <span class="card-text">@realEstate.NumberOfRooms rum</span>
-                        <span class="card-text">@realEstate.LivingArea kvm</span>
+        <div class="d-flex flex-column search-container w-50 align-items-center mt-2">
+
+        <h2 class="my-4 text-center">Sök efter ditt drömboende</h2>
+        <script type="text/javascript">
+            function EnableDisable(chbox, id) {
+                var disablechange = document.getElementById(id);
+                disablechange.disabled = chbox.checked ? false : true;
+                if (!disablechange.disabled) {
+                    disablechange.focus();
+                }
+            }
+        </script>
+        <form asp-action="Index" class="w-50">
+            <div>
+                <div class="m-1 d-flex justify-content-center">
+                        <input type="text" name="searchTerm" class="w-100" placeholder="Sök efter område, adress eller annat nyckelord"/>
+                </div>
+                <div class="d-flex flex-column align-items-center">
+                    <div class="row mb-1">
+                        <div>
+                            <div class="m-1">
+                                <h5> Set Min Price </h5>
+                                <input id="minpriceslide" type="range" name="minSlide" min="0" max="100000000" value="0" step="50000" oninput="minpricetext.value=minpriceslide.value"/>
+                            </div>
+                            <div class="m-1">
+                                <input id="minpricetext" type="number" value="0" min="0" max="100000000" step="50000" oninput="minpriceslide.value=minpricetext.value"/>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="m-1">
+                                <h5> Set Max Price </h5>
+                                <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="100000000" value="0" step="50000" oninput="maxpricetext.value=maxpriceslide.value"/>
+                            </div>
+                            <div class="m-1">
+                                <input id="maxpricetext" type="number" value="0" min="0" max="100000000" step="50000" oninput="maxpriceslide.value=maxpricetext.value"/>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <span class="card-text">@realEstate.Price.ToString("c")</span>
-                        <span>
-                            @if (realEstate.RealEstateType == RealEstateTypes.Hus)
-                            {
-                                <i class="fa-solid fa-house float-right"></i>
-                            }
-                            else if (realEstate.RealEstateType == RealEstateTypes.Lägenhet)
-                            {
-                                <i class="fa-regular fa-building float-right"></i>
-                            }
-                            else if (realEstate.RealEstateType == RealEstateTypes.Gård)
-                            {
-                                <i class="fa-solid fa-tree-city float-right"></i>
-                            }
-                            else
-                            {
-                                <i class="fa-regular fa-circle-question float-right"></i>
-                            }
-                        </span>
+
+                    <div class="d-flex flex-row">
+                        <div class="mr-2">
+                            <label for="house" class="accomodation-type-checkbox text-center m-1" id="house-button"><i class="fa-solid fa-house"></i> House</label>
+                            <input type="checkbox" id="house" name="realEstateType" value="0" class="hide-checkbox" style="visibility:hidden" onclick="toggleClick(0)"/>
+                        </div>
+                        <div class="mr-2">
+                            <label for="apartment" class="accomodation-type-checkbox text-center m-1" id="apartment-button"><i class="fa-regular fa-building"></i> Apartment</label>
+                            <input type="checkbox" id="apartment" name="realEstateType" value="1" class="hide-checkbox" style="visibility:hidden" onclick="toggleClick(1)"/>
+                        </div>
+                        <div class="mr-2">
+                            <label for="farm" class="accomodation-type-checkbox text-center m-1" id="farm-button"><i class="fa-solid fa-tree-city"></i> Farm</label>
+                            <input type="checkbox" id="farm" name="realEstateType" value="2" class="hide-checkbox" style="visibility:hidden" onclick="toggleClick(2)"/>     
+                        </div>
                     </div>
-                </a>
+                </div>  
             </div>
+
+            <div class="d-flex flex-row justify-content-center m-2">
+                <div class="m-1">
+                    <input type="submit" value="Sök boende" class="btn btn-primary"/>
+                </div>
+                <div class="m-1">
+                    <input value="Rensa filter" name="removeFilter" type="submit" class="btn btn-danger"/>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mb-1">
+                <h5><a href="#" class="text-dark text-decoration-none">Avancerat sökfilter</a></h5>
+            </div>
+        </form>
         </div>
-    }
+    </div>
+
+        <div class="row mr-2 ml-2 mt-2">
+            @foreach (var realEstate in Model)
+            {
+                <div class="col-sm-4">
+                    <div class="card my-3 gallery-card">
+                        <a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@realEstate.Id">
+                            <img src="@realEstate.CoverPictureURL" class="card-img-top card-img-custom" />
+                            <div class="card-body" style="height: 6em">
+                                <h5 class="mb-3">@realEstate.Address</h5>
+                                <span class="card-text">@realEstate.NumberOfRooms rum</span>
+                                <span class="card-text">@realEstate.LivingArea kvm</span>
+                            </div>
+                            <div class="card-body">
+                                <span class="card-text">@realEstate.Price.ToString("c")</span>
+                                <span>
+                                    @if (realEstate.RealEstateType == RealEstateTypes.Hus)
+                                    {
+                                        <i class="fa-solid fa-house float-right"></i>
+                                    }
+                                    else if (realEstate.RealEstateType == RealEstateTypes.Lägenhet)
+                                    {
+                                        <i class="fa-regular fa-building float-right"></i>
+                                    }
+                                    else if (realEstate.RealEstateType == RealEstateTypes.Gård)
+                                    {
+                                        <i class="fa-solid fa-tree-city float-right"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa-regular fa-circle-question float-right"></i>
+                                    }
+
+
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
 </div>

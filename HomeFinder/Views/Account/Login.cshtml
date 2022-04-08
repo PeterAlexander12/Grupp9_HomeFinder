@@ -29,9 +29,9 @@
 			</div>
 				<button type="submit" class="btn btn-primary">Logga in</button>
 			</form>
-			<form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
-				<button type="submit" class="btn btn-primary" name="provider" value="Google" title="Login using Google">Google</button>
-				<button type="submit" class="btn btn-primary" name="provider" value="Facebook" title="Login using Facebook">Facebook</button>
+			<form method="post" class="mt-2" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+				<button type="submit" class="btn btn-primary" name="provider" value="Google" title="Logga in med Google"><i class="fa-brands fa-google mr-2"></i>Google</button>
+				<button type="submit" class="btn btn-primary" name="provider" value="Facebook" title="Logga in med Facebook"><i class="fa-brands fa-facebook mr-2"></i>Facebook</button>
 			</form>
 		</div>
 	</div>
@@ -39,14 +39,19 @@
 		<h4>Saknar du konto?</h4>
 	<div class="row m-4 p-2 w-50">
 		<h5>Hitta din bostad enklare än någonsin</h5>
-		<ul>
-			<li class="fa fa-check">
-				Marknadens enklaste och smidigaste sökmotor för bostäder
+		<ul class="text-dark w-100">
+			<li class="list-unstyled">
+				<i class="fa-solid fa-check"></i>
+				<span class="text-dark">
+					Marknadens enklaste och smidigaste sökmotor för bostäder
+				</span>
 			</li>
-			<li class="fa fa-check">
+			<li class="list-unstyled">
+				<i class="fa-solid fa-check"></i>
 				Spara bostadsannonser och få live uppdateringar vid nyheter om din favorit annons
 			</li>
-			<li class="fa fa-check">
+			<li class="list-unstyled">
+				<i class="fa-solid fa-check"></i>
 				Mäklarnas favorittjänst vid försäljning av bostäder
 			</li>
 		</ul>

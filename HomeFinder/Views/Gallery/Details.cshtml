@@ -11,90 +11,92 @@
 
 
 
+<div class="d-flex flex-column">
+    <h2 class="ml-2 mt-1">@Model.Address</h2>
+    <div class="m-2">
+        <div>
+            <div class="card card-img-top">
 
-<h2>@Model.Address</h2>
-<div class="row">
-    <div class="col">
-        <div class="card card-img-top">
-
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active carousel-item-custom">
-                        <img src="@Model.CoverPictureURL" class="d-block w-100" alt="...">
-                    </div>
-                    @foreach (var image in Model.RealEstateImages)
-                    {
-                        <div class="carousel-item carousel-item-custom">
-                            <img src="~/uploads/@image.ImageURL" class="d-block w-100" alt="...">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active carousel-item-custom">
+                            <img src="@Model.CoverPictureURL" class="d-block w-100" alt="...">
                         </div>
-                    }
+                        @foreach (var image in Model.RealEstateImages)
+                        {
+                            <div class="carousel-item carousel-item-custom">
+                                <img src="~/uploads/@image.ImageURL" class="d-block w-100" alt="...">
+                            </div>
+                        }
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
 
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-4 col-md-12">
-                        <h5 class="mb-3">Hitta till @Model.Address</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12">
+                            <h5 class="mb-3">Hitta till @Model.Address</h5>
 
-                        <iframe src=@mapUri
-                                style="border: 0; width: 100%; float: left;"
-                                loading="lazy">
-                        </iframe>
+                            <iframe src=@mapUri
+                                    style="border: 0; width: 100%; float: left; height:90%;"
+                                    loading="lazy"
+                                    >
+                            </iframe>
 
-                    </div>
-                    <div class="col-lg-8 col-md-12">
-                        <h5 style="border-bottom: 2px solid black; margin-top:10px">Information</h5>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12">
-                                <table class="table table-borderless">
-                                    <tr class="table-row-underlined">
-                                        <th>Adress</th>
-                                        <td>@Model.Address</td>
-                                    </tr>
-                                    <tr class="table-row-underlined">
-                                        <th>Bostadstyp</th>
-                                        <td>@Model.RealEstateType</td>
-                                    </tr>
-                                    <tr class="table-row-underlined">
-                                        <th>Antal rum</th>
-                                        <td>@Model.NumberOfRooms</td>
-                                    </tr>
-                                    <tr class="table-row-underlined">
-                                        <th>Bostadsyta</th>
-                                        <td>@Model.LivingArea m<sup>2</sup></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                                <table class="table table-borderless">
-                                    <tr class="table-row-underlined">
-                                        <th>Byggår</th>
-                                        <td>@Model.ConstructionYear.Year</td>
-                                    </tr>
-                                    <tr class="table-row-underlined">
-                                        <th>Visningsdatum</th>
-                                        <td>@Model.ShowDate.ToString("d")</td>
-                                    </tr>
-                                    <tr class="table-row-underlined">
-                                        <th>Pris</th>
-                                        <td>@Model.Price.ToString("c")</td>
-                                    </tr>
-                                </table>
-                            </div>
                         </div>
-                        <p> @Model.Description</p>
-                        <div>
-                            <a asp-area="" asp-controller="RegistrationOfInterests" asp-action="Create" asp-route-id="@Model.Id">
-                                <input type="button" class="btn btn-primary" value="Anmäl intresse" />
-                            </a>
+                        <div class="col-lg-8 col-md-12"">
+                            <h5 style="border-bottom: 2px solid black; margin-top:10px">Information</h5>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <table class="table table-borderless">
+                                        <tr class="table-row-underlined">
+                                            <th>Adress</th>
+                                            <td>@Model.Address</td>
+                                        </tr>
+                                        <tr class="table-row-underlined">
+                                            <th>Bostadstyp</th>
+                                            <td>@Model.RealEstateType</td>
+                                        </tr>
+                                        <tr class="table-row-underlined">
+                                            <th>Antal rum</th>
+                                            <td>@Model.NumberOfRooms</td>
+                                        </tr>
+                                        <tr class="table-row-underlined">
+                                            <th>Bostadsyta</th>
+                                            <td>@Model.LivingArea m<sup>2</sup></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <table class="table table-borderless">
+                                        <tr class="table-row-underlined">
+                                            <th>Byggår</th>
+                                            <td>@Model.ConstructionYear.Year</td>
+                                        </tr>
+                                        <tr class="table-row-underlined">
+                                            <th>Visningsdatum</th>
+                                            <td>@Model.ShowDate.ToString("d")</td>
+                                        </tr>
+                                        <tr class="table-row-underlined">
+                                            <th>Pris</th>
+                                            <td>@Model.Price.ToString("c")</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <p> @Model.Description</p>
+                            <div>
+                                <a asp-area="" asp-controller="" asp-action="">
+                                    <input type="button" class="btn btn-primary" value="Anmäl intresse" />
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
