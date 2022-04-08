@@ -29,7 +29,7 @@ namespace HomeFinder.Controllers
             {
                 slides.Add(realEstate);
             }
-    
+
             return View(slides);
         }
 

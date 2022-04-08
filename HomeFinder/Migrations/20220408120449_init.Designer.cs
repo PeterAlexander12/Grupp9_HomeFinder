@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeFinder.Migrations
 {
     [DbContext(typeof(HomeFinderContext))]
-    [Migration("20220404103621_init")]
+    [Migration("20220408120449_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
