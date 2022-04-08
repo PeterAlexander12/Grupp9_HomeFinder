@@ -43,8 +43,12 @@
 						<ul class="input-requirements m-0 p-0" id="password-confirm-error"></ul>
 						@*<span asp-validation-for="ConfirmPassword" class="text-danger"></span>*@
 					</div>
-					<button type="submit" class="btn btn-primary">Skapa konto</button>
+					<button type="button" class="btn btn-primary" id="submit-button" onmouseover="toggleSubmit()">Skapa konto</button>
 				</form>
 			</div>
 	</div>
 </div>
+
+@section Scripts{
+	<script src="~/js/Registration.js"></script>
+}

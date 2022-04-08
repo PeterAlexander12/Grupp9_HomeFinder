@@ -53,15 +53,15 @@
                     <div class="d-flex flex-row">
                         <div class="mr-2">
                             <label for="house" class="accomodation-type-checkbox text-center m-1" id="house-button"><i class="fa-solid fa-house"></i> House</label>
-                            <input type="checkbox" id="house" name="realEstateType" value="0" class="hide-checkbox" style="visibility:hidden" onclick="toggleClick(0)"/>
+                            <input type="checkbox" id="house" name="realEstateType" value="0" class="hide-checkbox" onclick="toggleClick(0)"/>
                         </div>
                         <div class="mr-2">
                             <label for="apartment" class="accomodation-type-checkbox text-center m-1" id="apartment-button"><i class="fa-regular fa-building"></i> Apartment</label>
-                            <input type="checkbox" id="apartment" name="realEstateType" value="1" class="hide-checkbox" style="visibility:hidden" onclick="toggleClick(1)"/>
+                            <input type="checkbox" id="apartment" name="realEstateType" value="1" class="hide-checkbox" onclick="toggleClick(1)"/>
                         </div>
                         <div class="mr-2">
                             <label for="farm" class="accomodation-type-checkbox text-center m-1" id="farm-button"><i class="fa-solid fa-tree-city"></i> Farm</label>
-                            <input type="checkbox" id="farm" name="realEstateType" value="2" class="hide-checkbox" style="visibility:hidden" onclick="toggleClick(2)"/>     
+                            <input type="checkbox" id="farm" name="realEstateType" value="2" class="hide-checkbox" onclick="toggleClick(2)"/>     
                         </div>
                     </div>
                 </div>  
@@ -123,3 +123,7 @@
             }
         </div>
 </div>
+
+@section Scripts{
+    <script src="~/js/Gallery.js"></script>
+}

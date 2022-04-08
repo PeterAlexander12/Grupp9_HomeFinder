@@ -343,6 +343,11 @@ img {
     background-color: white;
 }
 
+#house-button, #apartment-button, #farm-button{
+    cursor: pointer !important;
+}
+
+
 /*-------------------------register user css-------------------------*/
 
 .input-requirements{
