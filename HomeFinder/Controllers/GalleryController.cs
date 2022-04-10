@@ -19,6 +19,7 @@ namespace HomeFinder.Controllers
         {
             var realEstates = _context.RealEstate.Select(r => r);
 
+            ViewBag.Favourites = _context.Favourites.Select(f => f);
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
