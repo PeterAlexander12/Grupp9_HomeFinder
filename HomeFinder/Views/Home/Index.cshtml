@@ -4,24 +4,109 @@
 	var realEstate = new List<RealEstate>();
 }
 
+@{
+        int maxPrice = 0;
+    foreach (var realestate in Model)
+    {
+        if(realestate.Price > maxPrice)
+        {
+            maxPrice = realestate.Price;
+        }
+    }
+}
+
 <div class="d-flex flex-column">
 
 	<div class="start-container">
 		<div class="background-image-start d-flex flex-column h-100">
-			<div class="d-flex align-items-center justify-content-center h-100">
-				<p class="text-white paragraph text">
-						We are experts on&nbsp;
-					<span class="word gunmetal">sales</span>
-					<span class="word almond">marketing</span>
-					<span class="word khaki-web">lettings</span>
+			<div class="d-flex align-items-start justify-content-center h-100 content">
+				<p class="primary-color paragraph text">
+						Vi är experter på&nbsp;
+					<span class="word primary-color">sälj</span>
+					<span class="word third-color">bostäder</span>
+					<span class="word fourth-color">service</span>
 				</p>
 			</div>
 		</div>
 	</div>
 
-	<div class="d-flex flex-row alternate-container">
+	<div class="alternate-container">
+		    <div class="d-flex flex-column justify-content-center align-items-center">
+				<span class="search-header">HITTA DITT NYA <span class="primary-color">HEM</span></span>
+        <div class="d-flex flex-column search-container w-50 align-items-center mt-2">
+        <form asp-controller="gallery" asp-action="Index" class="w-50">
+            <div>
 
-		<div class="slideshow-container p-5">
+				    <div class="d-flex flex-column align-items-center justify-content-center mt-2 flex-lg-row">
+                        <div>
+                            <label for="house" class="accomodation-type-checkbox text-center m-1 housetype-button" id="house-button">HUS</label>
+                            <input type="checkbox" id="house" name="realEstateType" value="0" class="hide-checkbox" style="visibility:hidden" onclick="toggleClick(0)"/>
+                        </div>
+                        <div>
+                            <label for="apartment" class="accomodation-type-checkbox text-center m-1 housetype-button" id="apartment-button">LÄGENHET</label>
+                            <input type="checkbox" id="apartment" name="realEstateType" value="1" class="hide-checkbox" style="visibility:hidden" onclick="toggleClick(1)"/>
+                        </div>
+                        <div>
+                            <label for="farm" class="accomodation-type-checkbox text-center m-1 housetype-button" id="farm-button">GÅRD</label>
+                            <input type="checkbox" id="farm" name="realEstateType" value="2" class="hide-checkbox" style="visibility:hidden" onclick="toggleClick(2)"/>     
+                        </div>
+                    </div>
+
+                <div class="m-1 d-flex justify-content-center">
+                        <input type="text" name="searchTerm" id="search-field"  class="w-100" placeholder="Sök efter område, adress eller annat nyckelord"/>
+                </div>
+               
+				<div class="d-flex flex-column align-items-center justify-content-between flex-lg-row">
+                        <div>
+                            <div class="m-1 text-center">
+                                <span class="price-text">Min. pris</span>
+                            </div>
+							<div class="m-1">
+                                <input id="minpriceslide" type="range" name="minSlide" min="0" max="@maxPrice" value="0" step="50000" oninput="minpricetext.value=minpriceslide.value"/>
+							</div>
+                            <div class="m-1">
+                                <input id="minpricetext" type="number" min="0" max="@maxPrice" step="50000" oninput="minpriceslide.value=minpricetext.value" placeholder="250 000 kr"/>
+                            </div>
+                        </div>
+                        
+						<div>
+                            <div class="m-1 text-center">
+                               <span class="price-text">Max. pris</span>
+                            </div>
+							<div class="m-1">
+                                <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="@maxPrice" value="0" step="50000" oninput="maxpricetext.value=maxpriceslide.value"/>
+							</div>
+                            <div class="m-1">
+                                <input id="maxpricetext" type="number" min="0" max="@maxPrice" step="50000" oninput="maxpriceslide.value=maxpricetext.value" placeholder="10 000 000 kr"/>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="d-flex flex-column justify-content-center flex-lg-row justify-content-lg-between ml-lg-4 mr-lg-4">
+                <div class="mt-3">
+                    <input type="submit" value="SÖK" class="btn button-primary"/>
+                </div>
+                <div class="mt-3">
+                    <input value="RENSA FILTER" name="removeFilter" type="submit" class="btn secondary-button"/>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mb-1 mt-3">
+				<a asp-controller="Gallery" asp-action="AdvSearch" class="advanced-search-link">AVANCERAD SÖK</a>
+            </div>
+        </form>
+        </div>
+    </div>
+	</div>
+
+	<div class="d-flex flex-column alternate-two-container">
+
+			<div class="d-flex flex-column m-4 align-items-center justify-content-center">
+			<span class="search-header text-center">HITTA DITT NYA <span class="primary-color">HEM</span></span>
+		</div>
+
+		<div class="slideshow-container p-5 w-100 d-flex flex-row justify-content-around">
+
 
 				@for (var i = Model.Count(); i >= Model.Count() - 5; i--)
 				{
@@ -29,35 +114,81 @@
 				}
 
 
-			@foreach (var accomodation in realEstate)
+			@for (var i = 0; i < realEstate.Count; i+=2)
 			{
 			<div class="mySlides">
 				<div class="card my-3 gallery-card">
-					<a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@accomodation.Id">
+					<a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@realEstate[i].Id">
 						<div class="d-flex flex-row">
 						
 							<div class="card-picture-size">
-								<img src="@accomodation.CoverPictureURL" class="card-img-top img-slide" />
+								<img src="@realEstate[i].CoverPictureURL" class="card-img-top img-slide" />
 							</div>
 							
 							<div class="card-textbox-size">
 								<div class="card-body">
-									<h5 class="mb-3">@accomodation.Address</h5>
-									<span class="card-text">@accomodation.NumberOfRooms rum</span>
-									<span class="card-text">@accomodation.LivingArea kvm</span>
+									<h5 class="mb-3">@realEstate[i].Address</h5>
+									<span class="card-text">@realEstate[i].NumberOfRooms rum</span>
+									<span class="card-text">@realEstate[i].LivingArea kvm</span>
 								</div>
 								<div class="card-body">
-									<span class="card-text">@accomodation.Price.ToString("c")</span>
+									<span class="card-text">@realEstate[i].Price.ToString("c")</span>
 									<span>
-										@if (accomodation.RealEstateType == RealEstateTypes.Hus)
+										@if (realEstate[i].RealEstateType == RealEstateTypes.Hus)
 										{
 											<i class="fa-solid fa-house float-right"></i>
 										}
-										else if (accomodation.RealEstateType == RealEstateTypes.Lägenhet)
+										else if (realEstate[i].RealEstateType == RealEstateTypes.Lägenhet)
 										{
 											<i class="fa-regular fa-building float-right"></i>
 										}
-										else if (accomodation.RealEstateType == RealEstateTypes.Gård)
+										else if (realEstate[i].RealEstateType == RealEstateTypes.Gård)
+										{
+											<i class="fa-solid fa-tree-city float-right"></i>
+										}
+										else
+										{
+											<i class="fa-regular fa-circle-question float-right"></i>
+										}
+									</span>
+							</div>
+							</div>
+						</div>
+					</a>
+				</div>
+				</div>
+				}
+
+				@for (var i = 1; i < realEstate.Count; i+=2)
+			   {
+				   
+				<div class="mySlidesTwo">
+				<div class="card my-3 gallery-card">
+					<a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@realEstate[i].Id">
+						<div class="d-flex flex-row">
+						
+							<div class="card-picture-size">
+								<img src="@realEstate[i].CoverPictureURL" class="card-img-top img-slide" />
+							</div>
+							
+							<div class="card-textbox-size">
+								<div class="card-body">
+									<h5 class="mb-3">@realEstate[i].Address</h5>
+									<span class="card-text">@realEstate[i].NumberOfRooms rum</span>
+									<span class="card-text">@realEstate[i].LivingArea kvm</span>
+								</div>
+								<div class="card-body">
+									<span class="card-text">@realEstate[i].Price.ToString("c")</span>
+									<span>
+										@if (realEstate[i].RealEstateType == RealEstateTypes.Hus)
+										{
+											<i class="fa-solid fa-house float-right"></i>
+										}
+										else if (realEstate[i].RealEstateType == RealEstateTypes.Lägenhet)
+										{
+											<i class="fa-regular fa-building float-right"></i>
+										}
+										else if (realEstate[i].RealEstateType == RealEstateTypes.Gård)
 										{
 											<i class="fa-solid fa-tree-city float-right"></i>
 										}
@@ -78,30 +209,15 @@
 			<a class="next" onclick="plusSlides(1)">&#10095;</a>
 	</div>
 
-			<div class="d-flex flex-column m-4 align-items-center justify-content-center w-100">
-			<h3 class="text-center">
-				Find your dream accomodation
-			</h3>
-			<p>
-				<a class="text-decoration-none text-dark" asp-action="index" asp-controller="Gallery">
-				With our easy to use search engine you can actualize your dream. With a few easy clicks you can search for a number of real estates in your prefered area.
-				Check out our latest arrivals to the left or click here to search on your own.
-				</a>
-			</p>
-		</div>
 
 	</div>
 	
 	<div class="alternate-container h-100 m-0">
-		<div class="d-flex flex-row flex-nowrap realtor-info">
-			<div class="text-center align-self-center">
-				<h3>
-					The best service out there for everything real estate
-				</h3>
-				<p>
-					If you are interested in buying, selling or renting, we have everything that you need.
-					We only work with certified realtors from the best real estate firms all over the world.
-					Do you want to know more about us? Click here for more information.
+		<div class="d-flex flex-row flex-nowrap realtor-info justify-content-around">
+			<div class="text-center align-self-center w-50">
+				<span class="search-header">SÄLJ MED <span class="primary-color">OSS</span></span>
+				<p class="ml-5 mr-5">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
 				</p>
 			</div>
 			<div class="card align-self-end m-2">
@@ -122,4 +238,5 @@
 
 @section Scripts{
 	<script src="~/js/HomePage.js"></script>
+    <script src="~/js/Gallery.js"></script>
 }

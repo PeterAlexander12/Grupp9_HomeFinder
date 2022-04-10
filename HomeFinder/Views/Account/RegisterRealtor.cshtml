@@ -4,85 +4,44 @@
 }
 
 
-<div class="register-realtor-background register-realtor-container">
-	<div class="container p-2">
-
-		<h1 class="text-center text-light	">Register as a realtor</h1>
-
-		<div class="row register-realtor-form">
-			<div class="col-md-12">
-				<form method="post">
+<div class="d-flex flex-column align-items-center">
+	<h1 class="primary-color">SKAPA KONTO MÄKLARE</h1>
+		<div class="w-75">
+			<div class="col-md-12 font-weight-bold primary-color">
+				<form method="post" id="form">
 					<div class="form-group">
-						<label asp-for="Email" class="font-weight-bold"></label>
-						<input asp-for="Email" class="form-control input-background-transparent" />
-						<span asp-validation-for="Email" class="text-danger"></span>
+						<label asp-for="Email"></label>
+						<input asp-for="Email" class="form-control" id="email"/>
+						<ul class="input-requirements m-0 p-0" id="email-error"></ul>
 					</div>
 					<div class="form-group">
-						<label asp-for="GivenName" class="font-weight-bold"></label>
-						<input asp-for="GivenName" class="form-control input-background-transparent" />
-						<span asp-validation-for="GivenName" class="text-danger"></span>
+						<label asp-for="GivenName"></label>
+						<input asp-for="GivenName" class="form-control" id="givenName"/>
+						<ul class="input-requirements m-0 p-0" id="givenName-error"></ul>
 					</div>
 					<div class="form-group">
-						<label asp-for="SurName" class="font-weight-bold"></label>
-						<input asp-for="SurName" class="form-control input-background-transparent" />
-						<span asp-validation-for="SurName" class="text-danger"></span>
+						<label asp-for="SurName"></label>
+						<input asp-for="SurName" class="form-control" id="surname"/>
+						<ul class="input-requirements m-0 p-0" id="surname-error"></ul>
 					</div>
 					<div class="form-group">
-						<label asp-for="PhoneNumber" class="font-weight-bold"></label>
-						<input asp-for="PhoneNumber" class="form-control input-background-transparent" />
-						<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+						<label asp-for="PhoneNumber"></label>
+						<input asp-for="PhoneNumber" class="form-control" placeholder="Telefonummer är valfritt" id="phone"/>
+						<ul class="input-requirements m-0 p-0" id="phone-error"></ul>
 					</div>
 					<div class="form-group">
-						<label asp-for="Password" class="font-weight-bold"></label>
-						<input asp-for="Password" class="form-control input-background-transparent" />
-						<span asp-validation-for="Password" class="text-danger"></span>
+						<label asp-for="Password"></label>
+						<input asp-for="Password" class="form-control" id="password"/>
+						<ul class="input-requirements m-0 p-0" id="password-error"></ul>
 					</div>
 					 <div class="form-group">
-						<label asp-for="ConfirmPassword" class="font-weight-bold"></label>
-						<input asp-for="ConfirmPassword" class="form-control input-background-transparent" />
-						<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+						<label asp-for="ConfirmPassword"></label>
+						<input asp-for="ConfirmPassword" class="form-control" id="password-confirm"/>
+						<ul class="input-requirements m-0 p-0" id="password-confirm-error"></ul>
 					</div>
-					<button type="submit" class="btn btn-primary mb-2">Register realtor</button>
+					<button type="button" class="btn button-primary" id="submit-button" onmouseover="toggleSubmit()">Skapa konto</button>
 				</form>
 			</div>
-		</div>
-
-		<div class="mt-5 text-light">
-			<h2 class="text-center mt-4">Why choose us?</h2>
-			<p class="mt-1">
-				According to both customers and realtors we are the best service out there. With our easy to use service and a wide area of locations everyone can find their dream house or apartment.
-				We are an award winning service but don't take our word for it, see what our users say about us.
-				Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae. 
-				 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae. 
-				  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae. 
-			</p>
-
-						<div class="mgb-40 padb-30 auto-invert line-b-4 align-center">
-							<div class="mt-4 mb-4">
-							<h1 class="font-cond-b fg-text-d lts-md fs-300 fs-300-xs no-mg" contenteditable="false">Read Customer Reviews</h1>
-						</div>
-						<ul class="hash-list cols-3 cols-1-xs pad-30-all align-center text-sm text-dark">
-							<li class="bg-white rounded-circle">
-							  <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
-							  <p class="fs-110 font-cond-l" contenteditable="false">" Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae. "</p>
-							  <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">Martha Stewart</h5>
-							  <small class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Business Woman - New York</small>
-							</li>
-							<li class="bg-white rounded-circle">
-							  <img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
-							  <p class="fs-110 font-cond-l" contenteditable="false">" Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae. "</p>
-							  <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">Ariana Menage</h5>
-							  <small class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Recording Artist - Los Angeles</small>
-							</li>
-							<li class="bg-white rounded-circle">
-							  <img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
-							  <p class="fs-110 font-cond-l" contenteditable="false">" Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae. "</p>
-							  <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">Sean Carter</h5>
-							  <small class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Fund Manager - Chicago</small>
-							</li>
-						  </ul>
-							</div>
-
-		</div>
 	</div>
 </div>
+

@@ -1,33 +1,82 @@
-﻿/*.rich-black {
-    color: #0A0908;
+﻿body {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
-.gunmetal {
-    color: #22333B;
+.primary-color{
+    color: #71918E;
 }
 
-.almond {
-    color: #EAE0D5;
+.secondary-color{
+    color: #B7C8C6;
 }
 
-.khaki-web {
-    color: #C6AC8F;
+.third-color{
+    color: #586575;
 }
 
-.umber {
-    color: #5E503F;
-}*/
+.fourth-color{
+    color: #5C554E;
+}
+
+.background-primary {
+    background-color: #71918E;
+}
+
+.background-secondary {
+    background-color: #B7C8C6;
+}
+
+.circle-style {
+    border: 1px solid #71918E;
+}
 
 #navbar-color {
-    background-color: #E9B44C;
+    background-color: white;
 }
 
-.footer-size{
+#footer-color {
+    background-color: #B7C8C6;
+}
+
+#text-color {
+    color: #71918E;
+    font-size: 16pt;
+}
+
+#text-color:hover {
+    color: #586575;
+}
+
+#footer-text-color {
+    color: #586575;
+    font-size: 12pt;
+    text-decoration: none;
+}
+
+    #footer-text-color:hover {
+        color: #71918E;
+    }
+
+.footer-size {
     min-height: 10vh;
 }
 
-.a-cleanup{
-    color: inherit; 
+.button-primary {
+    background-color: #71918e;
+    color: white;
+        width: 15vh;
+        height: 4vh;
+}
+
+.secondary-button {
+    background-color: #586575;
+    color: white;
+    width: 15vh;
+    height: 4vh;
+}
+
+.a-cleanup {
+    color: inherit;
 }
 
 a.a-cleanup:hover{
@@ -89,16 +138,38 @@ a.a-cleanup:hover{
 }
 
 .alternate-container{
-    height: 45vh;
+    background-color: white;
+}
+
+.alternate-two-container {
+    background-color: #ada9a6;
 }
 
 .background-image-start {
-    background: url(../Pictures/House_start_image.jpg);
-    width: 100%;
-    height: auto;
-    background-position: top;
-    opacity: 0.7;
+    position: relative;
 }
+
+    .background-image-start:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.6;
+        background-image: url(https://www.howdens.com/-/media/howdens/assets/clh_asset_products/clh_asset_levela_108418/clh_asset_levelb_110114/clh_asset_levelc_25382349/ass_25411373.jpg);
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        background-size: cover;
+    }
+
+    .content{
+        position: relative;
+        opacity: 1;
+        margin-top: 20vh;
+        font-size: 20pt;
+    }
 
 .word {
     position: absolute;
@@ -134,38 +205,15 @@ a.a-cleanup:hover{
     margin: 0;
 }
 
-.text {
-    font-size: 18pt;
-    opacity: 1;
-}
-
-.rich-black {
-    color: #0A0908;
-}
-
-.gunmetal {
-    color: #22333B;
-}
-
-.almond {
-    color: #EAE0D5;
-}
-
-.khaki-web {
-    color: #C6AC8F;
-}
-
-.umber {
-    color: #5E503F;
-}
 
 .realtor-info {
-    background-image: linear-gradient(to bottom right, #5E503F, #C6AC8F);
+    background-color: white;
 }
 
 .img-slide {
-    height: 35vh;
-    width: 52.5vh;
+    height: 100%;
+    width: 100%;
+    max-height: 35vh;
     object-fit: cover;
 }
 
@@ -176,13 +224,13 @@ a.a-cleanup:hover{
 }
 
 .slideshow-container {
-    flex-basis: 45%;
-    max-width: 1000px;
+    width: 100%;
     position: relative;
 }
 
-.mySlides{
+.mySlides, .mySlidesTwo{
     display: none;
+    width: 75vh;
 }
 
 #max-width-40vh{
@@ -328,7 +376,11 @@ img {
 }
 
 .search-container {
-    background-color: #C6AC8F;
+    background-color: white;
+}
+
+.search-header{
+    font-size: 32pt;
 }
 
 .hide-checkbox{
@@ -336,22 +388,67 @@ img {
 }
 
 .accomodation-type-checkbox {
-    width: 20vh;
+    width: 16vh;
     height: 3vh;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: white;
+    border: 1.5px solid #71918E;
+    color: #71918E;
+}
+
+.accomodation-type-checkbox-checked {
+    color: white;
+    background-color: #71918e;
+    border: 1.5px solid #71918E;
+    width: 16vh;
+    height: 3vh;
 }
 
 #house-button, #apartment-button, #farm-button{
     cursor: pointer !important;
 }
 
-
-/*-------------------------register user css-------------------------*/
-
-.input-requirements{
-    font-size: 8pt;
-    color: red;
-    margin-top: 0.7%;
+#search-field{
+    min-width: 20vh;
 }
+
+.price-text {
+    font-size: 8pt;
+    color: #b8b9b9;
+}
+
+#maxpriceslide, #minpriceslide {
+    -webkit-appearance: none;
+    background: transparent;
+    width: 20vh;
+    background-color: #b8b9b9;
+    height: 1.5px;
+    margin-bottom: 3vh;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    height: 15px;
+    width: 15px;
+    border-radius: 40px;
+    background: #586575;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+#maxpricetext, #minpricetext{
+    width: 20vh;
+}
+
+.advanced-search-link {
+    color: #71918e;
+    font-size: 10pt;
+}
+
+    .advanced-search-link:hover {
+        color: #586575;
+    }
+
+    /*-------------------------register user css-------------------------*/
+    .input-requirements {
+        font-size: 8pt;
+        color: red;
+        margin-top: 0.7%;
+    }

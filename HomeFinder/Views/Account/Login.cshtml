@@ -27,11 +27,11 @@
 				</label>
 				</div>
 			</div>
-				<button type="submit" class="btn btn-primary">Logga in</button>
+				<button type="submit" class="btn button-primary">Logga in</button>
 			</form>
 			<form method="post" class="mt-2" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
-				<button type="submit" class="btn btn-primary" name="provider" value="Google" title="Logga in med Google"><i class="fa-brands fa-google mr-2"></i>Google</button>
-				<button type="submit" class="btn btn-primary" name="provider" value="Facebook" title="Logga in med Facebook"><i class="fa-brands fa-facebook mr-2"></i>Facebook</button>
+				<button type="submit" class="btn button-primary" name="provider" value="Google" title="Logga in med Google"><i class="fa-brands fa-google mr-2"></i>Google</button>
+				<button type="submit" class="btn button-primary" name="provider" value="Facebook" title="Logga in med Facebook"><i class="fa-brands fa-facebook mr-2"></i>Facebook</button>
 			</form>
 		</div>
 	</div>
@@ -56,7 +56,7 @@
 			</li>
 		</ul>
 		<a asp-area="" asp-controller="Account" asp-action="Register">
-			<input type="button" class="btn btn-secondary" value="Registrera" />
+			<input type="button" class="btn secondary-button" value="Registrera" />
 		</a>
 	</div>
 

@@ -13,46 +13,60 @@
 <body class="d-flex flex-column p-0 m-0 min-vh-100">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow" id="navbar-color">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HomeFinder</a>
+            <div class="container-fluid d-flex flex-row justify-content-between w-100">
+                <div class="align-self-start">
+                <a class="navbar-brand" id="text-color" asp-area="" asp-controller="Home" asp-action="Index">HOMEFINDER</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Gallery" asp-action="Index">Objects</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        @if(User.IsInRole("admin"))
-                        {
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Administrator" asp-action="ListRoles">Administration</a>
-                        </li>
-                        }
-                    </ul>
-                    <ul class="navbar-nav">
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mitt konto</a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                   <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Index">Hem</a>
-                                   <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="MyDetails">Mina uppgifter</a>
-                                  <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Logout">Logga ut</a>
-                                </div>
+                </div>
+                
+                <div>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1" >
+                            <li class="nav-item">
+                                <a class="nav-link" id="text-color" asp-area="" asp-controller="Home" asp-action="Index">START</a>
                             </li>
-                        }
-                        else
-                        {
-                        <li class="nav-item">
-                             <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Login">Logga in</a>
-                        </li>
-                        }
-                    </ul>
+                            <li class="nav-item">
+                                <a class="nav-link" id="text-color" asp-area="" asp-controller="Gallery" asp-action="Index">HITTA HEM</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="text-color" asp-controller="Home" asp-action="SellWithUs">SÄLJ MED OSS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="text-color" href="#">HITTA MÄKLARE</a>
+                            </li>
+                            @if(User.IsInRole("admin"))
+                            {
+                            <li class="nav-item">
+                                <a class="nav-link" id="text-color" asp-area="" asp-controller="Administrator" asp-action="ListRoles">Administration</a>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                    </div>
+                    <div>
+                        <ul class="navbar-nav">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mitt konto</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                       <a class="nav-link" id="text-color" asp-area="" asp-controller="Account" asp-action="Index">Hem</a>
+                                       <a class="nav-link" id="text-color" asp-area="" asp-controller="Account" asp-action="MyDetails">Mina uppgifter</a>
+                                      <a class="nav-link" id="text-color" asp-area="" asp-controller="Account" asp-action="Logout">Logga ut</a>
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                            <li class="nav-item">
+                                 <a class="nav-link" id="text-color" asp-area="" asp-controller="Account" asp-action="Login">LOGGA IN</a>
+                            </li>
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -63,45 +77,45 @@
         </main>
     </div>
 
-    <footer class="m-0 h-100 footer-size mt-auto" id="navbar-color">
+    <footer class="m-0 h-100 footer-size mt-auto" id="footer-color">
         <div class="container d-flex flex-row justify-content-center">
             <div class="d-flex flex-column m-3">
                     <h5>For customers</h5>
-                        <span class="mb-1 text-light">
-                                <a class="text-light" asp-controller="Account" asp-action="Login">Login</a>
+                        <span class="mb-1">
+                                <a id="footer-text-color" asp-controller="Account" asp-action="Login">LOGGA IN</a>
                         </span>
-                        <span class="mb-1 text-light">
-                            <a class="text-light" asp-controller="Gallery" asp-action="Index">Search for a new home</a>
+                        <span class="mb-1">
+                            <a id="footer-text-color" asp-controller="Gallery" asp-action="Index">HITTA HEM</a>
                         </span>
             </div>
             <div class="d-flex flex-column m-3">
                 <h5>For realtors</h5>
-                <span class="mb-1 text-light">
-                        <a class="text-light" asp-controller="Account" asp-action="Login">Login</a>
+                <span class="mb-1">
+                        <a id="footer-text-color" asp-controller="Account" asp-action="Login">LOGGA IN</a>
                 </span>
-                <span class="mb-1 text-light">
-                        <a class="text-light" asp-controller="Account" asp-action="RegisterRealtor">Register realtor</a>
+                <span class="mb-1">
+                        <a id="footer-text-color" asp-controller="Account" asp-action="RegisterRealtor">NY MÄKLARE</a>
                 </span>
                 </div>  
                 <div class="d-flex flex-column m-3">
                     <h5>Follow us</h5>
-                    <span class="text-light">
-                    <i class="fa-brands fa-facebook"></i> <a class="text-light" href="https://www.facebook.se" target="_blank">Facebook</a>
+                    <span id="footer-text-color">
+                    <i class="fa-brands fa-facebook"></i><a class="ml-1" id="footer-text-color" href="https://www.facebook.se" target="_blank">Facebook</a>
                     </span>
-                    <span class="text-light">
-                    <i class="fa-brands fa-instagram"></i> <a class="text-light" href="https://www.instagram.com/" target="_blank">Instagram</a>
+                    <span id="footer-text-color">
+                    <i class="fa-brands fa-instagram"></i><a class="ml-1" id="footer-text-color" href="https://www.instagram.com/" target="_blank">Instagram</a>
                     </span>
-                    <span class="text-light">
-                    <i class="fa-brands fa-twitter"></i> <a class="text-light" href="https://www.twitter.com" target="_blank">Twitter</a>
+                    <span id="footer-text-color">
+                    <i class="fa-brands fa-twitter"></i><a class="ml-1" id="footer-text-color" href="https://www.twitter.com" target="_blank">Twitter</a>
                     </span>
-                    <span class="text-light">
-                    <i class="fa-brands fa-linkedin"></i> <a class="text-light" href="https://se.linkedin.com/" target="_blank">LinkedIn</a>
+                    <span id="footer-text-color">
+                    <i class="fa-brands fa-linkedin"></i><a class="ml-1" id="footer-text-color" href="https://se.linkedin.com/" target="_blank">LinkedIn</a>
                     </span>
             </div>
         </div>
         <div class="d-flex flex-row justify-content-center">
-                     <span class="m-1 text-center text-light">
-                            &copy; 2022 - HomeFinder - <a class="text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                     <span class="m-1 text-center">
+                            &copy; 2022 - HomeFinder - <a id="footer-text-color" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </span>
         </div>
     </footer>

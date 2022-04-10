@@ -15,71 +15,76 @@
     }
 }
 
-<div class="gallery-container pb-0 min-vh-100">
+<div class="pb-0 min-vh-100">
 
-    <div class="d-flex justify-content-center">
-
+    <div class="alternate-container">
+		    <div class="d-flex flex-column justify-content-center align-items-center">
+				<span class="search-header">HITTA DITT NYA <span class="primary-color">HEM</span></span>
         <div class="d-flex flex-column search-container w-50 align-items-center mt-2">
-
-        <h2 class="my-4 text-center">Sök efter ditt drömboende</h2>
-        <form asp-action="Index" class="w-50">
+        <form asp-controller="gallery" asp-action="Index" class="w-50">
             <div>
-                <div class="m-1 d-flex justify-content-center">
-                        <input type="text" name="searchTerm" class="w-100" placeholder="Sök efter område, adress eller annat nyckelord"/>
-                </div>
-                <div class="d-flex flex-column align-items-center">
-                    <div class="row mb-1">
-                        <div>
-                            <div class="m-1">
-                                <h5> Set Min Price </h5>
-                                <input id="minpriceslide" type="range" name="minSlide" min="0" max="@maxPrice" value="0" step="50000" oninput="minpricetext.value=minpriceslide.value"/>
-                            </div>
-                            <div class="m-1">
-                                <input id="minpricetext" type="number" value="0" min="0" max="@maxPrice" step="50000" oninput="minpriceslide.value=minpricetext.value"/>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="m-1">
-                                <h5> Set Max Price </h5>
-                                <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="@maxPrice" value="0" step="50000" oninput="maxpricetext.value=maxpriceslide.value"/>
-                            </div>
-                            <div class="m-1">
-                                <input id="maxpricetext" type="number" value="0" min="0" max="@maxPrice" step="50000" oninput="maxpriceslide.value=maxpricetext.value"/>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="d-flex flex-row">
-                        <div class="mr-2">
-                            <label for="house" class="accomodation-type-checkbox text-center m-1" id="house-button"><i class="fa-solid fa-house"></i> House</label>
+				    <div class="d-flex flex-column align-items-center justify-content-center mt-2 flex-lg-row">
+                        <div>
+                            <label for="house" class="accomodation-type-checkbox text-center m-1 housetype-button" id="house-button">HUS</label>
                             <input type="checkbox" id="house" name="realEstateType" value="0" class="hide-checkbox" style="visibility:hidden" onclick="toggleClick(0)"/>
                         </div>
-                        <div class="mr-2">
-                            <label for="apartment" class="accomodation-type-checkbox text-center m-1" id="apartment-button"><i class="fa-regular fa-building"></i> Apartment</label>
+                        <div>
+                            <label for="apartment" class="accomodation-type-checkbox text-center m-1 housetype-button" id="apartment-button">LÄGENHET</label>
                             <input type="checkbox" id="apartment" name="realEstateType" value="1" class="hide-checkbox" style="visibility:hidden" onclick="toggleClick(1)"/>
                         </div>
-                        <div class="mr-2">
-                            <label for="farm" class="accomodation-type-checkbox text-center m-1" id="farm-button"><i class="fa-solid fa-tree-city"></i> Farm</label>
+                        <div>
+                            <label for="farm" class="accomodation-type-checkbox text-center m-1 housetype-button" id="farm-button">GÅRD</label>
                             <input type="checkbox" id="farm" name="realEstateType" value="2" class="hide-checkbox" style="visibility:hidden" onclick="toggleClick(2)"/>     
                         </div>
                     </div>
-                </div>  
+
+                <div class="m-1 d-flex justify-content-center">
+                        <input type="text" name="searchTerm" id="search-field"  class="w-100" placeholder="Sök efter område, adress eller annat nyckelord"/>
+                </div>
+               
+				<div class="d-flex flex-column align-items-center justify-content-between flex-lg-row">
+                        <div>
+                            <div class="m-1 text-center">
+                                <span class="price-text">Min. pris</span>
+                            </div>
+							<div class="m-1">
+                                <input id="minpriceslide" type="range" name="minSlide" min="0" max="@maxPrice" value="0" step="50000" oninput="minpricetext.value=minpriceslide.value"/>
+							</div>
+                            <div class="m-1">
+                                <input id="minpricetext" type="number" min="0" max="@maxPrice" step="50000" oninput="minpriceslide.value=minpricetext.value" placeholder="250 000 kr"/>
+                            </div>
+                        </div>
+                        
+						<div>
+                            <div class="m-1 text-center">
+                               <span class="price-text">Max. pris</span>
+                            </div>
+							<div class="m-1">
+                                <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="@maxPrice" value="0" step="50000" oninput="maxpricetext.value=maxpriceslide.value"/>
+							</div>
+                            <div class="m-1">
+                                <input id="maxpricetext" type="number" min="0" max="@maxPrice" step="50000" oninput="maxpriceslide.value=maxpricetext.value" placeholder="10 000 000 kr"/>
+                            </div>
+                        </div>
+                    </div>
             </div>
 
-            <div class="d-flex flex-row justify-content-center m-2">
-                <div class="m-1">
-                    <input type="submit" value="Sök boende" class="btn btn-primary"/>
+            <div class="d-flex flex-column justify-content-center flex-lg-row justify-content-lg-between ml-lg-4 mr-lg-4">
+                <div class="mt-3">
+                    <input type="submit" value="SÖK" class="btn button-primary"/>
                 </div>
-                <div class="m-1">
-                    <input value="Rensa filter" name="removeFilter" type="submit" class="btn btn-danger"/>
+                <div class="mt-3">
+                    <input value="RENSA FILTER" name="removeFilter" type="submit" class="btn secondary-button"/>
                 </div>
             </div>
-            <div class="d-flex justify-content-center mb-1">
-                <div>@Html.ActionLink("Advanced Search Options","AdvSearch")</div>
+            <div class="d-flex justify-content-center mb-1 mt-3">
+				<a asp-controller="Gallery" asp-action="AdvSearch" class="advanced-search-link">AVANCERAD SÖK</a>
             </div>
         </form>
         </div>
     </div>
+	</div>
 
         <div class="row mr-2 ml-2 mt-2">
             @foreach (var realEstate in Model)

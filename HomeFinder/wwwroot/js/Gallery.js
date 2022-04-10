@@ -19,8 +19,10 @@
     }
 
     if (checkbox.checked) {
-        button.style.backgroundColor = 'gray';
+        button.classList.add('accomodation-type-checkbox-checked');
+        button.classList.remove('accomodation-type-checkbox');
     } else {
-        button.style.backgroundColor = 'white';
+        button.classList.add('accomodation-type-checkbox');
+        button.classList.remove('accomodation-type-checkbox-checked');
     }
 }
