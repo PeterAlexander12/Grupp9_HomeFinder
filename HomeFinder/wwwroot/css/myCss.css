@@ -388,7 +388,8 @@ img {
 }
 
 .accomodation-type-checkbox {
-    width: 16vh;
+    width: 100%;
+    min-width: 10vh;
     height: 3vh;
     border: 1.5px solid #71918E;
     color: #71918E;
@@ -398,7 +399,8 @@ img {
     color: white;
     background-color: #71918e;
     border: 1.5px solid #71918E;
-    width: 16vh;
+    min-width: 10vh;
+    width: 100%;
     height: 3vh;
 }
 
@@ -406,9 +408,9 @@ img {
     cursor: pointer !important;
 }
 
-#search-field{
+/*#search-field{
     min-width: 20vh;
-}
+}*/
 
 .price-text {
     font-size: 8pt;
@@ -418,10 +420,11 @@ img {
 #maxpriceslide, #minpriceslide {
     -webkit-appearance: none;
     background: transparent;
-    width: 20vh;
+    width: 100%;
     background-color: #b8b9b9;
     height: 1.5px;
     margin-bottom: 3vh;
+
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -434,7 +437,8 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 #maxpricetext, #minpricetext{
-    width: 20vh;
+    width: 100%;
+    max-width: 20vh;
 }
 
 .advanced-search-link {
@@ -445,6 +449,7 @@ input[type=range]::-webkit-slider-thumb {
     .advanced-search-link:hover {
         color: #586575;
     }
+
 
     /*-------------------------register user css-------------------------*/
     .input-requirements {

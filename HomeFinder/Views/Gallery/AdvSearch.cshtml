@@ -28,101 +28,169 @@
         }
     }
 </script>
-<form asp-action="Index">
-<div class="jumbotron align-items-center">
-<div class="container">
-    <div class="row d-flex justify-content-center">
-        <div class="col-6">
-            <h2>Advanced Search options</h2>
-        </div>
-    </div>
-    <div class="container my-3">
-        <div class="row d-flex justify-content-center">
-            <div class="col-4 my-3">
-                <input type="text" name="searchTerm" placeholder="Search for Adress..."/>
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center">
-             <div class="col-4">
-                <div class="m-1">
-                    <h5> Set Min Price </h5>
-                    <input id="minpriceslide" type="range" name="minSlide" min="0" max="@maxPrice" value="2500000" step="50000" disabled="disabled" oninput="minpricetext.value=minpriceslide.value"/>
-                    <input type="checkbox" id="checkboxTest" name="checkbox" value="true" onclick="EnableDisable(this, minpriceslide.id)"/>
-                </div>
-                <div class="m-1">
-                    <input id="minpricetext" type="number" value="2500000" min="0" max="@maxPrice" oninput="minpriceslide.value=minpricetext.value" readonly/>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="m-1">
-                    <h5> Set Max Price </h5>
-                    <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="@maxPrice" value="2500000" step="50000" disabled="disabled" oninput="maxpricetext.value=maxpriceslide.value"/>
-                    <input type="checkbox" id="checkboxTest" name="checkbox" value="true" onclick="EnableDisable(this, maxpriceslide.id)"/>
-                </div>
-                <div class="m-1">
-                    <input id="maxpricetext" type="number" value="2500000" min="0" max="@maxPrice" oninput="maxpriceslide.value=maxpricetext.value" readonly/>
-                </div>
-            </div>
-        </div>
 
-        <div class="row my-3 d-flex justify-content-center">
-             <div class="col-4">
-                <div class="m-1">
-                    <h5> Set Min Living Area (kvm) </h5>
-                    <input id="minLivingArea" type="range" name="minLivingSlide" min="0" max="@maxLivingArea" value="75" step="5" disabled="disabled" oninput="minLivingtext.value=minLivingArea.value"/>
-                    <input type="checkbox" id="checkboxTest" name="checkbox" value="true" onclick="EnableDisable(this, minLivingArea.id)"/>
-                </div>
-                <div class="m-1">
-                    <input id="minLivingtext" type="number" value="75" min="0" max="@maxLivingArea" oninput="minLivingArea.value=minLivingtext.value" readonly/>
-                </div>
-            </div>
+<div class="pb-0 min-vh-100">
 
-            <div class="col-4">
-                <div class="m-1">
-                    <h5> Select form of lease</h5>
-                    <Select name="RealEstateType" id="RealEstateType">
-                        <option value="@null">Alla</option>
-                        <option value="@RealEstateTypes.Hus">Hus</option>
-                        <option value="@RealEstateTypes.Lägenhet">Lägenhet</option>
-                        <option value="@RealEstateTypes.Gård">Gård</option>
-                    </Select>
-                </div>
-            </div>
-        </div>
+    <div class="alternate-container">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <span class="search-header">HITTA DITT NYA <span class="primary-color">HEM</span></span>
+                <div class="d-flex flex-column search-container w-50 align-items-center mt-2">
+                    <form asp-controller="gallery" asp-action="AdvSearch" class="w-50">
 
-        <div class="row my-3 d-flex justify-content-center">
-            <div class="col-4">
-                <div class="m-1">
-                    <h5> Select Min number of rooms </h5>
-                    <Select name="NumberOfRooms" id="NumberOfRooms">
-                    @for (int i = 1; i <= numOfRooms; i++)
-                    {
-                            <option>@i</option>
-                    }
-                    </Select>
-                </div>
-            </div>
+                        <div class="d-flex flex-column align-items-center justify-content-center mt-2 flex-lg-row">
+                            <div class="mr-2">
+                                <label for="house" class="accomodation-type-checkbox text-center housetype-button" id="house-button">HUS</label>
+                                <input type="checkbox" id="house" name="realEstateType" value="0" class="hide-checkbox" onclick="toggleClick(0)"/>
+                            </div>
+                            <div class="mr-2">
+                                <label for="apartment" class="accomodation-type-checkbox text-center housetype-button" id="apartment-button">LÄGENHET</label>
+                                <input type="checkbox" id="apartment" name="realEstateType" value="1" class="hide-checkbox" onclick="toggleClick(1)"/>
+                            </div>
+                            <div>
+                                <label for="farm" class="accomodation-type-checkbox text-center housetype-button" id="farm-button">GÅRD</label>
+                                <input type="checkbox" id="farm" name="realEstateType" value="2" class="hide-checkbox" onclick="toggleClick(2)"/>     
+                            </div>
+                        </div>
 
-            <div class="col-4">
-                <div class="m-1">
-                    <h5> Select Max age on house</h5>
-                    <Select name="Ålderpåhus" id="Ålderpåhus">
-                        <option>Ingen</option>
-                        <option>10</option>
-                        <option>20</option>
-                        <option>30</option>
-                        <option>40</option>
-                        <option>50</option>
-                    </Select>
-                </div>
-            </div>
-        </div>
-        <div class="row my-5 d-flex justify-content-center">
-            <div class="col-3">
-                <input type="submit" value="Apply filters" class="btn btn-primary"/>
+                         <input type="text" name="searchTerm" id="search-field"  class="w-100" placeholder="Sök efter område, adress eller annat nyckelord"/>
+               
+                        <div class="d-flex flex-column flex-nowrap">
+                            <div class="row flex-nowrap">
+                                <div class="w-50 mr-1 flex-nowrap">
+                                    <div class="m-1 text-center">
+                                        <span class="price-text">Min. pris</span>
+                                    </div>
+                                    <div class="align-center">
+                                        <input id="minpriceslide" type="range" name="minSlide" min="0" max="@maxPrice" value="0" step="50000" oninput="minpricetext.value=minpriceslide.value"/>
+                                    </div>
+                                    <div class="align-center">
+                                        <input id="minpricetext" type="number" min="0" max="@maxPrice" step="50000" oninput="minpriceslide.value=minpricetext.value" placeholder="250 000 kr"/>
+                                    </div>
+                                </div>
+                        
+                                <div class="w-50 ml-1 flex-nowrap">
+                                    <div class="m-1 text-center">
+                                        <span class="price-text">Max. pris</span>
+                                    </div>
+                                    <div class="align-center">
+                                        <input id="maxpriceslide" type="range" name="maxSlide" min="0" max="@maxPrice" value="0" step="50000" oninput="maxpricetext.value=maxpriceslide.value"/>
+                                    </div>
+                                    <div class="align-center">
+                                        <input id="maxpricetext" type="number" min="0" max="@maxPrice" step="50000" oninput="maxpriceslide.value=maxpricetext.value" placeholder="10 000 000 kr"/>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-row justify-content-center align-items-center price-text">
+                                <div class="d-flex flex-row w-50 mb-0 mr-2">
+                                    <label for="minLivingSpace" class="w-50 text-center m-1">Min. boyta</label>
+                                    <label for="maxLivingSpace" class="w-50 text-center m-1">Max. boyta</label>
+                                </div>
+    
+                                <div class="d-flex flex-row w-50 mb-0 ml-2">
+                                    <label for="minArea" class="w-50 text-center m-1">Min. tomtarea</label>
+                                    <label for="maxArea" class="w-50 text-center m-1">Max. tomtarea</label>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-row justify-content-center align-items-center">
+                                <div class="d-flex flex-row w-50 mt-0 mr-2">
+                                    <select class="w-50 m-1" id="minLivingSpace" name="minLivingSpace">
+                                        <option>Alla</option>
+                                        @for (var i = 20; i <= 200; i+=5)
+                                       {
+                                           <option>minst @i m²</option>
+                                       }
+                                    </select>
+                                    <select class="w-50 m-1" id="maxLivingSpace" name="maxLivingSpace">
+                                        <option>Alla</option>
+                                            @for (var i = 20; i <= 200; i+=5)
+                                            {
+                                               <option>minst @i m²</option>
+                                            }
+                                    </select>
+                                </div>
+    
+                                <div class="d-flex flex-row w-50 mt-0 ml-2">
+                                    <input class="w-50 m-1" type="text" id="minArea" name="minArea"/>
+                                    <input class="w-50 m-1" type="text" id="maxArea" name="maxArea"/>
+                                </div>
+                            </div>
+
+
+                            <div class="d-flex flex-row justify-content-center align-items-center price-text mt-3">
+                                <div class="d-flex flex-row w-50 mb-0 mr-2">
+                                    <label for="minRoom" class="w-50 text-center">Min. rum</label>
+                                    <label for="maxRoom" class="w-50 text-center">Max. rum</label>
+                                </div>
+    
+                                <div class="d-flex flex-row w-50 mb-0 ml-2">
+                                  <label for="minBuildYear" class="w-50 text-center">Min. byggår</label>
+                                   <label for="maxBuildYear" class="w-50 text-center">Max. byggår</label>
+                                </div>
+                             </div>
+
+                            <div class="d-flex flex-row justify-content-center align-items-center">
+                                <div class="d-flex flex-row w-50 mt-0 mr-2">
+                                    <select class="w-50 m-1" id="minRoom" name="minRoom">
+                                        <option>Alla</option>
+                                            @for (double i = 1; i < 4; i+= 0.5)
+                                           {
+                                               <option>@i rum</option>
+                                           }
+                                           @for (var i = 4; i < 9; i++)
+                                          {
+                                              <option>@i rum</option>
+                                          }
+                                          @for (var i = 10; i <= 15; i+=5)
+                                         {
+                                             <option>@i rum</option>
+                                         }
+                                    </select>
+                                    <select class="w-50 m-1"     id="maxRoom" name="maxRoom">
+                                         <option>Alla</option>
+                                            @for (double i = 1; i < 4; i+= 0.5)
+                                           {
+                                               <option>@i rum</option>
+                                           }
+                                           @for (var i = 4; i < 9; i++)
+                                          {
+                                              <option>@i rum</option>
+                                          }
+                                          @for (var i = 10; i <= 15; i+=5)
+                                         {
+                                             <option>@i rum</option>
+                                         }
+                                    </select>
+                                </div>
+    
+                                <div class="d-flex flex-row w-50 mt-0 ml-2">
+                                  <input class="w-50 m-1" type="text" id="minBuildYear" name="minBuildYear"/>
+                                    <input class="w-50 m-1" type="text" id="maxBuildYear" name="maxBuildYear"/>
+                                </div>
+                            </div>
+            
+            
+                            <div class="d-flex flex-column justify-content-center flex-lg-row justify-content-lg-between ml-lg-4 mr-lg-4">
+                                <div class="mt-3">
+                                    <input type="submit" value="SÖK" class="btn button-primary"/>
+                                </div>
+                                <div class="mt-3">
+                                    <input value="RENSA FILTER" name="removeFilter" type="submit" class="btn secondary-button"/>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center mb-1 mt-3">
+                                <a asp-controller="Gallery" asp-action="AdvSearch" class="advanced-search-link">AVANCERAD SÖK</a>
+                            </div>
+
+                </form>
             </div>
         </div>
     </div>
 </div>
-</div>
-</form>
+
+
+@section Scripts{
+    <script src="~/js/Gallery.js"></script>
+}

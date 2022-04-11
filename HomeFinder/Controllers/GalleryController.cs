@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using HomeFinder.Models;
+using System.Globalization;
 
 namespace HomeFinder.Controllers
 {
@@ -86,7 +87,8 @@ namespace HomeFinder.Controllers
 
             return View(realEstate);
         }
-        public async Task<IActionResult> AdvSearch(string searchTerm, string maxSlide, string minSlide, string minLivingSlide, string RealEstateType, string NumberOfRooms, string Ålderpåhus)
+        public async Task<IActionResult> AdvSearch(string searchTerm, string maxSlide, string minSlide, List<int> realEstateType, int minLivingSpace, int maxLivingSpace, string minArea, string maxArea,
+            int minRoom, int maxRoom, string minBuildYear, string maxBuildYear)
         {
             var realEstates = _context.RealEstate.Select(r => r);
 
@@ -111,34 +113,87 @@ namespace HomeFinder.Controllers
                     realEstates = realEstates.Where(r => r.Price >= minPrice);
                 }
             }
-            if (!string.IsNullOrEmpty(minLivingSlide))
+
+            if (realEstateType.Count > 0)
             {
-                int minLivingArea = int.Parse(minLivingSlide);
-                if (minLivingArea != 0)
+
+                if (realEstateType.Count == 1)
                 {
-                    realEstates = realEstates.Where(r => r.LivingArea >= minLivingArea);
+                    realEstates = realEstates.Where(r => (int)r.RealEstateType == realEstateType.ElementAt(0));
+                }
+
+                if (realEstateType.Count == 2)
+                {
+                    realEstates = realEstates.Where(r => (int)r.RealEstateType == realEstateType.ElementAt(0) || (int)r.RealEstateType == realEstateType.ElementAt(1));
+                }
+
+                if (realEstateType.Count == 3)
+                {
+                    realEstates = realEstates.Where(r => (int)r.RealEstateType == realEstateType.ElementAt(0)
+                    || (int)r.RealEstateType == realEstateType.ElementAt(1)
+                    || (int)r.RealEstateType == realEstateType.ElementAt(2));
                 }
             }
-            if (!string.IsNullOrEmpty(NumberOfRooms))
-            {
-                int numbOfRooms = int.Parse(NumberOfRooms);
-                realEstates = realEstates.Where(r => r.NumberOfRooms >= numbOfRooms);
-            }
 
-            if (!string.IsNullOrEmpty(RealEstateType))
+            if(minLivingSpace > 0 || maxLivingSpace > 0)
             {
-                RealEstateTypes test = (RealEstateTypes)Enum.Parse(typeof(RealEstateTypes), RealEstateType);
-                realEstates = realEstates.Where(r => r.RealEstateType.Equals(test));
-            }
-
-            if (!string.IsNullOrEmpty(Ålderpåhus))
-            {
-                if (Ålderpåhus != "Ingen")
+                if(minLivingSpace > 0)
                 {
-                    int _Ålderpåhus = int.Parse(Ålderpåhus);
+                    realEstates = realEstates.Where(r => r.LivingArea > minLivingSpace);
+                } else if (minLivingSpace > 0 && maxLivingSpace > 0)
+                {
+                    realEstates = realEstates.Where(r => r.LivingArea > minLivingSpace && r.LivingArea < maxLivingSpace);
+                }
+                else
+                {
+                    realEstates = realEstates.Where(r => r.LivingArea < maxLivingSpace);
+                }
+            }
 
-                    int Condition = DateTime.Now.Year - _Ålderpåhus;
-                    realEstates = realEstates.Where(r => r.ConstructionYear.Year >= Condition);
+
+            if(!string.IsNullOrEmpty(minArea) || !string.IsNullOrEmpty(maxArea))
+            {
+                var min = int.TryParse(minArea, out int resultMin);
+                var max = int.TryParse(maxArea, out int resultMax);
+
+                if(resultMin > 0)
+                {
+                }
+            }
+
+            if (minRoom > 0 || maxRoom > 0)
+            {
+                if (minRoom > 0)
+                {
+                    realEstates = realEstates.Where(r => r.NumberOfRooms >= minRoom);
+                } else if(minRoom > 0 && maxRoom > 0)
+                {
+                    realEstates = realEstates.Where(r => r.NumberOfRooms >= minRoom && r.NumberOfRooms <= maxRoom);
+                }
+                else
+                {
+                    realEstates = realEstates.Where(r => r.NumberOfRooms <= maxRoom);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(minBuildYear) || !string.IsNullOrEmpty(maxBuildYear))
+            {
+                string dateStringMin = "Jan 1,  " + minBuildYear;
+                string dateStringMax = "Jan 1,  " + maxBuildYear;
+                
+                var minYear = DateTime.Parse(dateStringMin);
+                var maxYear = DateTime.Parse(dateStringMax);
+
+                if (!string.IsNullOrEmpty(minBuildYear))
+                {
+                    realEstates = realEstates.Where(r => r.ConstructionYear > minYear);
+                } else if (!string.IsNullOrEmpty(minBuildYear) && !string.IsNullOrEmpty(maxBuildYear))
+                {
+                    realEstates = realEstates.Where(r => r.ConstructionYear > minYear && r.ConstructionYear < maxYear);
+                }
+                else
+                {
+                    realEstates = realEstates.Where(r =>  r.ConstructionYear < maxYear);
                 }
             }
 
