@@ -1,5 +1,6 @@
 ﻿using HomeFinder.Data;
 using HomeFinder.Models;
+using HomeFinder.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
@@ -41,7 +42,7 @@ namespace HomeFinder.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(ApplicationUser model)
+        public async Task<IActionResult> Register(RegisterVm model)
         {
             if (ModelState.IsValid)
             {
@@ -52,8 +53,6 @@ namespace HomeFinder.Controllers
                         GivenName = model.GivenName, 
                         SurName = model.SurName,
                         PhoneNumber = model.PhoneNumber,
-                        Password = model.Password,
-                        ConfirmPassword = model.ConfirmPassword
                     };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
@@ -84,7 +83,7 @@ namespace HomeFinder.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> RegisterRealtor(ApplicationUser model)
+        public async Task<IActionResult> RegisterRealtor(RegisterVm model)
         {
             if (ModelState.IsValid)
             {
@@ -233,20 +232,91 @@ namespace HomeFinder.Controllers
             
         }
 
+        [HttpGet]
         [Authorize]
         public async Task<IActionResult> MyDetails()
         {
+            var id = _userManager.GetUserId(User);
 
-            var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
+                return RedirectToAction("Index", "Home");
+            }
 
-            return View(user);
+            var userClaims = await _userManager.GetClaimsAsync(user);
+            var userRoles = await _userManager.GetRolesAsync(user);
+
+            var model = new EditUserVm
+            {
+                Id = user.Id,
+                Email = user.UserName,
+                Claims = userClaims.Select(c => c.Value).ToList(),
+                Roles = userRoles,
+                UserName = user.Email,
+                PhoneNumber = user.PhoneNumber
+            };
+
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> MyDetails(EditUserVm model)
+        {
+                 var user = await _userManager.FindByIdAsync(model.Id);
+
+            user.Email = model.Email;
+            user.UserName = model.Email;
+            user.PhoneNumber = model.PhoneNumber;
+
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return View();
+            }
+            else
+            {
+                return View("Index");
+            }
+
         }
 
         [HttpGet]
-        public IActionResult EditDetails()
+        [Authorize]
+        public IActionResult ChangePassword()
         {
             return View();
         }
 
-    }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+
+            var user = await _userManager.GetUserAsync(User);
+
+                if (model.NewPassword.Equals(model.ConfirmPassword))
+                {
+                    var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("MyDetails");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Något gick fel, testa igen");
+                        return View();
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Lösenorden matchar inte.");
+                    return View();
+                }
+            }
+        }
 }

@@ -107,6 +107,40 @@ namespace HomeFinder.Models
                      }
                 ) ;
 
+                context.Roles.AddRange(
+                    new Microsoft.AspNetCore.Identity.IdentityRole
+                    {
+                        Id= "2cc2174b-3b0e-446d-86cs-421n56gd8172",
+                        Name = "realtor"
+                    },
+                    new Microsoft.AspNetCore.Identity.IdentityRole
+                    {
+                        Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
+                        Name = "admin"
+                    }
+                    );
+
+                context.Users.AddRange(
+                    new ApplicationUser
+                    {
+                        Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
+                        Email = "admin@homefinder.se",
+                        GivenName = "John",
+                        SurName = "Doe",
+                        UserName = "admin@homefinder.se",
+                        PhoneNumber = "0701234567",
+                        PasswordHash = "Admin1234!"
+                    }
+                    );
+
+                context.UserRoles.AddRange(
+                    new Microsoft.AspNetCore.Identity.IdentityUserRole<string>
+                    {
+                        RoleId = "2c5e174e-3b0e-446f-86af-483d56fd7210",
+                        UserId = "8e445865-a24d-4543-a6c6-9443d048cdb9"
+                    }
+                    );
+
                 context.SaveChanges();
             }
         }
