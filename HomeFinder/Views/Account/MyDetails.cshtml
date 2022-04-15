@@ -1,19 +1,35 @@
-﻿@using Microsoft.AspNetCore.Identity
-@model ApplicationUser;
+﻿@model EditUserVm;
 @{
 	ViewData["Title"] = "Mina uppgifter";
 }
 
-<h1>Konto</h1>
 
-<div class="d-xl-flex flex-column justify-content-left align-items-left">
-	<div class="p-2 m-4">
-		<div class="col-md-12">
-				<h5>E-post:</h5>
-				<p class="text-center">@Model.Email</p>
-				<h5>Telefonnummer:</h5>@Model.PhoneNumber
-			<a asp-action="EditDetails" class="btn btn-primary">Ändra kontouppgifter</a>
+<div class="container primary-color w-75">
+
+	<h3 class="text-center primary-color mt-2">Mitt konto</h3>
+
+	<form method="post" id="myDetailsForm">
+		<div class="d-flex flex-row justify-content-center align-items-center">
+			<div class="d-flex flex-column m-3">
+				<span  class="m-2">E-post</span>
+				<span class="m-2">Telefonnummer</span>
+			</div>	
+			<div class="d-flex flex-column m-3 w-25 form-group">
+				<input asp-for="Email" class="m-2" id="emailInput"/>
+				<span id="email-error"></span>
+				<input asp-for="Id" hidden />
+				<input asp-for="PhoneNumber" class="m-2" id="phoneNumber"/>
+			</div>
 		</div>
-	</div>
-
+			<div class="align-center mt-5">
+				<button type="button" class="btn button-primary" onclick="makeDisabled()" id="changeButton">Ändra</button>
+				<a asp-action="changePassword" class="btn button-primary" id="changePasswordButton">Ändra lösenord</a>
+				<a asp-action="MyDetails" class="btn secondary-button" id="backButton" hidden>Tillbaka</a>
+			</div>
+		</form>
 </div>
+
+
+@section Scripts{
+	<script src="~/js/EditUser.js"></script>
+}

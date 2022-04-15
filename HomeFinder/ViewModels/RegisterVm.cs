@@ -8,9 +8,7 @@ namespace HomeFinder.Models
         [EmailAddress]
         public string Email { get; set; }
 
-        [Display(Name = "Användarnamn")]
         public string UserName { get; set; }
-
         [Required]
         [Display(Name = "Förnamn")]
         public string GivenName { get; set; }
@@ -30,7 +28,8 @@ namespace HomeFinder.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Bekräfta lösenord")]
-        [Compare("Password", ErrorMessage = "Det matchar inte ditt pucko")]
-        public string ConfirmPassword { get; set; } 
+        [Compare("Password", ErrorMessage = "Lösenorden matchar inte")]
+        public string ConfirmPassword { get; set; }
+
     }
 }

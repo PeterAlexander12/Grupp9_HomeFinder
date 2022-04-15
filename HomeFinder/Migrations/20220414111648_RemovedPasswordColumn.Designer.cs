@@ -4,14 +4,16 @@ using HomeFinder.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HomeFinder.Migrations
 {
     [DbContext(typeof(HomeFinderContext))]
-    partial class HomeFinderContextModelSnapshot : ModelSnapshot
+    [Migration("20220414111648_RemovedPasswordColumn")]
+    partial class RemovedPasswordColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,21 +90,6 @@ namespace HomeFinder.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("HomeFinder.Models.Favourite", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("RealEstateId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "RealEstateId");
-
-                    b.HasIndex("RealEstateId");
-
-                    b.ToTable("Favourites");
                 });
 
             modelBuilder.Entity("HomeFinder.Models.RealEstate", b =>
@@ -324,25 +311,6 @@ namespace HomeFinder.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("HomeFinder.Models.Favourite", b =>
-                {
-                    b.HasOne("HomeFinder.Models.RealEstate", "RealEstate")
-                        .WithMany("Favourites")
-                        .HasForeignKey("RealEstateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HomeFinder.Models.ApplicationUser", "User")
-                        .WithMany("Favourites")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RealEstate");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("HomeFinder.Models.RealEstateImage", b =>
                 {
                     b.HasOne("HomeFinder.Models.RealEstate", "RealEstate")
@@ -418,15 +386,8 @@ namespace HomeFinder.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("HomeFinder.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("Favourites");
-                });
-
             modelBuilder.Entity("HomeFinder.Models.RealEstate", b =>
                 {
-                    b.Navigation("Favourites");
-
                     b.Navigation("RealEstateImages");
 
                     b.Navigation("RegistrationsOfInterest");

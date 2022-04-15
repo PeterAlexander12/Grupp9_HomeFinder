@@ -1,4 +1,5 @@
-﻿using HomeFinder.Models;
+﻿using HomeFinder.Data;
+using HomeFinder.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,18 +13,32 @@ namespace HomeFinder.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly HomeFinderContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, HomeFinderContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var slides = new List<RealEstate>();
+
+            foreach (var realEstate in _context.RealEstate)
+            {
+                slides.Add(realEstate);
+            }
+
+            return View(slides);
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult SellWithUs()
         {
             return View();
         }
@@ -33,5 +48,7 @@ namespace HomeFinder.Controllers
         {
             return View(new ErrorVm { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }

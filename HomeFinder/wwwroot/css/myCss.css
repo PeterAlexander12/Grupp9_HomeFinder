@@ -1,5 +1,82 @@
-﻿.a-cleanup{
-    color: inherit; 
+﻿body {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.primary-color{
+    color: #71918E;
+}
+
+.secondary-color{
+    color: #B7C8C6;
+}
+
+.third-color{
+    color: #586575;
+}
+
+.fourth-color{
+    color: #5C554E;
+}
+
+.background-primary {
+    background-color: #71918E;
+}
+
+.background-secondary {
+    background-color: #B7C8C6;
+}
+
+.circle-style {
+    border: 1px solid #71918E;
+}
+
+#navbar-color {
+    background-color: white;
+}
+
+#footer-color {
+    background-color: #B7C8C6;
+}
+
+#text-color {
+    color: #71918E;
+    font-size: 16pt;
+}
+
+#text-color:hover {
+    color: #586575;
+}
+
+#footer-text-color {
+    color: #586575;
+    font-size: 12pt;
+    text-decoration: none;
+}
+
+    #footer-text-color:hover {
+        color: #71918E;
+    }
+
+.footer-size {
+    min-height: 10vh;
+}
+
+.button-primary {
+    background-color: #71918e;
+    color: white;
+        width: 15vh;
+        height: 4vh;
+}
+
+.secondary-button {
+    background-color: #586575;
+    color: white;
+    width: 15vh;
+    height: 4vh;
+}
+
+.a-cleanup {
+    color: inherit;
 }
 
 a.a-cleanup:hover{
@@ -25,10 +102,10 @@ a.a-cleanup:hover{
     border-bottom: 1px solid lightgray;
 }
 
-/*.details-card-img {
+.details-card-img {
     max-height:50vh;
     object-fit: cover;
-}*/
+}
 
 .card-img-small {
     width: 100%;
@@ -56,6 +133,21 @@ a.a-cleanup:hover{
     object-fit: cover;
 }
 
+.start-container{
+    height: 93vh;
+}
+
+.alternate-container{
+    background-color: white;
+}
+
+.alternate-two-container {
+    background-color: #ada9a6;
+}
+
+.background-image-start {
+    position: relative;
+}
 .card-img-container{
     position: relative;
 }
@@ -93,3 +185,314 @@ a.a-cleanup:hover{
 }
 
 
+    .background-image-start:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.6;
+        background-image: url(https://www.howdens.com/-/media/howdens/assets/clh_asset_products/clh_asset_levela_108418/clh_asset_levelb_110114/clh_asset_levelc_25382349/ass_25411373.jpg);
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        background-size: cover;
+    }
+
+    .content{
+        position: relative;
+        opacity: 1;
+        margin-top: 20vh;
+        font-size: 20pt;
+    }
+
+.word {
+    position: absolute;
+    width: 220px;
+    opacity: 0;
+}
+
+.letter {
+    display: inline-block;
+    position: relative;
+    float: left;
+    transform: translateZ(25px);
+    transform-origin: 50% 50% 25px;
+}
+
+    .letter.out {
+        transform: rotateX(90deg);
+        transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+
+    .letter.behind {
+        transform: rotateX(-90deg);
+    }
+
+    .letter.in {
+        transform: rotateX(0deg);
+        transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+.paragraph {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+}
+
+
+.realtor-info {
+    background-color: white;
+}
+
+.img-slide {
+    height: 100%;
+    width: 100%;
+    max-height: 35vh;
+    object-fit: cover;
+}
+
+.card-textbox-size {
+    height: 35vh;
+    width: 30vh;
+    object-fit: cover;
+}
+
+.slideshow-container {
+    width: 100%;
+    position: relative;
+}
+
+.mySlides, .mySlidesTwo{
+    display: none;
+    width: 75vh;
+}
+
+#max-width-40vh{
+    max-width: 30vh;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0.4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .text{
+        font-size: 32pt;
+    }
+}
+
+.register-realtor-container{
+    min-height: 150vh;
+}
+
+.register-realtor-background {
+    background-image: url(https://images.unsplash.com/photo-1590764964275-aec963c59944?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXJiYW4lMjBsYW5kc2NhcGV8ZW58MHx8MHx8&w=1000&q=80);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.register-realtor-form {
+    background-color: rgba(234, 224, 213, .6);
+    border-radius: 5px;
+}
+
+.input-background-transparent{
+    background-color: rgba(0,0,0,0);
+    border: 1px solid black;
+}
+
+/*-------------------------------*/
+.align-center {
+    text-align: center;
+}
+.hash-list {
+    display: block;
+    padding: 0;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px){
+    .hash-list.cols-3 > li:nth-last-child(-n+3) {
+        border-bottom: none;
+    }
+}
+@media (min-width: 768px){
+    .hash-list.cols-3 > li {
+        width: 33.3333%;
+    }
+}
+.hash-list > li {
+    display: block;
+    float: left;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.pad-30, .pad-30-all > * {
+    padding: 30px;
+}
+img {
+    border: 0;
+}
+.mgb-20, .mgb-20-all > * {
+    margin-bottom: 20px;
+}
+.wpx-100, .wpx-100-after:after {
+    width: 100px;
+}
+.img-round, .img-rel-round {
+    border-radius: 50%;
+}
+.padb-30, .padb-30-all > * {
+    padding-bottom: 30px;
+}
+
+.mgb-40, .mgb-40-all > * {
+    margin-bottom: 40px;
+}
+.align-center {
+    text-align: center;
+}
+[class*="line-b"] {
+    position: relative;
+    padding-bottom: 20px;
+    border-color: #E6AF2A;
+}
+
+/*---------------CSS gallery---------------------*/
+
+.gallery-container {
+    height: 100%;
+    background-image: url(https://croatia.hr/sites/default/files/styles/image_full_width/public/2018-08/stari-grad-dubrovnik-pogled-sa-srdja-luka-esenko.jpg?itok=W7lMG60z);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.search-container {
+    background-color: white;
+}
+
+.search-header{
+    font-size: 32pt;
+}
+
+.hide-checkbox{
+    visibility: hidden;
+}
+
+.accomodation-type-checkbox {
+    width: 100%;
+    min-width: 10vh;
+    height: 3vh;
+    border: 1.5px solid #71918E;
+    color: #71918E;
+}
+
+.accomodation-type-checkbox-checked {
+    color: white;
+    background-color: #71918e;
+    border: 1.5px solid #71918E;
+    min-width: 10vh;
+    width: 100%;
+    height: 3vh;
+}
+
+#house-button, #apartment-button, #farm-button{
+    cursor: pointer !important;
+}
+
+/*#search-field{
+    min-width: 20vh;
+}*/
+
+.price-text {
+    font-size: 8pt;
+    color: #b8b9b9;
+}
+
+#maxpriceslide, #minpriceslide {
+    -webkit-appearance: none;
+    background: transparent;
+    width: 100%;
+    background-color: #b8b9b9;
+    height: 1.5px;
+    margin-bottom: 3vh;
+
+}
+
+input[type=range]::-webkit-slider-thumb {
+    height: 15px;
+    width: 15px;
+    border-radius: 40px;
+    background: #586575;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+#maxpricetext, #minpricetext{
+    width: 100%;
+    max-width: 20vh;
+}
+
+.advanced-search-link {
+    color: #71918e;
+    font-size: 10pt;
+}
+
+    .advanced-search-link:hover {
+        color: #586575;
+    }
+
+
+    /*-------------------------register user css-------------------------*/
+    .input-requirements {
+        font-size: 8pt;
+        color: red;
+        margin-top: 0.7%;
+    }
+
+
+    /*-------------MyDetails css--------------------*/

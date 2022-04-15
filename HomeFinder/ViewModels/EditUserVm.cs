@@ -12,6 +12,9 @@ namespace HomeFinder.Models
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+
+        [Phone]
+        public string PhoneNumber { get; set; }
         public List<string> Claims { get; set; }
         public IList<string> Roles { get; set; }
     
