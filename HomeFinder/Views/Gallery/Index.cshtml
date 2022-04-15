@@ -5,7 +5,7 @@
 }
 
 @{
-        int maxPrice = 0;
+    int maxPrice = 0;
     foreach (var realestate in Model)
     {
         if(realestate.Price > maxPrice)
@@ -20,25 +20,25 @@
     <div class="alternate-container">
         <div class="d-flex flex-column justify-content-center align-items-center">
             <span class="search-header">HITTA DITT NYA <span class="primary-color">HEM</span></span>
-                <div class="d-flex flex-column search-container w-50 align-items-center mt-2">
-                    <form asp-controller="gallery" asp-action="Index" class="w-50">
+            <div class="d-flex flex-column search-container w-50 align-items-center mt-2">
+                <form asp-controller="gallery" asp-action="Index" class="w-50">
 
-                        <div class="d-flex flex-column align-items-center justify-content-center mt-2 flex-lg-row">
-                            <div class="mr-2">
-                                <label for="house" class="accomodation-type-checkbox text-center housetype-button" id="house-button">HUS</label>
-                                <input type="checkbox" id="house" name="realEstateType" value="0" class="hide-checkbox" onclick="toggleClick(0)"/>
-                            </div>
-                            <div class="mr-2">
-                                <label for="apartment" class="accomodation-type-checkbox text-center housetype-button" id="apartment-button">LÄGENHET</label>
-                                <input type="checkbox" id="apartment" name="realEstateType" value="1" class="hide-checkbox" onclick="toggleClick(1)"/>
-                            </div>
-                            <div>
-                                <label for="farm" class="accomodation-type-checkbox text-center housetype-button" id="farm-button">GÅRD</label>
-                                <input type="checkbox" id="farm" name="realEstateType" value="2" class="hide-checkbox" onclick="toggleClick(2)"/>     
-                            </div>
+                    <div class="d-flex flex-column align-items-center justify-content-center mt-2 flex-lg-row">
+                        <div class="mr-2">
+                            <label for="house" class="accomodation-type-checkbox text-center housetype-button" id="house-button">HUS</label>
+                            <input type="checkbox" id="house" name="realEstateType" value="0" class="hide-checkbox" onclick="toggleClick(0)"/>
+                        </div>
+                        <div class="mr-2">
+                            <label for="apartment" class="accomodation-type-checkbox text-center housetype-button" id="apartment-button">LÄGENHET</label>
+                            <input type="checkbox" id="apartment" name="realEstateType" value="1" class="hide-checkbox" onclick="toggleClick(1)"/>
+                        </div>
+                        <div>
+                            <label for="farm" class="accomodation-type-checkbox text-center housetype-button" id="farm-button">GÅRD</label>
+                            <input type="checkbox" id="farm" name="realEstateType" value="2" class="hide-checkbox" onclick="toggleClick(2)"/>     
+                        </div>
                     </div>
 
-                        <input type="text" name="searchTerm" id="search-field"  class="w-100" placeholder="Sök efter område, adress eller annat nyckelord"/>
+                    <input type="text" name="searchTerm" id="search-field"  class="w-100" placeholder="Sök efter område, adress eller annat nyckelord"/>
                
                     <div class="d-flex flex-column flex-nowrap">
                         <div class="row flex-nowrap">
@@ -64,67 +64,67 @@
                                 <div class="align-center">
                                     <input id="maxpricetext" type="number" min="0" max="@maxPrice" step="50000" oninput="maxpriceslide.value=maxpricetext.value" placeholder="10 000 000 kr"/>
                                 </div>
-                                </div>
                             </div>
                         </div>
+                    </div>
             
             
-                        <div class="d-flex flex-column justify-content-center flex-lg-row justify-content-lg-between ml-lg-4 mr-lg-4">
-                            <div class="mt-3">
-                                <input type="submit" value="SÖK" class="btn button-primary"/>
-                            </div>
-                            <div class="mt-3">
-                                <input value="RENSA FILTER" name="removeFilter" type="submit" class="btn secondary-button"/>
-                            </div>
+                    <div class="d-flex flex-column justify-content-center flex-lg-row justify-content-lg-between ml-lg-4 mr-lg-4">
+                        <div class="mt-3">
+                            <input type="submit" value="SÖK" class="btn button-primary"/>
                         </div>
-                        <div class="d-flex justify-content-center mb-1 mt-3">
-                            <a asp-controller="Gallery" asp-action="AdvSearch" class="advanced-search-link">AVANCERAD SÖK</a>
+                        <div class="mt-3">
+                            <input value="RENSA FILTER" name="removeFilter" type="submit" class="btn secondary-button"/>
                         </div>
-            </form>
+                    </div>
+                    <div class="d-flex justify-content-center mb-1 mt-3">
+                        <a asp-controller="Gallery" asp-action="AdvSearch" class="advanced-search-link">AVANCERAD SÖK</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-        <div class="row mr-2 ml-2 mt-2">
-            @foreach (var realEstate in Model)
-            {
-                <div class="col-sm-4">
-                    <div class="card my-3 gallery-card">
-                        <a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@realEstate.Id">
-                            <img src="@realEstate.CoverPictureURL" class="card-img-top card-img-custom" />
-                            <div class="card-body" style="height: 6em">
-                                <h5 class="mb-3">@realEstate.Address</h5>
-                                <span class="card-text">@realEstate.NumberOfRooms rum</span>
-                                <span class="card-text">@realEstate.LivingArea kvm</span>
-                            </div>
-                            <div class="card-body">
-                                <span class="card-text">@realEstate.Price.ToString("c")</span>
-                                <span>
-                                    @if (realEstate.RealEstateType == RealEstateTypes.Hus)
-                                    {
-                                        <i class="fa-solid fa-house float-right"></i>
-                                    }
-                                    else if (realEstate.RealEstateType == RealEstateTypes.Lägenhet)
-                                    {
-                                        <i class="fa-regular fa-building float-right"></i>
-                                    }
-                                    else if (realEstate.RealEstateType == RealEstateTypes.Gård)
-                                    {
-                                        <i class="fa-solid fa-tree-city float-right"></i>
-                                    }
-                                    else
-                                    {
-                                        <i class="fa-regular fa-circle-question float-right"></i>
-                                    }
+    <div class="row mr-2 ml-2 mt-2">
+        @foreach (var realEstate in Model)
+        {
+            <div class="col-sm-4">
+                <div class="card my-3 gallery-card">
+                    <a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@realEstate.Id">
+                        <img src="@realEstate.CoverPictureURL" class="card-img-top card-img-custom" />
+                        <div class="card-body" style="height: 6em">
+                            <h5 class="mb-3">@realEstate.Address</h5>
+                            <span class="card-text">@realEstate.NumberOfRooms rum</span>
+                            <span class="card-text">@realEstate.LivingArea kvm</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-text">@realEstate.Price.ToString("c")</span>
+                            <span>
+                                @if (realEstate.RealEstateType == RealEstateTypes.Hus)
+                                {
+                                    <i class="fa-solid fa-house float-right"></i>
+                                }
+                                else if (realEstate.RealEstateType == RealEstateTypes.Lägenhet)
+                                {
+                                    <i class="fa-regular fa-building float-right"></i>
+                                }
+                                else if (realEstate.RealEstateType == RealEstateTypes.Gård)
+                                {
+                                    <i class="fa-solid fa-tree-city float-right"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa-regular fa-circle-question float-right"></i>
+                                }
 
 
-                                </span>
-                            </div>
-                        </a>
-                    </div>
+                            </span>
+                        </div>
+                    </a>
                 </div>
-            }
-        </div>
+            </div>
+        }
+    </div>
 </div>
 
 @section Scripts{
