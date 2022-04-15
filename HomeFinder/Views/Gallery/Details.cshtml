@@ -51,7 +51,7 @@
                             </iframe>
 
                         </div>
-                        <div class="col-lg-8 col-md-12"">
+                        <div class="col-lg-8 col-md-12">
                             <h5 style="border-bottom: 2px solid black; margin-top:10px">Information</h5>
                             <div class="row">
                                 <div class="col-md-6 col-sm-12">
@@ -93,17 +93,10 @@
                             </div>
                             <p> @Model.Description</p>
                             <div>
-                                <a asp-area="" asp-controller="" asp-action="">
+                                <a asp-area="" asp-controller="RegistrationOfInterests" asp-action="Create" asp-route-id="@Model.Id">
                                     <input type="button" class="btn button-primary" value="Anmäl intresse" />
                                 </a>
                             </div>
-                        </div>
-
-                        <p> (Beskrivning) @Model.Description</p>
-                        <div>
-                            <a asp-area="" asp-controller="RegistrationOfInterests" asp-action="Create" asp-route-id="@Model.Id">
-                                <input type="button" class="btn button-primary" value="Anmäl intresse" />
-                            </a>
                         </div>
                     </div>
                 </div>
