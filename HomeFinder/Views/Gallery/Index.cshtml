@@ -46,7 +46,6 @@
     }
 }
 
-<div class="pb-0 min-vh-100">
     <script type="text/javascript">
         function EnableDisable(chbox, id) {
             var disablechange = document.getElementById(id);
@@ -133,6 +132,13 @@
             <div class="card my-3 gallery-card">
                 <a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@realEstate.Id">
                     <img src="@realEstate.CoverPictureURL" class="card-img-top card-img-custom" />
+                    
+                    @using (Html.BeginForm("HandleFavourite", "Favourites", FormMethod.Post))
+                    {
+                        @Html.Hidden("RealEstateId", @realEstate.Id)
+                        <button class="favourite-button btn-rounded @SetLoginPromptClass()" type="submit"><i class="@SetStarIconClass(@realEstate.Id) fa-star float-right" style="color: gold;"></i></button>
+                    }
+
                     <div class="card-body" style="height: 6em">
                         <h5 class="mb-3">@realEstate.Address</h5>
                         <span class="card-text">@realEstate.NumberOfRooms rum</span>
