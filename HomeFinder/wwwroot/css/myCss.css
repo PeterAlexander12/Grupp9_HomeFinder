@@ -148,6 +148,42 @@ a.a-cleanup:hover{
 .background-image-start {
     position: relative;
 }
+.card-img-container{
+    position: relative;
+}
+.favourite-button {
+    background-color: white;
+    border: none;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0px 0px 3px;
+}
+
+.favourite-button:focus{
+    outline: none;
+}
+
+.fa-star{
+    font-size: 1.5em;
+}
+
+.modal-content{
+    padding: 1rem;
+}
+.modal-body form {
+    padding: 0 1rem 1rem 1rem;
+}
+.btn-rounded{
+    border-radius: 2rem;
+}
+
+.social-media-buttons button{
+    margin: 0.5rem;
+}
+
 
     .background-image-start:before {
         content: ' ';

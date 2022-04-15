@@ -21,6 +21,7 @@ namespace HomeFinder.Controllers
         {
             var realEstates = _context.RealEstate.Select(r => r);
 
+            ViewBag.Favourites = _context.Favourites.Select(f => f);
             if (!string.IsNullOrEmpty(removeFilter) && removeFilter.Equals("Rensa filter"))
             {
                 return View(await realEstates.ToListAsync());

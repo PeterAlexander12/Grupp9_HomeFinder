@@ -1,0 +1,81 @@
+﻿@model IEnumerable<HomeFinder.Models.Favourite>
+
+@{
+    ViewData["Title"] = "Mina Favoriter";
+}
+
+<h1>Mina Favoriter</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealEstate.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealEstate.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealEstate.NumberOfRooms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealEstate.LivingArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealEstate.ConstructionYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealEstate.ShowDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealEstate.RealEstateType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (var item in Model) {
+
+        <tr>
+            
+            <td class="w-25">
+                <a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@item.RealEstateId">
+                    <img src="@item.RealEstate.CoverPictureURL" class="card-img-top card-img-small"/>
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealEstate.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealEstate.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealEstate.NumberOfRooms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealEstate.LivingArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealEstate.ConstructionYear.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealEstate.ShowDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealEstate.RealEstateType)
+            </td>
+            <td>
+                @using (Html.BeginForm("Delete", "Favourites", FormMethod.Post))
+                {
+                    @Html.Hidden("RealEstateId", @item.RealEstateId)
+                    @Html.Hidden("UserId", @item.UserId)
+                    <input type="submit" value="Ta bort"/>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

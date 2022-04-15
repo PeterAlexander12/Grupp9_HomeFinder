@@ -1,0 +1,20 @@
+﻿@model LoginVm;
+<form method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Url.Action("Index", "Gallery")">
+	<div class="form-group">
+		<input asp-for="Email" class="form-control" placeholder="Email..."/>
+		<span asp-validation-for="Email" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<input asp-for="Password" class="form-control" placeholder="Lösenord..."/>
+		<span asp-validation-for="Password" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<div class="checkbox">
+		<label asp-for="RememberMe">
+		<input asp-for="RememberMe"/>
+		@Html.DisplayNameFor(m => m.RememberMe)
+		</label>
+		</div>
+	</div>
+		<button type="submit" class="btn btn-info btn-block btn-rounded">Logga in</button>
+</form>

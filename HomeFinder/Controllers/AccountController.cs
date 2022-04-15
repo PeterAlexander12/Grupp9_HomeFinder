@@ -284,6 +284,16 @@ namespace HomeFinder.Controllers
 
         }
 
+        [Authorize]
+        public async Task<IActionResult> MyFavourites()
+        {
+
+            var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            var myFavourites = _context.Favourites.Where(f => f.User == user).Include(f => f.RealEstate).ToList();
+
+            return View(myFavourites);
+        }
+
         [HttpGet]
         [Authorize]
         public IActionResult ChangePassword()

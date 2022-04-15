@@ -36,6 +36,7 @@ namespace HomeFinder.Models
 
         public RealEstateTypes RealEstateType { get; set; }
         public ICollection<RealEstateImage> RealEstateImages { get; set; }
+        public IList<Favourite> Favourites { get; set; }
 
 
     }
