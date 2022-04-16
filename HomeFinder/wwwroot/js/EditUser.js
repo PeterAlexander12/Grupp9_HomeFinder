@@ -101,8 +101,6 @@ function toggleSubmit() {
 const re =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-    var email = document.getElementById('emailInput');
-var phoneNumber = document.getElementById('phoneNumber');
 
 var emailValidityChecks = [
     {
@@ -132,6 +130,8 @@ emailInput.addEventListener('focus', e => {
 function makeDisabled()
 {
 
+    var email = document.getElementById('emailInput');
+    var phoneNumber = document.getElementById('phoneNumber');
     var button = document.getElementById('changeButton');
     var changeButton = document.getElementById('changePasswordButton');
     var backButton = document.getElementById('backButton');

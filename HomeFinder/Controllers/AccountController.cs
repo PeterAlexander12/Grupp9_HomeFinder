@@ -266,7 +266,16 @@ namespace HomeFinder.Controllers
         [Authorize]
         public async Task<IActionResult> MyDetails(EditUserVm model)
         {
-                 var user = await _userManager.FindByIdAsync(model.Id);
+
+            var existingUser = _context.Users.FirstOrDefault(u => u.Email == model.Email);
+
+            if(existingUser != null)
+            {
+                ViewBag.ErrorMessage = "Emailadressen du försöker ändra till är redan upptagen, testa igen.";
+                return RedirectToAction("Error", "Shared");
+            }
+
+            var user = await _userManager.FindByIdAsync(model.Id);
 
             user.Email = model.Email;
             user.UserName = model.Email;
