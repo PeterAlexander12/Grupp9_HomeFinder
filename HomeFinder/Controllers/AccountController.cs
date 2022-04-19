@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -328,5 +329,38 @@ namespace HomeFinder.Controllers
                     return View();
                 }
             }
-        }
+
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }    
+
+        //[HttpPost]
+        //public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = await _userManager.FindByEmailAsync(model.Email);
+        //        if(user != null && await _userManager.IsEmailConfirmedAsync(user))
+        //        {
+        //            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+        //            var passwordResetLink = Url.Action("ResetPasswod", "Account", new { email = model.Email, token = token }, Request.Scheme);
+
+        //            logger.Log(LogLevel.Warning, passwordResetLink);
+
+        //            return View("ForgotPasswordConfirmation");
+        //        }
+        //        return View("ForgotPasswordConfirmation");
+        //    }
+        //    return View(model);
+        //}
+
+        //public IActionResult ResetPassword()
+        //{
+
+        //}
+    }
+
 }
