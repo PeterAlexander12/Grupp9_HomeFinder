@@ -6,7 +6,7 @@
 
 @{
 
-    string mapUri = new Uri($"https://maps.google.com/maps?q={Model.Address}&output=embed").AbsoluteUri;
+    string mapUri = new Uri($"https://maps.google.com/maps?q={Model.Address}%20{Model.City}&output=embed").AbsoluteUri;
 }
 
 
@@ -61,6 +61,10 @@
                                             <td>@Model.Address</td>
                                         </tr>
                                         <tr class="table-row-underlined">
+                                            <th>Stad</th>
+                                            <td>@Model.City</td>
+                                        </tr>
+                                        <tr class="table-row-underlined">
                                             <th>Bostadstyp</th>
                                             <td>@Model.RealEstateType</td>
                                         </tr>
@@ -68,14 +72,14 @@
                                             <th>Antal rum</th>
                                             <td>@Model.NumberOfRooms</td>
                                         </tr>
-                                        <tr class="table-row-underlined">
-                                            <th>Bostadsyta</th>
-                                            <td>@Model.LivingArea m<sup>2</sup></td>
-                                        </tr>
                                     </table>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <table class="table table-borderless">
+                                        <tr class="table-row-underlined">
+                                            <th>Bostadsyta</th>
+                                            <td>@Model.LivingArea m<sup>2</sup></td>
+                                        </tr>
                                         <tr class="table-row-underlined">
                                             <th>Byggår</th>
                                             <td>@Model.ConstructionYear.Year</td>
