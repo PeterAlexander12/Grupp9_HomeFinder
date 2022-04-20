@@ -133,11 +133,10 @@
                 <a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@realEstate.Id">
                     <div class="card-img-container">
                         <img src="@realEstate.CoverPictureURL" class="card-img-top card-img-custom" />
-                        @using (Html.BeginForm("HandleFavourite", "Favourites", FormMethod.Post))
-                        {
+                        <form asp-action="HandleFavourite" asp-controller="Favourites" method="POST" data-ajax="true">
                             @Html.Hidden("RealEstateId", @realEstate.Id)
                             <button class="favourite-button btn-rounded @SetLoginPromptClass()" type="submit"><i class="@SetStarIconClass(@realEstate.Id) fa-star float-right" style="color: gold;"></i></button>
-                        }
+                        </form>
                     </div>
                     <div class="card-body" style="height: 6em">
                         <h5 class="mb-3">@realEstate.Address</h5>
