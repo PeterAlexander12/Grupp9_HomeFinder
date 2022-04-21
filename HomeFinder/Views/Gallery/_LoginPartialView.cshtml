@@ -1,5 +1,5 @@
 ﻿@model LoginVm;
-<form method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Url.Action("Index", "Gallery")">
+<form method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path">
 	<div class="form-group">
 		<input asp-for="Email" class="form-control" placeholder="Email..."/>
 		<span asp-validation-for="Email" class="text-danger"></span>
@@ -18,3 +18,17 @@
 	</div>
 		<button type="submit" class="btn btn-info btn-block btn-rounded">Logga in</button>
 </form>
+<div class="text-center text-muted pb-2">eller logga in med sociala medier</div>
+<div class="d-flex justify-content-center">
+
+<form method="post" asp-controller="Account" asp-action="ExternalLogin" asp-route-returnUrl="@Context.Request.Path">
+	<div class="social-media-buttons">
+        <button type="submit" class="btn btn-secondary btn-rounded" name="provider" value="Google" title="Login using Google">
+            <i class="fab fa-google"></i>
+        </button>
+		<button type="submit" class="btn btn-secondary btn-rounded" name="provider" value="Facebook" title="Login using Facebook">
+            <i class="fab fa-facebook"></i>
+        </button>
+    </div>
+</form>
+</div>

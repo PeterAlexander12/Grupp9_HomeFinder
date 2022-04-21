@@ -183,21 +183,6 @@
             <h3 class="modal-title text-center pb-3">Logga in</h3>
             <div class="modal-body">
                 @await Html.PartialAsync("_LoginPartialView", new LoginVm())
-          
-                <div class="text-center text-muted pb-2">eller logga in med sociala medier</div>
-                <div class="d-flex justify-content-center">
-
-                <form method="post" asp-controller="Account" asp-action="ExternalLogin" asp-route-returnUrl="@Url.Action("Index", "Gallery")">
-		            <div class="social-media-buttons">
-                        <button type="submit" class="btn btn-secondary btn-rounded" name="provider" value="Google" title="Login using Google">
-                            <i class="fab fa-google"></i>
-                        </button>
-			            <button type="submit" class="btn btn-secondary btn-rounded" name="provider" value="Facebook" title="Login using Facebook">
-                            <i class="fab fa-facebook"></i>
-                        </button>
-                    </div>
-	            </form>
-                </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <div>Saknar du konto?
