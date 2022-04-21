@@ -17,7 +17,8 @@ namespace BlazorBroker.Pages
 
         protected override async Task OnInitializedAsync()
         {
-           RealEstates = (await RealEstateService.GetRealEstates()).ToList();
+            //var hus = (await RealEstateService.GetRealEstates()).ToList();
+            RealEstates = (await RealEstateService.GetRealEstates()).ToList();
         }
 
         //private void LoadEmployees()
