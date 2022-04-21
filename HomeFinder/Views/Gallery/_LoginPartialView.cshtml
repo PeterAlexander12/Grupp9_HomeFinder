@@ -1,34 +1,53 @@
 ﻿@model LoginVm;
-<form method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path">
-	<div class="form-group">
-		<input asp-for="Email" class="form-control" placeholder="Email..."/>
-		<span asp-validation-for="Email" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<input asp-for="Password" class="form-control" placeholder="Lösenord..."/>
-		<span asp-validation-for="Password" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<div class="checkbox">
-		<label asp-for="RememberMe">
-		<input asp-for="RememberMe"/>
-		@Html.DisplayNameFor(m => m.RememberMe)
-		</label>
-		</div>
-	</div>
-		<button type="submit" class="btn btn-info btn-block btn-rounded">Logga in</button>
-</form>
-<div class="text-center text-muted pb-2">eller logga in med sociala medier</div>
-<div class="d-flex justify-content-center">
+<div class="modal" id="login-prompt-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 pb-0">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <h3 class="modal-title text-center pb-3">Logga in</h3>
+            <div class="modal-body">
+                <form method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path">
+	                <div class="form-group">
+		                <input asp-for="Email" class="form-control" placeholder="Email..."/>
+		                <span asp-validation-for="Email" class="text-danger"></span>
+	                </div>
+	                <div class="form-group">
+		                <input asp-for="Password" class="form-control" placeholder="Lösenord..."/>
+		                <span asp-validation-for="Password" class="text-danger"></span>
+	                </div>
+	                <div class="form-group">
+		                <div class="checkbox">
+		                <label asp-for="RememberMe">
+		                <input asp-for="RememberMe"/>
+		                @Html.DisplayNameFor(m => m.RememberMe)
+		                </label>
+		                </div>
+	                </div>
+		            <button type="submit" class="btn btn-info btn-block btn-rounded">Logga in</button>
+                </form>
+                <div class="text-center text-muted pb-2">eller logga in med sociala medier</div>
+                <div class="d-flex justify-content-center">
 
-<form method="post" asp-controller="Account" asp-action="ExternalLogin" asp-route-returnUrl="@Context.Request.Path">
-	<div class="social-media-buttons">
-        <button type="submit" class="btn btn-secondary btn-rounded" name="provider" value="Google" title="Login using Google">
-            <i class="fab fa-google"></i>
-        </button>
-		<button type="submit" class="btn btn-secondary btn-rounded" name="provider" value="Facebook" title="Login using Facebook">
-            <i class="fab fa-facebook"></i>
-        </button>
+                <form method="post" asp-controller="Account" asp-action="ExternalLogin" asp-route-returnUrl="@Context.Request.Path">
+	                <div class="social-media-buttons">
+                        <button type="submit" class="btn btn-secondary btn-rounded" name="provider" value="Google" title="Login using Google">
+                            <i class="fab fa-google"></i>
+                        </button>
+		                <button type="submit" class="btn btn-secondary btn-rounded" name="provider" value="Facebook" title="Login using Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </button>
+                    </div>
+                </form>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <div>Saknar du konto?
+                    <a class ="text-info" asp-area="" asp-controller="Account" asp-action="Register">Skapa konto</a>
+                </div>
+            </div>
+        </div>
     </div>
-</form>
 </div>
