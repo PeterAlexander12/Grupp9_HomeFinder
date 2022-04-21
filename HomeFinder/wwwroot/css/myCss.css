@@ -6,6 +6,8 @@
     color: #71918E;
 }
 
+.primary:color
+
 .secondary-color{
     color: #B7C8C6;
 }
@@ -325,6 +327,7 @@ a.a-cleanup:hover{
     .text{
         font-size: 32pt;
     }
+
 }
 
 .register-realtor-container{
