@@ -9,7 +9,7 @@
 <h4>RealEstate</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4">s
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -48,6 +48,16 @@
                 <span asp-validation-for="LivingArea" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="SubsidiaryArea" class="control-label"></label>
+                <input asp-for="SubsidiaryArea" class="form-control" />
+                <span asp-validation-for="SubsidiaryArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LotArea" class="control-label"></label>
+                <input asp-for="LotArea" class="form-control" />
+                <span asp-validation-for="LotArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="ConstructionYear" class="control-label"></label>
                 <input asp-for="ConstructionYear" class="form-control" />
                 <span asp-validation-for="ConstructionYear" class="text-danger"></span>
@@ -57,14 +67,21 @@
                 <input asp-for="ShowDate" class="form-control" />
                 <span asp-validation-for="ShowDate" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="RealEstateType" class="control-label"></label>
                 <select class="form-control" asp-for="RealEstateType" asp-items="Html.GetEnumSelectList<RealEstateTypes>()">
-                <option selected="selected" value="">Select type</option></select>
+                    <option selected="selected" value="">Select type</option>
+                </select>
             </div>
-           <select asp-for="RealEstateType" asp-items="Html.GetEnumSelectList<RealEstateTypes>()">
-                <option selected="selected" value="">Select type</option>
-           </select>
+            <div class="form-group">
+                <label asp-for="FormOfLease" class="control-label"></label>
+                <select class="form-control" asp-for="FormOfLease" asp-items="Html.GetEnumSelectList<FormOfLease>()">
+                    <option selected="selected" value="">Select type</option>
+                </select>
+            </div>
+
+
             <div class="form-group  pt-5">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

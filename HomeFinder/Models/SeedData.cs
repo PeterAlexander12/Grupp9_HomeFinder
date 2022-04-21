@@ -32,9 +32,12 @@ namespace HomeFinder.Models
                         Price = 8500000,
                         NumberOfRooms = 5,
                         LivingArea = 220,
+                        SubsidiaryArea = 60,
+                        LotArea = 40000,
                         ConstructionYear = DateTime.Parse("1997-5-5"),
                         ShowDate = DateTime.Parse("2022-5-5"),
-                        RealEstateType = RealEstateTypes.Gård
+                        RealEstateType = RealEstateTypes.Gård,
+                        FormOfLease = FormOfLease.Äganderätt
 
                     },
 
@@ -49,44 +52,53 @@ namespace HomeFinder.Models
                         LivingArea = 110,
                         ConstructionYear = DateTime.Parse("1999-5-5"),
                         ShowDate = DateTime.Parse("2020-5-5"),
-                        RealEstateType = RealEstateTypes.Hus
+                        RealEstateType = RealEstateTypes.Hus,
+                        FormOfLease = FormOfLease.Äganderätt
+
                     },
 
                     new RealEstate
                     {
 
                         Address = "Mossvägen 5",
-                        City = "Hammarö",
+                        City = "Stockholm",
                         CoverPictureURL = "https://cdn.pixabay.com/photo/2019/01/13/11/49/iceland-3930162_960_720.jpg",
                         Description = "Ett hus",
                         Price = 7870000,
                         NumberOfRooms = 7,
                         LivingArea = 220,
+                        LotArea = 1518,
                         ConstructionYear = DateTime.Parse("1999-5-5"),
                         ShowDate = DateTime.Parse("2020-5-5"),
-                        RealEstateType = RealEstateTypes.Hus
+                        RealEstateType = RealEstateTypes.Hus,
+                        FormOfLease = FormOfLease.Äganderätt
+
 
                     },
 
                     new RealEstate
                     {
                         Address = "Blåbärsvägen 5",
-                        City = "Växjö",
+                        City = "Lidingö",
                         CoverPictureURL = "https://cdn.pixabay.com/photo/2017/07/07/13/55/giethoorn-2481483_960_720.jpg",
                         Description = "Ett hus",
                         Price = 11000000,
                         NumberOfRooms = 6,
                         LivingArea = 160,
+                        SubsidiaryArea = 20,
+                        LotArea = 880,
                         ConstructionYear = DateTime.Parse("1999-5-5"),
                         ShowDate = DateTime.Parse("2022-04-12"),
-                        RealEstateType = RealEstateTypes.Hus
+                        RealEstateType = RealEstateTypes.Hus,
+                        FormOfLease = FormOfLease.Äganderätt
+
 
                     },
 
                     new RealEstate
                     {
                         Address = "Bondegatan 5",
-                        City = "Västerås",
+                        City = "Stockholm",
                         CoverPictureURL = "https://cdn.pixabay.com/photo/2017/03/19/01/43/living-room-2155376_960_720.jpg",
                         Description = "En lägenhet på Söder",
                         Price = 3800000,
@@ -94,7 +106,9 @@ namespace HomeFinder.Models
                         LivingArea = 34,
                         ConstructionYear = DateTime.Parse("1980-5-5"),
                         ShowDate = DateTime.Parse("2022-04-20"),
-                        RealEstateType = RealEstateTypes.Lägenhet
+                        RealEstateType = RealEstateTypes.Lägenhet,
+                        FormOfLease = FormOfLease.Bostadsrätt
+
 
                     },
                      new RealEstate
@@ -108,7 +122,9 @@ namespace HomeFinder.Models
                          LivingArea = 180,
                          ConstructionYear = DateTime.Parse("1997-5-5"),
                          ShowDate = DateTime.Parse("2022-5-5"),
-                         RealEstateType = RealEstateTypes.Lägenhet
+                         RealEstateType = RealEstateTypes.Lägenhet,
+                         FormOfLease = FormOfLease.Bostadsrätt
+
 
                      }
                 ) ;

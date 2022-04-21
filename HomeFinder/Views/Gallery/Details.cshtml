@@ -23,7 +23,6 @@
 }
 
 <div class="d-flex flex-column">
-    <h2 class="ml-2 mt-1">@Model.Address</h2>
     <div class="m-2">
         <div>
             <div class="card card-img-top">
@@ -72,7 +71,7 @@
                                             <td>@Model.Address</td>
                                         </tr>
                                         <tr class="table-row-underlined">
-                                            <th>Stad</th>
+                                            <th>Ort</th>
                                             <td>@Model.City</td>
                                         </tr>
                                         <tr class="table-row-underlined">
@@ -80,17 +79,29 @@
                                             <td>@Model.RealEstateType</td>
                                         </tr>
                                         <tr class="table-row-underlined">
+                                            <th>Upplåtelseform</th>
+                                            <td>@Model.FormOfLease</td>
+                                        </tr>
+                                        <tr class="table-row-underlined">
                                             <th>Antal rum</th>
                                             <td>@Model.NumberOfRooms</td>
                                         </tr>
+
                                     </table>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <table class="table table-borderless">
                                         <tr class="table-row-underlined">
-                                            <th>Bostadsyta</th>
-                                            <td>@Model.LivingArea m<sup>2</sup></td>
+                                            <th>Boyta</th>
+                                            @if(Model.SubsidiaryArea != null && Model.SubsidiaryArea != 0){
+                                            <td> @Model.LivingArea + @Model.SubsidiaryArea m<sup>2</sup></td>}
+                                            else{<td>@Model.LivingArea m<sup>2</sup></td>}
                                         </tr>
+                                        @if(Model.LotArea != null && Model.LotArea != 0){
+                                        <tr class="table-row-underlined">
+                                            <th>Tomtarea</th>
+                                            <td>@Model.LotArea m<sup>2</sup></td>
+                                        </tr> }
                                         <tr class="table-row-underlined">
                                             <th>Byggår</th>
                                             <td>@Model.ConstructionYear.Year</td>
