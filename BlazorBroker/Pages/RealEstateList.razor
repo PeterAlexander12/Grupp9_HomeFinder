@@ -1,0 +1,15 @@
+﻿@page "/"
+@inherits RealEstateListBase
+
+<h3>RealEstateList</h3>
+
+<div class="card-deck">
+    @foreach (var r in RealEstates)
+    {
+        <div class="card m-3" style="min-width: 18rem; max-width: 30.5%;">
+            <div class="card-header">
+                <h3>@r.Id @r.Address</h3>
+            </div>
+        </div>
+    }
+</div>

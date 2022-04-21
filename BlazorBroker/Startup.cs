@@ -1,4 +1,3 @@
-using BlazorBroker.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorBroker.Services;
 
 namespace BlazorBroker
 {
@@ -28,7 +28,11 @@ namespace BlazorBroker
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+            services.AddHttpClient<IRealEstateService, RealEstateService>(client =>
+                {
+                    client.BaseAddress = new Uri("https://localhost:44387/");
+                }
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
