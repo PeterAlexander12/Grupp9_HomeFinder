@@ -37,6 +37,9 @@
                 @Html.DisplayNameFor(model => model.Address)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
@@ -46,13 +49,22 @@
                 @Html.DisplayNameFor(model => model.LivingArea)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.SubsidiaryArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LotArea)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ConstructionYear)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ShowDate)
             </th>
-             <th>
+            <th>
                 @Html.DisplayNameFor(model => model.RealEstateType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormOfLease)
             </th>
             <th></th>
         </tr>
@@ -64,6 +76,9 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
@@ -73,6 +88,12 @@
                 @Html.DisplayFor(modelItem => item.LivingArea)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.SubsidiaryArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LotArea)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ConstructionYear)
             </td>
             <td>
@@ -80,6 +101,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RealEstateType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormOfLease)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
