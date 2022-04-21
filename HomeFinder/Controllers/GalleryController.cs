@@ -30,7 +30,7 @@ namespace HomeFinder.Controllers
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                realEstates = realEstates.Where(r => r.Address.Contains(searchTerm) || r.Description.Contains(searchTerm));
+                realEstates = realEstates.Where(r => r.Address.Contains(searchTerm) || r.Description.Contains(searchTerm) || r.City.Contains(searchTerm));
             }
             if (!string.IsNullOrEmpty(maxSlide))
             {
