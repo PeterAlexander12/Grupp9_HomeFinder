@@ -93,6 +93,9 @@ a.a-cleanup:hover{
 .gallery-card{
     transition: all 0.2s ease; 
 }
+.gallery-card-icon{
+    float: right; 
+}
 
 .gallery-card:hover{
     transform: scale(1.03);
