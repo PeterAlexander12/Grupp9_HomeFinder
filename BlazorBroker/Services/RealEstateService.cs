@@ -19,5 +19,12 @@ namespace BlazorBroker.Services
         {
             return await _httpClient.GetFromJsonAsync<RealEstate[]>("/api/RealEstate");
         }
+
+        public async Task<RealEstate> GetRealEstate(int id)
+        {
+            return await _httpClient.GetFromJsonAsync<RealEstate>($"/api/RealEstate/{id}");
+
+        }
+
     }
 }

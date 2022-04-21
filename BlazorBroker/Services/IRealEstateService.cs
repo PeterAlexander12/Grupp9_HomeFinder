@@ -8,5 +8,7 @@ namespace BlazorBroker.Services
     public interface IRealEstateService
     {
         Task<IEnumerable<RealEstate>> GetRealEstates();
+        Task<RealEstate> GetRealEstate(int id);
+
     }
 }
