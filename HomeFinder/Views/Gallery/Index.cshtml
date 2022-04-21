@@ -138,34 +138,49 @@
                             <button class="favourite-button btn-rounded @SetLoginPromptClass()" type="submit"><i class="@SetStarIconClass(@realEstate.Id) fa-star float-right" style="color: gold;"></i></button>
                         }
                     </div>
-                    <div class="card-body" style="height: 6em">
-                        <h5 class="mb-3">@realEstate.Address</h5>
-                        <span class="card-text">@realEstate.NumberOfRooms rum</span>
-                        <span class="card-text">@realEstate.LivingArea kvm</span>
-                    </div>
-                    <div class="card-body">
-                        <span class="card-text">@realEstate.Price.ToString("c")</span>
-                        <span>
+                    <div class="card-body" style="height: 10em">
+                         
+                            <h5 class="mb-1">@realEstate.Address</h5>
+
+                        <div class="gallery-card-location">
+                            <span><i class="fa-solid fa-location-dot"></i> @realEstate.City</span>
+                        </div>
+
+                        <div class="row mt-2 mb-2">
+                            <div class="col-sm-6">@realEstate.NumberOfRooms rum</div>
+                            <div class="col-sm-6">
+                                @if(@realEstate.SubsidiaryArea != 0 && realEstate.SubsidiaryArea != null){
+                                <span>@realEstate.LivingArea + @realEstate.SubsidiaryArea m<sup>2</sup></span>
+                                }else {<span>@realEstate.LivingArea m<sup>2</sup></span>}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6"> @realEstate.Price.ToString("c")</div>
+                            <div class="col-sm-6">
+                                @if(@realEstate.LotArea != null && realEstate.LotArea != 0){<span>@realEstate.LotArea m<sup>2</sup> tomt</span>}
+                            </div>
+                        </div>
+                        <div class="gallery-card-icon">
                             @if (realEstate.RealEstateType == RealEstateTypes.Hus)
                             {
-                                <i class="fa-solid fa-house float-right"></i>
+                            <i class="fa-solid fa-house float-right"></i>
                             }
                             else if (realEstate.RealEstateType == RealEstateTypes.Lägenhet)
                             {
-                                <i class="fa-regular fa-building float-right"></i>
+                            <i class="fa-regular fa-building float-right"></i>
                             }
                             else if (realEstate.RealEstateType == RealEstateTypes.Gård)
                             {
-                                <i class="fa-solid fa-tree-city float-right"></i>
+                            <i class="fa-solid fa-tree-city float-right"></i>
                             }
                             else
                             {
-                                <i class="fa-regular fa-circle-question float-right"></i>
+                            <i class="fa-regular fa-circle-question"></i>
                             }
+                        </div>
 
-
-                        </span>
                     </div>
+                 
                 </a>
             </div>
         </div>

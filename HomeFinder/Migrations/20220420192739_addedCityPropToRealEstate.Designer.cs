@@ -4,14 +4,16 @@ using HomeFinder.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HomeFinder.Migrations
 {
     [DbContext(typeof(HomeFinderContext))]
-    partial class HomeFinderContextModelSnapshot : ModelSnapshot
+    [Migration("20220420192739_addedCityPropToRealEstate")]
+    partial class addedCityPropToRealEstate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,6 +119,7 @@ namespace HomeFinder.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ConstructionYear")
@@ -128,13 +131,7 @@ namespace HomeFinder.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FormOfLease")
-                        .HasColumnType("int");
-
                     b.Property<int>("LivingArea")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LotArea")
                         .HasColumnType("int");
 
                     b.Property<int>("NumberOfRooms")
@@ -148,9 +145,6 @@ namespace HomeFinder.Migrations
 
                     b.Property<DateTime>("ShowDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("SubsidiaryArea")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

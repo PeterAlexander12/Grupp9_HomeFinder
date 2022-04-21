@@ -205,15 +205,25 @@ function toggleSubmit() {
 
     var button = document.getElementById('submit-button');
     var regexPhone = /^07(0|2|3|6|9)\d{7}$/g;
-    var regexName =  /^([^0-9]*)$/;
+    var regexName = /^([^0-9]*)$/;
 
-    if (passwordInput.value.length >= 8 && emailInput.value.length > 0 && givenNameInput.value.length > 0 && surnameInput.value.length > 0)
-    {
-    if (passwordConfirmInput.value.match(passwordInput.value) && phoneInput.value.match(regexPhone) && givenNameInput.value.match(regexName) && surnameInput.value.match(regexName) && emailInput.value.match(re)) {
-        button.type = "submit";
-    }
-    } else {
-        button.type = "button";
+    if (passwordInput.value.length >= 8 && emailInput.value.length > 0 && givenNameInput.value.length > 0 && surnameInput.value.length > 0) {
+        console.log(phoneInput.value.length);
+        if (phoneInput.value.length > 0)  {
+            if (passwordConfirmInput.value.match(passwordInput.value) && phoneInput.value.match(regexPhone) && givenNameInput.value.match(regexName) && surnameInput.value.match(regexName) && emailInput.value.match(re)) {
+                button.type = "submit";
+            }
+            else {
+                button.type = "button";
+            }
+        }
+        else {
+            if (passwordConfirmInput.value.match(passwordInput.value) && givenNameInput.value.match(regexName) && surnameInput.value.match(regexName) && emailInput.value.match(re)) {
+                button.type = "submit";
+            }
+            else {
+                button.type = "button";
+            }
+        }
     }
 }
-

@@ -21,13 +21,15 @@
 
                 <div class="d-flex justify-content-end">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+
                         aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 </div>
                 
                 <div class="w-100 m-0">
                     <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">
+
                         <ul class="navbar-nav flex-grow-1" >
                             <li class="nav-item">
                                 <a class="nav-link" id="text-color" asp-area="" asp-controller="Home" asp-action="Index">START</a>
@@ -96,39 +98,42 @@
                         <span class="mb-1">
                             <a id="footer-text-color" asp-controller="Gallery" asp-action="Index">HITTA HEM</a>
                         </span>
+
             </div>
             <div class="d-flex flex-column m-3">
-                <h5>For realtors</h5>
+                <h5>För mäklare</h5>
                 <span class="mb-1">
                         <a id="footer-text-color" asp-controller="Account" asp-action="Login">LOGGA IN</a>
                 </span>
                 <span class="mb-1">
                         <a id="footer-text-color" asp-controller="Account" asp-action="RegisterRealtor">NY MÄKLARE</a>
                 </span>
-                </div>  
-                <div class="d-flex flex-column m-3">
-                    <h5>Follow us</h5>
-                    <span id="footer-text-color">
-                    <i class="fa-brands fa-facebook"></i><a class="ml-1" id="footer-text-color" href="https://www.facebook.se" target="_blank">Facebook</a>
-                    </span>
-                    <span id="footer-text-color">
-                    <i class="fa-brands fa-instagram"></i><a class="ml-1" id="footer-text-color" href="https://www.instagram.com/" target="_blank">Instagram</a>
-                    </span>
-                    <span id="footer-text-color">
-                    <i class="fa-brands fa-twitter"></i><a class="ml-1" id="footer-text-color" href="https://www.twitter.com" target="_blank">Twitter</a>
-                    </span>
-                    <span id="footer-text-color">
-                    <i class="fa-brands fa-linkedin"></i><a class="ml-1" id="footer-text-color" href="https://se.linkedin.com/" target="_blank">LinkedIn</a>
-                    </span>
+            </div>  
+            <div class="d-flex flex-column m-3">
+                <h5>Följ oss</h5>
+                <span id="footer-text-color">
+                <i class="fa-brands fa-facebook"></i><a class="ml-1" id="footer-text-color" href="https://www.facebook.se" target="_blank">Facebook</a>
+                </span>
+                <span id="footer-text-color">
+                <i class="fa-brands fa-instagram"></i><a class="ml-1" id="footer-text-color" href="https://www.instagram.com/" target="_blank">Instagram</a>
+                </span>
+                <span id="footer-text-color">
+                <i class="fa-brands fa-twitter"></i><a class="ml-1" id="footer-text-color" href="https://www.twitter.com" target="_blank">Twitter</a>
+                </span>
+                <span id="footer-text-color">
+                <i class="fa-brands fa-linkedin"></i><a class="ml-1" id="footer-text-color" href="https://se.linkedin.com/" target="_blank">LinkedIn</a>
+                </span>
             </div>
         </div>
         <div class="d-flex flex-row justify-content-center">
                      <span class="m-1 text-center">
                             &copy; 2022 - HomeFinder - <a id="footer-text-color" asp-area="" asp-controller="Home" asp-action="Terms">Villkor</a>
                         </span>
+
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-unobtrusive/jquery.unobtrusive-ajax.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
