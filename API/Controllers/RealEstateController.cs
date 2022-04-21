@@ -34,14 +34,25 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RealEstate>> GetRealEstate(int id)
         {
-            var realEstate = await _context.RealEstate.FindAsync(id);
-
-            if (realEstate == null)
+            try
             {
-                return NotFound();
-            }
+                var realEstate = await _context.RealEstate.FindAsync(id);
 
-            return realEstate;
+                if (realEstate == null)
+                {
+                    return NotFound();
+                }
+
+                return realEstate;
+            }
+            catch (Exception )
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving data from the database");
+            }
+            
+
+            
         }
 
         // PUT: api/RealEstate/5
