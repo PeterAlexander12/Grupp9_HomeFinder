@@ -33,7 +33,22 @@ namespace HomeFinder.Controllers
             return View(slides);
         }
 
-        public IActionResult Privacy()
+        public IActionResult Terms()
+        {
+            return View();
+        }
+
+        public IActionResult Cookies()
+        {
+            return View();
+        }
+
+        public IActionResult UserTerms()
+        {
+            return View();
+        }
+
+        public IActionResult EndorsementOnHomefinder()
         {
             return View();
         }
