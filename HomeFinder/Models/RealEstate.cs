@@ -12,6 +12,9 @@ namespace HomeFinder.Models
         [Required]
         [Display(Name = "Adress")]
         public string Address { get; set; }
+        [Required]
+        [Display(Name = "Stad")]
+        public string City { get; set; }
         public string CoverPictureURL { get; set; }
         public string Description { get; set; }
 

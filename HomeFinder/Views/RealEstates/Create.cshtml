@@ -9,13 +9,18 @@
 <h4>RealEstate</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">s
+    <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Address" class="control-label"></label>
                 <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CoverPictureURL" class="control-label"></label>
@@ -52,19 +57,14 @@
                 <input asp-for="ShowDate" class="form-control" />
                 <span asp-validation-for="ShowDate" class="text-danger"></span>
             </div>
-<<<<<<< HEAD
             <div class="form-group">
                 <label asp-for="RealEstateType" class="control-label"></label>
                 <select class="form-control" asp-for="RealEstateType" asp-items="Html.GetEnumSelectList<RealEstateTypes>()">
                 <option selected="selected" value="">Select type</option></select>
             </div>
-=======
-            
            <select asp-for="RealEstateType" asp-items="Html.GetEnumSelectList<RealEstateTypes>()">
                 <option selected="selected" value="">Select type</option>
            </select>
-
->>>>>>> multipleImages
             <div class="form-group  pt-5">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

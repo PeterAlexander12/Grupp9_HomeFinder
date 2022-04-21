@@ -139,7 +139,8 @@
                         </form>
                     </div>
                     <div class="card-body" style="height: 6em">
-                        <h5 class="mb-3">@realEstate.Address</h5>
+                        <h5>@realEstate.Address</h5>
+                        <h5><small class="text-muted">@realEstate.City</small></h5>
                         <span class="card-text">@realEstate.NumberOfRooms rum</span>
                         <span class="card-text">@realEstate.LivingArea kvm</span>
                     </div>
@@ -171,42 +172,9 @@
         </div>
     }
 </div>
-<div class="modal" id="login-prompt-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header border-bottom-0 pb-0">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <h3 class="modal-title text-center pb-3">Logga in</h3>
-            <div class="modal-body">
-                @await Html.PartialAsync("_LoginPartialView", new LoginVm())
-          
-                <div class="text-center text-muted pb-2">eller logga in med sociala medier</div>
-                <div class="d-flex justify-content-center">
 
-                <form method="post" asp-controller="Account" asp-action="ExternalLogin" asp-route-returnUrl="@Url.Action("Index", "Gallery")">
-		            <div class="social-media-buttons">
-                        <button type="submit" class="btn btn-secondary btn-rounded" name="provider" value="Google" title="Login using Google">
-                            <i class="fab fa-google"></i>
-                        </button>
-			            <button type="submit" class="btn btn-secondary btn-rounded" name="provider" value="Facebook" title="Login using Facebook">
-                            <i class="fab fa-facebook"></i>
-                        </button>
-                    </div>
-	            </form>
-                </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <div>Saknar du konto?
-                    <a class ="text-info" asp-area="" asp-controller="Account" asp-action="Register">Skapa konto</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+@await Html.PartialAsync("_LoginPartialView", new LoginVm())
+           
 @section Scripts{
     <script src="~/js/Gallery.js"></script>
 }
