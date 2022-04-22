@@ -1,7 +1,7 @@
 ﻿@page "/"
 @inherits RealEstateListBase
 
-<h3>RealEstateList</h3>
+<h1 class="primary-color">Mina försäljningar</h1>
 
 
 @if (RealEstates == null)
@@ -10,22 +10,26 @@
 }
 else
 {
-    <div class="card-deck">
-        @foreach (var realEstate in RealEstates)
-        {
-            <div class="card m-3" style="min-width: 18rem; max-width: 30.5%;">
-                <div class="card-header">
-                    <h3>@realEstate.Id @realEstate.Address</h3>
+        <div class="card-deck d-flex flex-column flex-wrap align-items-center">
+            @foreach (var realEstate in RealEstates)
+            {
+                <div class="card m-3 card-body-style">
+                    <div class="card-header text-center">
+                        <h3 class="primary-color">@realEstate.Id @realEstate.Address</h3>
+                    </div>
+                    <div class="card-body">
+                    <p>
+                       Här kan man ha beskrivningar om projektet
+                    </p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="@($"realestatedetails/{realEstate.Id}")" class="btn button-primary m-1">Tittta</a>
+                        <a href="#" class="btn secondary-button m-1">Ändra</a>
+                        <a href="#" class="btn third-button m-1">Ta bort</a>
+                    </div>
                 </div>
-                <div class="card-footer text-center">
-                    <a href="@($"realestatedetails/{realEstate.Id}")" class="btn btn-primary m-1">View</a>
-                    <a href="#" class="btn btn-primary m-1">Edit</a>
-                    <a href="#" class="btn btn-primary m-1">Delete</a>
-                </div>
-            </div>
-        }
-    </div>
-    
+            }
+        </div>
 }
 
 
