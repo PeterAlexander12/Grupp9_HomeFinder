@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace HomeFinder.Models
 {
@@ -33,10 +34,8 @@ namespace HomeFinder.Models
         [DataType(DataType.Date)]
         public DateTime ShowDate { get; set; }
 
-        public List<RegistrationOfInterest> RegistrationsOfInterest{ get; set; }
 
         [Display(Name = "Upplåtelseform")]
-
         public RealEstateTypes RealEstateType { get; set; }
         public ICollection<RealEstateImage> RealEstateImages { get; set; }
         public IList<Favourite> Favourites { get; set; }
