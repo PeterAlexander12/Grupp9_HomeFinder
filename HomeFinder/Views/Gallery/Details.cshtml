@@ -1,4 +1,4 @@
-﻿@model HomeFinder.Models.RealEstate
+﻿@model HomeFinder.ViewModels.DetailsVm
 @using System.Security.Claims;
 
 @{
@@ -86,6 +86,7 @@
                                             <th>Antal rum</th>
                                             <td>@Model.NumberOfRooms</td>
                                         </tr>
+                                        
 
                                     </table>
                                 </div>
@@ -108,11 +109,15 @@
                                         </tr>
                                         <tr class="table-row-underlined">
                                             <th>Visningsdatum</th>
-                                            <td>@Model.ShowDate.ToString("d")</td>
+                                            <td>@Model.ShowDate</td>
                                         </tr>
                                         <tr class="table-row-underlined">
                                             <th>Pris</th>
-                                            <td>@Model.Price.ToString("c")</td>
+                                            <td>@Model.Price</td>
+                                        </tr>
+                                        <tr class="table-row-underlined">
+                                            <th>Mäklare</th>
+                                            <td>@Model.BrokerName</td>
                                         </tr>
                                     </table>
                                 </div>

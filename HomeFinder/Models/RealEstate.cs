@@ -31,12 +31,14 @@ namespace HomeFinder.Models
         public int? SubsidiaryArea { get; set; }
         [Display(Name = "Tomtarea")]
         public int? LotArea { get; set; }
-    
+
         [Display(Name = "Byggår")]
         [DataType(DataType.Date)]
         public DateTime ConstructionYear { get; set; }
         [Display(Name = "Visningstid")]
         public DateTime ShowDate { get; set; }
+
+        public ApplicationUser Broker { get; set; }
 
         [Display(Name = "Bostadstyp")]
         public RealEstateTypes RealEstateType { get; set; }
