@@ -2,18 +2,23 @@
 @page "/realestatedetails"
 @inherits RealEstateDetailsBase
 
-<h3>Fastighetsdetaljer</h3>
+<h1 class="primary-color">Fastighetsdetaljer</h1>
 
 <div class="row justify-content-center m-3">
     <div class="col-sm-8">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header text-center primary-color">
                 <h1>@RealEstate.Id @RealEstate.Address</h1>
             </div>
+            <div class="card-body">
+                <p>
+                    Här kan man ha en beskrivning om bostaden
+                </p>
+            </div>
             <div class="card-footer text-center">
-                <a href="/" class="btn btn-primary m-1">Back</a>
-                <a href="#" class="btn btn-primary m-1">Edit</a>
-                <a href="#" class="btn btn-primary m-1">Delete</a>
+                <a href="/" class="btn button-primary m-1">Tillbaka </a>
+                <a href="#" class="btn secondary-button m-1">Ändra</a>
+                <a href="#" class="btn third-button m-1">Ta bort</a>
             </div>
 
         </div>

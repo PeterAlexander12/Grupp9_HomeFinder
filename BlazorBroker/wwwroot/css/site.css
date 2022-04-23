@@ -48,3 +48,46 @@ a, .btn-link {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+
+.primary-color {
+    color: #71918E;
+}
+
+.secondary-color {
+    color: #B7C8C6;
+}
+
+.third-color {
+    color: #586575;
+}
+
+.fourth-color {
+    color: #5C554E;
+}
+
+.button-primary {
+    background-color: #71918e;
+    color: white;
+    width: 10vh;
+    height: 4vh;
+}
+
+.secondary-button {
+    background-color: #586575;
+    color: white;
+    width: 10vh;
+    height: 4vh;
+}
+
+.third-button {
+    background-color: #5C554E;
+    color: white;
+    width: 10vh;
+    height: 4vh;
+}
+
+.card-body-style{
+    width: 100vh;
+    height: auto;
+}

@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace HomeFinder.Controllers
 {
-    [Authorize(Roles ="admin")]
+    //[Authorize(Roles ="admin")]
     public class AdministratorController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public AdministratorController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
+        public AdministratorController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;
@@ -34,7 +34,7 @@ namespace HomeFinder.Controllers
             {
                 IdentityRole identityRole = new IdentityRole
                 {
-                    Name = model.RoleName
+                    Name = model.RoleName,
                 };
 
                 IdentityResult result = await _roleManager.CreateAsync(identityRole);

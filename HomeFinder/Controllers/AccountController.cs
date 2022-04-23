@@ -88,12 +88,12 @@ namespace HomeFinder.Controllers
             if (ModelState.IsValid)
             {
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, GivenName = model.GivenName, SurName = model.SurName };
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "realtor");
+                    await _userManager.AddToRoleAsync(user, "mäklare");
                     await _signInManager.SignInAsync(user, false);
                     return Redirect("/");
                 }
