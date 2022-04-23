@@ -6,6 +6,8 @@
     color: #71918E;
 }
 
+.primary:color
+
 .secondary-color{
     color: #B7C8C6;
 }
@@ -93,11 +95,15 @@ a.a-cleanup:hover{
 .gallery-card{
     transition: all 0.2s ease; 
 }
+.gallery-card-icon{
+    float: right; 
+}
 
 .gallery-card:hover{
     transform: scale(1.03);
     box-shadow: lightgray 2px 2px; 
 }
+
 .table-row-underlined {
     border-bottom: 1px solid lightgray;
 }
@@ -321,6 +327,7 @@ a.a-cleanup:hover{
     .text{
         font-size: 32pt;
     }
+
 }
 
 .register-realtor-container{

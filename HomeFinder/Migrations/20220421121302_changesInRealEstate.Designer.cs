@@ -4,14 +4,16 @@ using HomeFinder.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HomeFinder.Migrations
 {
     [DbContext(typeof(HomeFinderContext))]
-    partial class HomeFinderContextModelSnapshot : ModelSnapshot
+    [Migration("20220421121302_changesInRealEstate")]
+    partial class changesInRealEstate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,9 +118,6 @@ namespace HomeFinder.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("BrokerId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
@@ -156,8 +155,6 @@ namespace HomeFinder.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BrokerId");
 
                     b.ToTable("RealEstate");
                 });
@@ -358,15 +355,6 @@ namespace HomeFinder.Migrations
                     b.Navigation("RealEstate");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("HomeFinder.Models.RealEstate", b =>
-                {
-                    b.HasOne("HomeFinder.Models.ApplicationUser", "Broker")
-                        .WithMany()
-                        .HasForeignKey("BrokerId");
-
-                    b.Navigation("Broker");
                 });
 
             modelBuilder.Entity("HomeFinder.Models.RealEstateImage", b =>

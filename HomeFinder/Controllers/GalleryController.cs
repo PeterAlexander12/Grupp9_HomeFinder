@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using HomeFinder.Models;
+using HomeFinder.ViewModels;
 using System.Globalization;
 
 namespace HomeFinder.Controllers
@@ -146,14 +147,38 @@ namespace HomeFinder.Controllers
                 return NotFound();
             }
 
-            var realEstate = await _context.RealEstate.Include(x => x.RealEstateImages)
+            var realEstate = await _context.RealEstate.Include(r => r.Broker).Include(r => r.RealEstateImages)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (realEstate == null)
+
+            string brokerDisplayName;
+
+            if (realEstate.Broker == null)
             {
-                return NotFound();
+                brokerDisplayName = "Uppgift saknas";
+            }
+            else
+            {
+                brokerDisplayName = realEstate.Broker.GivenName += realEstate.Broker.SurName;
             }
 
-            return View(realEstate);
+            var model = new DetailsVm()
+            {
+                Address = realEstate.Address,
+                CoverPictureURL = realEstate.CoverPictureURL,
+                RealEstateImages = realEstate.RealEstateImages,
+                RealEstateType = realEstate.RealEstateType,
+                NumberOfRooms = realEstate.NumberOfRooms,
+                LivingArea = realEstate.LivingArea,
+                ConstructionYear = realEstate.ConstructionYear,
+                ShowDate = realEstate.ShowDate.Date.ToShortDateString(),
+                BrokerName = brokerDisplayName,
+                Description = realEstate.Description,
+                Price = realEstate.Price.ToString("c"),
+                Id = realEstate.Id
+            };
+            
+            return View(model);
+
         }
         public async Task<IActionResult> AdvSearch()
         {
