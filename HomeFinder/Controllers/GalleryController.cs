@@ -164,6 +164,7 @@ namespace HomeFinder.Controllers
             var model = new DetailsVm()
             {
                 Address = realEstate.Address,
+                City = realEstate.City,
                 CoverPictureURL = realEstate.CoverPictureURL,
                 RealEstateImages = realEstate.RealEstateImages,
                 RealEstateType = realEstate.RealEstateType,
