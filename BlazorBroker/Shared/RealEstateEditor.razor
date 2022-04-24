@@ -1,0 +1,26 @@
+﻿@using ClassLibrary
+
+<div class="form-field">
+    <label>Adress:</label>
+    <div>
+        <InputText @bind-Value="RealEstate.Address"/>
+        <ValidationMessage For="@(() => RealEstate.Address)"/>
+    </div>
+
+    <label>Ort:</label>
+    <div>
+        <InputText @bind-Value="RealEstate.City"/>
+        <ValidationMessage For="@(() => RealEstate.City)"/>
+    </div>
+
+    <label>Beskrivning:</label>
+    <div>
+        <InputText @bind-Value="RealEstate.Description"/>
+        <ValidationMessage For="@(() => RealEstate.Description)"/>
+    </div>
+</div>
+
+@code{
+    [Parameter] 
+    public RealEstate RealEstate { get; set; }
+}

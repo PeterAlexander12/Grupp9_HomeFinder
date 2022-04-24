@@ -4,7 +4,7 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using ClassLibrary;
 
-namespace BlazorBroker.Services
+namespace BlazorBroker
 {
     public class RealEstateService : IRealEstateService
     {
@@ -24,6 +24,12 @@ namespace BlazorBroker.Services
         {
             return await _httpClient.GetFromJsonAsync<RealEstate>($"/api/RealEstate/{id}");
 
+        }
+
+        public async Task AddRealEstate (RealEstate realEstate)
+        {
+            var response = await _httpClient.PostAsJsonAsync("https://localhost:44387/api/RealEstate", realEstate);
+            response.EnsureSuccessStatusCode();
         }
 
     }

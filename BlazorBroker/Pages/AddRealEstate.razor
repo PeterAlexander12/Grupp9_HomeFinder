@@ -1,0 +1,22 @@
+﻿@page "/AddRealEstate"
+@using ClassLibrary
+@inject RealEstateService RealEstateService
+@inject NavigationManager NavigationManager
+
+<h1 class="primary-color">Ny Försäljning</h1>
+
+<EditForm Model="RealEstate" OnValidSubmit="@OnValidSubmit">
+    <div>
+        <RealEstateEditor RealEstate="RealEstate"/>
+    </div>
+    <button tupe="submit" class="btn btn-primary">Skapa</button>
+    <DataAnnotationsValidator/>
+</EditForm>
+
+@code{
+    public RealEstate RealEstate { get; set; } =  new RealEstate();
+    async Task OnValidSubmit()
+    {
+        await RealEstateService.AddRealEstate(RealEstate);
+    }
+}
