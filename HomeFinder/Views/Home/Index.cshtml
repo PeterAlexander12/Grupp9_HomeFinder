@@ -104,7 +104,7 @@
 			<span class="search-header text-center">HITTA DITT NYA <span class="primary-color">HEM</span></span>
 		</div>
 
-		<div class="slideshow-container p-5 w-100 d-flex flex-row justify-content-around">
+		<div class="slideshow-container p-5 w-100 d-flex row justify-content-around">
 
 
 				@for (var i = Model.Count(); i >= Model.Count() - 5; i--)
@@ -115,8 +115,8 @@
 
 			@for (var i = 0; i < realEstate.Count; i+=2)
 			{
-			<div class="mySlides">
-				<div class="card my-3 gallery-card">
+			<div class="mySlides ">
+				<div class="card my-3 gallery-card col-xs-12">
 					<a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@realEstate[i].Id">
 						<div class="d-flex flex-row">
 						
@@ -125,12 +125,19 @@
 							</div>
 							
 							<div class="card-textbox-size">
-								<div class="card-body">
-									<h5>@realEstate[i].Address</h5>
-									<h5><small class="text-muted">@realEstate[i].City</small></h5>
-									<span class="card-text">@realEstate[i].NumberOfRooms rum</span>
-									<span class="card-text">@realEstate[i].LivingArea kvm</span>
-								</div>
+                                <div class="card-body">
+                                    <h5>@realEstate[i].Address</h5>
+                                    <h5><small class="text-muted"><i class="fa-solid fa-location-dot"></i> @realEstate[i].City</small></h5>
+                                    <span class="card-text">@realEstate[i].NumberOfRooms rum</span><br />
+                                    @if (@realEstate[i].SubsidiaryArea != 0 && realEstate[i].SubsidiaryArea != null)
+                                    {
+                                        <span>@realEstate[i].LivingArea + @realEstate[i].SubsidiaryArea m<sup>2</sup></span>
+                                    }
+                                    else
+                                    {<span>@realEstate[i].LivingArea m<sup>2</sup></span>}<br />
+                                    @if (@realEstate[i].LotArea != null && realEstate[i].LotArea != 0)
+                                    {<span><br />@realEstate[i].LotArea m<sup>2</sup> tomt</span>}
+                                </div>
 								<div class="card-body">
 									<span class="card-text">@realEstate[i].Price.ToString("c")</span>
 									<span>
@@ -162,8 +169,8 @@
 				@for (var i = 1; i < realEstate.Count; i+=2)
 			   {
 				   
-				<div class="mySlidesTwo">
-				<div class="card my-3 gallery-card">
+				<div class="mySlidesTwo ">
+				<div class="card my-3 gallery-card col-xs-12">
 					<a class="a-cleanup" asp-controller="Gallery" asp-action="Details" asp-route-id="@realEstate[i].Id">
 						<div class="d-flex flex-row">
 						
@@ -172,12 +179,19 @@
 							</div>
 							
 							<div class="card-textbox-size">
-								<div class="card-body">
-									<h5>@realEstate[i].Address</h5>
-									<h5><small class="text-muted">@realEstate[i].City</small></h5>
-									<span class="card-text">@realEstate[i].NumberOfRooms rum</span>
-									<span class="card-text">@realEstate[i].LivingArea kvm</span>
-								</div>
+                                <div class="card-body">
+                                    <h5>@realEstate[i].Address</h5>
+                                    <h5><small class="text-muted"><i class="fa-solid fa-location-dot"></i> @realEstate[i].City</small></h5>
+                                    <span class="card-text">@realEstate[i].NumberOfRooms rum</span><br />
+                                    @if (@realEstate[i].SubsidiaryArea != 0 && realEstate[i].SubsidiaryArea != null)
+                                    {
+                                        <span>@realEstate[i].LivingArea + @realEstate[i].SubsidiaryArea m<sup>2</sup></span>
+                                    }
+                                    else
+                                    {<span>@realEstate[i].LivingArea m<sup>2</sup></span>}<br /> 
+                                    @if (@realEstate[i].LotArea != null && realEstate[i].LotArea != 0)
+                                    {<span><br />@realEstate[i].LotArea m<sup>2</sup> tomt</span>}
+                                </div>
 								<div class="card-body">
 									<span class="card-text">@realEstate[i].Price.ToString("c")</span>
 									<span>
