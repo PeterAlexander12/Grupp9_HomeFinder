@@ -60,14 +60,17 @@ namespace API.Data
             return null;
         }
 
-        public async void DeleteRealEstate(int id)
+        public async Task<RealEstate> DeleteRealEstate(int id)
         {
             var result = await _context.RealEstate.FirstOrDefaultAsync(r => r.Id == id);
             if (result != null)
             {
                 _context.RealEstate.Remove(result);
                 await _context.SaveChangesAsync();
+                return result;
             }
+
+            return null;
         }
     }
 }

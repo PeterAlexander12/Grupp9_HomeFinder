@@ -11,7 +11,7 @@ namespace API.Data
         Task<RealEstate> GetRealEstate(int id);
         Task<RealEstate> AddRealEstate(RealEstate realEstate);
         Task<RealEstate> UpdateRealEstate(RealEstate realEstate);
-        void DeleteRealEstate(int id);
+        Task<RealEstate> DeleteRealEstate(int id);
 
 
 

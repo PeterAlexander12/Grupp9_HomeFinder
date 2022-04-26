@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazorBroker.Pages
 {
-    public class RealEstateDetailsBase : ComponentBase
+    public class EditRealEstateBase : ComponentBase
     {
         public RealEstate RealEstate { get; set; } = new();
+
+
 
         [Inject]
         public IRealEstateService RealEstateService { get; set; }
@@ -20,12 +22,7 @@ namespace BlazorBroker.Pages
             Id = Id ?? "1";
             RealEstate = await RealEstateService.GetRealEstate(int.Parse(Id));
         }
-
-
-
-
-
     }
 
-    
+
 }

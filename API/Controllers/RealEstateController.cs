@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Data;
 using HomeFinder.Data;
 using HomeFinder.Models;
 using Microsoft.AspNetCore.Http;
@@ -16,74 +17,77 @@ namespace API.Controllers
     [ApiController]
     public class RealEstateController : ControllerBase
     {
-        private readonly HomeFinderContext _context;
+        readonly IRealEstateRepository _repository;
 
-        public RealEstateController(HomeFinderContext context)
+        public RealEstateController(HomeFinderContext context, IRealEstateRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         // GET: api/RealEstate
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RealEstate>>> GetRealEstate()
+        public async Task<ActionResult> GetRealEstates()
         {
-            return await _context.RealEstate.ToListAsync();
+            try
+            {
+                return Ok(await _repository.GetRealEstates());
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+            
         }
 
         // GET: api/RealEstate/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<RealEstate>> GetRealEstate(int id)
+        public async Task<ActionResult> GetRealEstate(int id)
         {
             try
             {
-                var realEstate = await _context.RealEstate.FindAsync(id);
+                var realEstate = await _repository.GetRealEstate(id);
 
                 if (realEstate == null)
                 {
                     return NotFound();
                 }
 
-                return realEstate;
+                return Ok(realEstate);
             }
             catch (Exception )
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error retrieving data from the database");
             }
-            
-
-            
         }
 
         // PUT: api/RealEstate/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRealEstate(int id, RealEstate realEstate)
+        public async Task<ActionResult<RealEstate>> PutRealEstate(int id, RealEstate realEstate)
         {
-            if (id != realEstate.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(realEstate).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RealEstateExists(id))
+                if (id != realEstate.Id)
                 {
-                    return NotFound();
+                    return BadRequest("ID mismatch");
                 }
-                else
-                {
-                    throw;
-                }
-            }
 
-            return NoContent();
+                var realEstateToUpdate = await _repository.GetRealEstate(id);
+
+                if (realEstateToUpdate == null)
+                {
+                    return NotFound($"RealEstate with Id = {id} not found");
+                }
+
+                return await _repository.UpdateRealEstate(realEstate);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
+            }
+            
         }
 
         // POST: api/RealEstates
@@ -91,31 +95,49 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<RealEstate>> PostRealEstate(RealEstate realEstate)
         {
-            _context.RealEstate.Add(realEstate);
-            await _context.SaveChangesAsync();
+            try
+            {
+                if (realEstate == null)
+                {
+                    return BadRequest();
+                }
 
-            return CreatedAtAction("GetRealEstate", new { id = realEstate.Id }, realEstate);
+                var newRealEstate = await _repository.AddRealEstate(realEstate);
+                return CreatedAtAction(nameof(GetRealEstate), new { id = newRealEstate.Id }, newRealEstate);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error creating new RealEstate");
+
+            }
+
+
         }
 
         // DELETE: api/RealEstate/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRealEstate(int id)
+        public async Task<ActionResult<RealEstate>> DeleteRealEstate(int id)
         {
-            var realEstate = await _context.RealEstate.FindAsync(id);
-            if (realEstate == null)
+            try
             {
-                return NotFound();
+                var realEstateToDelete = await _repository.GetRealEstate(id);
+
+                if (realEstateToDelete == null)
+                {
+                    return NotFound($"RealEstate with Id = {id} not found");
+                }
+
+                return await _repository.DeleteRealEstate(id);
             }
-
-            _context.RealEstate.Remove(realEstate);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
+            }
         }
 
-        private bool RealEstateExists(int id)
-        {
-            return _context.RealEstate.Any(e => e.Id == id);
-        }
+        //private bool RealEstateExists(int id)
+        //{
+        //    return _context.RealEstate.Any(e => e.Id == id);
+        //}
     }
 }
