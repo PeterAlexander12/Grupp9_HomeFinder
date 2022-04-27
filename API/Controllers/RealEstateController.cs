@@ -27,7 +27,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RealEstate>>> GetRealEstate()
         {
-            return await _context.RealEstate.ToListAsync();
+            return await _context.RealEstate.Include(x => x.RealEstateImages).ToListAsync();
         }
 
         // GET: api/RealEstate/5
@@ -36,7 +36,7 @@ namespace API.Controllers
         {
             try
             {
-                var realEstate = await _context.RealEstate.FindAsync(id);
+                var realEstate = await _context.RealEstate.Include(x => x.RealEstateImages).FirstOrDefaultAsync(x => x.Id == id);
 
                 if (realEstate == null)
                 {

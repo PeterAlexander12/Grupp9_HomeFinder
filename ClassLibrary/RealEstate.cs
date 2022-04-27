@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
@@ -38,10 +39,9 @@ namespace ClassLibrary
         [DataType(DataType.Date)]
         public DateTime ShowDate { get; set; }
 
+        public List<RealEstateImage> RealEstateImages { get; set; }
 
         //[Display(Name = "Upplåtelseform")]
         //public RealEstateTypes RealEstateType { get; set; }
-        //public ICollection<RealEstateImage> RealEstateImages { get; set; }
-        //public IList<Favourite> Favourites { get; set; }
     }
 }
