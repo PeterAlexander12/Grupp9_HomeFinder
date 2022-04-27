@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using ClassLibrary;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazorBroker.Services
 {
@@ -25,6 +26,16 @@ namespace BlazorBroker.Services
             return await _httpClient.GetFromJsonAsync<RealEstate>($"/api/RealEstate/{id}");
 
         }
+
+        public async Task<RealEstate> UpdateRealEstate(RealEstate updatedRealEstate)
+        {
+            //return await _httpClient.PutJsonAsync<RealEstate>("api/RealEstate", updatedRealEstate);
+            //return _httpClient.PutAsync<RealEstate>("api/RealEstate", updatedRealEstate);
+            return null;
+
+        }
+
+
 
     }
 }

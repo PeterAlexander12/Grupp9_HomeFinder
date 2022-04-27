@@ -22,6 +22,8 @@ namespace BlazorBroker.Pages
             Id = Id ?? "1";
             RealEstate = await RealEstateService.GetRealEstate(int.Parse(Id));
         }
+
+
     }
 
 

@@ -65,20 +65,15 @@ namespace API.Controllers
         // PUT: api/RealEstate/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<ActionResult<RealEstate>> PutRealEstate(int id, RealEstate realEstate)
+        public async Task<ActionResult<RealEstate>> PutRealEstate(RealEstate realEstate)
         {
             try
             {
-                if (id != realEstate.Id)
-                {
-                    return BadRequest("ID mismatch");
-                }
-
-                var realEstateToUpdate = await _repository.GetRealEstate(id);
+                var realEstateToUpdate = await _repository.GetRealEstate(realEstate.Id);
 
                 if (realEstateToUpdate == null)
                 {
-                    return NotFound($"RealEstate with Id = {id} not found");
+                    return NotFound($"RealEstate with Id = {realEstate.Id} not found");
                 }
 
                 return await _repository.UpdateRealEstate(realEstate);
