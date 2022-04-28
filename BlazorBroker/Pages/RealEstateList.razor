@@ -1,7 +1,7 @@
 ﻿@page "/"
 @inherits RealEstateListBase
 
-<h1 class="primary-color">Mina försäljningar</h1>
+<h1 class="primary-color">Mina objekt</h1>
 
 
 @if (RealEstates == null)
@@ -15,7 +15,7 @@ else
             {
                 <div class="card m-3 card-body-style">
                     <div class="card-header text-center">
-                        <h3 class="primary-color">@realEstate.Id @realEstate.Address</h3>
+                        <h3 class="primary-color">@realEstate.Address</h3>
                     </div>
                     <div class="card-body">
                     <p>
