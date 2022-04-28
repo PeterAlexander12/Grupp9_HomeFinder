@@ -22,7 +22,7 @@ namespace API.Data
 
         public async Task<RealEstate> GetRealEstate(int id)
         {
-            return await _context.RealEstate.FirstOrDefaultAsync(r => r.Id == id );
+            return await _context.RealEstate.Include(r => r.RegistrationsOfInterest).FirstOrDefaultAsync(r => r.Id == id );
         }
 
         public async Task<RealEstate> AddRealEstate(RealEstate realEstate)

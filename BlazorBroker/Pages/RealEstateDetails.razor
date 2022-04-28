@@ -2,44 +2,58 @@
 @page "/realestatedetails"
 @inherits RealEstateDetailsBase
 
+@if (RealEstate == null || RealEstate.RegistrationsOfInterest == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
 <h1 class="primary-color">Fastighetsdetaljer</h1>
 
-<div class="row justify-content-center m-3">
-    <div class="col-sm-8">
-        <div class="card">
-            <div class="card-header text-center primary-color">
-                <h1>@RealEstate.Id @RealEstate.Address</h1>
-            </div>
-            <div class="card-body">
-                <p>
-                    Här kan man ha en beskrivning om bostaden
-                </p>
+    <div class="row justify-content-center m-3">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-header text-center primary-color">
+                    <h1>@RealEstate.Address </h1>
 
-                @*----BARA FÖR TEST----*@
-                <div>
-                    <img src="@RealEstate.CoverPictureURL"/>
                 </div>
+                <div class="card-body">
+                    <h3>
+                        Intresseanmälningar:
+                    </h3>
+                    <br/><br/>
+                    <div>
+                        @foreach (var r in RealEstate.RegistrationsOfInterest)
+                        {
+                            <p> <b>Tidpunkt:</b>  @r.Date</p>
+                            <p> <b>Meddelande:</b> @r.Message</p>
+                        }
+                    </div>
 
-                @*Om vi använder Azure Blob Storage för bilderna så borde det nog funka*@
-                @if(RealEstate.RealEstateImages != null){
-                    @foreach (var image in RealEstate.RealEstateImages)
-                    {
-                        <div>
-                            <img src="@image.ImageURL"/>
-                        </div>
-                    }
-                }
-                @*----BARA FÖR TEST----*@
+                    @*----BARA FÖR TEST----*@
+                    @*<div>
+                        <img src="@RealEstate.CoverPictureURL"/>
+                    </div>*@
+
+                    @*Om vi använder Azure Blob Storage för bilderna så borde det nog funka*@
+@*                    @if(RealEstate.RealEstateImages != null){
+                        @foreach (var image in RealEstate.RealEstateImages)
+                        {
+                            <div>
+                                <img src="@image.ImageURL"/>
+                            </div>
+                        }
+                    }*@
+                    @*----BARA FÖR TEST----*@
                 
+                </div>
+                <div class="card-footer text-center">
+                    <a href="/" class="btn button-primary m-1">Tillbaka </a>
+                    <a href="#" class="btn secondary-button m-1">Ändra</a>
+                    <a href="#" class="btn third-button m-1">Ta bort</a>
+                </div>
             </div>
-            <div class="card-footer text-center">
-                <a href="/" class="btn button-primary m-1">Tillbaka </a>
-                <a href="#" class="btn secondary-button m-1">Ändra</a>
-                <a href="#" class="btn third-button m-1">Ta bort</a>
-            </div>
-
         </div>
     </div>
-    
 
-</div>
+}

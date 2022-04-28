@@ -1,4 +1,5 @@
-﻿using ClassLibrary;
+﻿using System.Collections.Generic;
+using ClassLibrary;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
@@ -19,6 +20,7 @@ namespace BlazorBroker.Pages
             Id = Id ?? "1";
             RealEstate = await RealEstateService.GetRealEstate(int.Parse(Id));
         }
+        
 
 
 

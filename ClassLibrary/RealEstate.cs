@@ -45,6 +45,6 @@ namespace ClassLibrary
         //public FormOfLease FormOfLease { get; set; }
         public ICollection<RealEstateImage> RealEstateImages { get; set; }
         //public IList<Favourite> Favourites { get; set; }
-        //public List<RegistrationOfInterest> RegistrationsOfInterest { get; set; }
+        public List<RegistrationOfInterest> RegistrationsOfInterest { get; set; }
     }
 }
