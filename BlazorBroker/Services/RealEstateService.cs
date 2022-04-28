@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ClassLibrary;
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorBroker.Services
+namespace BlazorBroker
 {
     public class RealEstateService : IRealEstateService
     {
@@ -36,6 +36,12 @@ namespace BlazorBroker.Services
         }
 
 
+
+        public async Task AddRealEstate (RealEstate realEstate)
+        {
+            var response = await _httpClient.PostAsJsonAsync("https://localhost:44387/api/RealEstate", realEstate);
+            response.EnsureSuccessStatusCode();
+        }
 
     }
 }

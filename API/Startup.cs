@@ -30,7 +30,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContext<HomeFinderContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("HomeFinderContext")));
             services.AddSwaggerGen(c =>

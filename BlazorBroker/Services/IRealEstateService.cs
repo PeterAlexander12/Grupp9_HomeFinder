@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ClassLibrary;
 
-namespace BlazorBroker.Services
+namespace BlazorBroker
 {
     public interface IRealEstateService
     {
@@ -12,5 +12,6 @@ namespace BlazorBroker.Services
         Task<RealEstate> UpdateRealEstate(RealEstate updatedRealEstate);
 
 
+        Task AddRealEstate(RealEstate realEstate);
     }
 }

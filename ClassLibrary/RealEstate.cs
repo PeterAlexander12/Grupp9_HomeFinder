@@ -7,8 +7,13 @@ namespace ClassLibrary
 {
     public class RealEstate
     {
+        //public int Id;
+        //public string Address;
 
         public int Id { get; set; }
+
+        [Required]
+        [Display(Name = "Adress")]
         public string Address { get; set; }
         [Display(Name = "Ort")]
         public string City { get; set; }
