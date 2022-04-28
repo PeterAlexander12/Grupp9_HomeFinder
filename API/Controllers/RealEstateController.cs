@@ -28,7 +28,15 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetRealEstates()
         {
-            return await _context.RealEstate.ToListAsync();
+            try
+            {
+                return Ok(await _repository.GetRealEstates());
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
         }
 
         // GET: api/RealEstate/5

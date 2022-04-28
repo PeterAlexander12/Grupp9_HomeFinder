@@ -43,7 +43,7 @@ namespace ClassLibrary
         //public RealEstateTypes RealEstateType { get; set; }
         //[Display(Name = "Upplåtelseform")]
         //public FormOfLease FormOfLease { get; set; }
-        //public ICollection<RealEstateImage> RealEstateImages { get; set; }
+        public ICollection<RealEstateImage> RealEstateImages { get; set; }
         //public IList<Favourite> Favourites { get; set; }
         //public List<RegistrationOfInterest> RegistrationsOfInterest { get; set; }
     }
