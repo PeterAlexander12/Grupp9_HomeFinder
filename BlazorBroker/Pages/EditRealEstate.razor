@@ -1,102 +1,17 @@
 ﻿@page "/editrealestate/{id}"
 @page "/editrealestate"
+@inject RealEstateService RealEstateService 
 @inherits EditRealEstateBase
+
+
+<EditForm Model="RealEstate" OnValidSubmit="@OnValidSubmit">
+    <div>
+        <RealEstateEditor RealEstate="RealEstate"/>
+    </div>
+    <button tupe="submit" class="btn btn-primary">Skapa</button>
+    <DataAnnotationsValidator/>
+</EditForm>
 
 <h1 class="primary-color">Fastighetsdetaljer</h1>
 
-<div class="row justify-content-center m-3">
-    <div class="col-sm-8">
-        <div class="card">
-            <div class="card-header text-center primary-color">
-                <h1></h1>
-            </div>
-            <div class="card-body">
-           
 
-                <EditForm Model="@RealEstate">
-                    <h3>Redigera festighetsdetaljer</h3>
-                    <hr/>
-                    <div class="form-group row">
-                        <label for="Address" class="col-sm-2 col-form-label"> Adress </label>
-                        <div class="col-sm-10">
-                            <InputText id="Address" class="form-control" placeholder="Adress" @bind-Value="RealEstate.Address"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="City" class="col-sm-2 col-form-label"> Ort </label>
-                        <div class="col-sm-10">
-                            <InputText id="City" class="form-control" placeholder="Ort" @bind-Value="RealEstate.City"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="CoverPictureURL" class="col-sm-2 col-form-label"> URL för omslagsbild </label>
-                        <div class="col-sm-10">
-                            <InputText id="CoverPictureURL" class="form-control" placeholder="URL för omslagsbild" @bind-Value="RealEstate.CoverPictureURL"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Description" class="col-sm-2 col-form-label"> Beskrivning </label>
-                        <div class="col-sm-10">
-                            <InputText id="Description" class="form-control" placeholder="Beskrivning" @bind-Value="RealEstate.Description"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="Price" class="col-sm-2 col-form-label"> Pris </label>
-                        <div class="col-sm-10">
-                            <InputNumber id="Price" class="form-control" placeholder="Pris" @bind-Value="RealEstate.Price"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="NumberOfRooms" class="col-sm-2 col-for7m-label"> Antal rum </label>
-                        <div class="col-sm-10">
-                            <InputNumber id="NumberOfRooms" class="form-control" placeholder="Antal rum" @bind-Value="RealEstate.NumberOfRooms"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="LivingArea" class="col-sm-2 col-form-label"> Boarea </label>
-                        <div class="col-sm-10">
-                            <InputNumber id="Boarea" class="form-control" placeholder="Boarea" @bind-Value="RealEstate.LivingArea"/>
-                        </div>
-                    </div> 
-                    <div class="form-group row">
-                        <label for="SubsidiaryArea" class="col-sm-2 col-form-label"> Biarea </label>
-                        <div class="col-sm-10">
-                            <InputNumber id="SubsidiaryArea" class="form-control" placeholder="Biarea" @bind-Value="RealEstate.SubsidiaryArea"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="LotArea" class="col-sm-2 col-form-label"> Tomtarea </label>
-                        <div class="col-sm-10">
-                            <InputNumber id="LotArea" class="form-control" placeholder="Tomtarea" @bind-Value="RealEstate.LotArea"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="ConstructionYear" class="col-sm-2 col-form-label"> Byggår </label>
-                        <div class="col-sm-10">
-                            <InputDate id="ConstructionYear" class="form-control" placeholder="Byggår" @bind-Value="RealEstate.ConstructionYear"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="ShowDate" class="col-sm-2 col-form-label"> Visningstid </label>
-                        <div class="col-sm-10">
-                            <InputDate id="ShowDate" class="form-control" placeholder="Visningstid" @bind-Value="RealEstate.ShowDate"/>
-                        </div>
-                    </div>
-                    
-
-                </EditForm>
-
-
-            </div>
-
-            <div class="card-footer text-center">
-                <a href="/" class="btn button-primary m-1">Tillbaka </a>
-                <a href="#" class="btn secondary-button m-1">Spara</a>
-                <a href="#" class="btn third-button m-1">Förhandsgranska</a>
-            </div>
-        </div>
-    </div>
-
-
-</div>

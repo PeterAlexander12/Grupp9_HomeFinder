@@ -27,12 +27,10 @@ namespace BlazorBroker
 
         }
 
-        public async Task<RealEstate> UpdateRealEstate(RealEstate updatedRealEstate)
+        public async Task UpdateRealEstate(RealEstate updatedRealEstate)
         {
-            //return await _httpClient.PutJsonAsync<RealEstate>("api/RealEstate", updatedRealEstate);
-            //return _httpClient.PutAsync<RealEstate>("api/RealEstate", updatedRealEstate);
-            return null;
-
+            var response = await _httpClient.PutAsJsonAsync("https://localhost:44387/api/RealEstate", updatedRealEstate);
+            response.EnsureSuccessStatusCode();
         }
 
 

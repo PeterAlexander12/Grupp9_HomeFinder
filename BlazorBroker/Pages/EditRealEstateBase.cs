@@ -22,6 +22,11 @@ namespace BlazorBroker.Pages
             RealEstate = await RealEstateService.GetRealEstate(int.Parse(Id));
         }
 
+        public async Task OnValidSubmit()
+        {
+            await RealEstateService.UpdateRealEstate(RealEstate);
+        }
+
 
     }
 
