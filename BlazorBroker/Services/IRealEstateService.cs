@@ -10,8 +10,6 @@ namespace BlazorBroker
         Task<IEnumerable<RealEstate>> GetRealEstates();
         Task<RealEstate> GetRealEstate(int id);
         Task UpdateRealEstate(RealEstate updatedRealEstate);
-
-
         Task AddRealEstate(RealEstate realEstate);
     }
 }

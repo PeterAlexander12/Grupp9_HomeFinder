@@ -33,8 +33,6 @@ namespace BlazorBroker
             response.EnsureSuccessStatusCode();
         }
 
-
-
         public async Task AddRealEstate (RealEstate realEstate)
         {
             var response = await _httpClient.PostAsJsonAsync("https://localhost:44387/api/RealEstate", realEstate);
