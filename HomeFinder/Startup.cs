@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using HomeFinder.Data;
 using HomeFinder.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -30,10 +29,10 @@ namespace HomeFinder
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<HomeFinderContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("HomeFinderContext")));
+            //services.AddDbContext<HomeFinderContext>(options =>
+            //        options.UseSqlServer(Configuration.GetConnectionString("HomeFinderContext")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<HomeFinderContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddDefaultTokenProviders();
 
 
             services.AddAuthentication()

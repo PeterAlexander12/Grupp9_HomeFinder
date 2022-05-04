@@ -41,11 +41,11 @@ namespace HomeFinder.ViewModels
 
         [Display(Name = "Bostadstyp")]
 
-        public RealEstateTypes RealEstateType { get; set; }
+        public RealEstateTypeVm RealEstateType { get; set; }
         [Display(Name = "Upplåtelseform")]
-        public FormOfLease FormOfLease { get; set; }
-        public ICollection<RealEstateImage> RealEstateImages { get; set; }
-        public IList<Favourite> Favourites { get; set; }
-        public List<RegistrationOfInterest> RegistrationsOfInterest { get; set; }
+        public FormOfLeaseVm FormOfLease { get; set; }
+        public ICollection<RealEstateImageVm> RealEstateImages { get; set; }
+        public IList<FavouriteVm> Favourites { get; set; }
+        public List<RegistrationOfInterestVm> RegistrationsOfInterest { get; set; }
     }
 }

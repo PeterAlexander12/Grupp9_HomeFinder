@@ -5,7 +5,7 @@ namespace HomeFinder.ViewModels
 {
     public class CreateRegistrationOfInterestVm
     {
-        public RealEstate RealEstate { get; set; }
+        public RealEstateVm RealEstate { get; set; }
         public string Message { get; set; }
     }
 }

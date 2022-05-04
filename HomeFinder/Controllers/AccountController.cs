@@ -1,5 +1,4 @@
-﻿using HomeFinder.Data;
-using HomeFinder.Models;
+﻿using HomeFinder.Models;
 using HomeFinder.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -12,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using HomeFinder.Services;
 
 namespace HomeFinder.Controllers
 {
@@ -20,13 +20,15 @@ namespace HomeFinder.Controllers
 
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly HomeFinderContext _context;
+        readonly IRealEstateService _service;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, HomeFinderContext context)
+        public AccountController(UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            IRealEstateService service)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _context = context;
+            _service = service;
 
         }
 

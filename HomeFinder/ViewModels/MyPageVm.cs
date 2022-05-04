@@ -4,7 +4,7 @@ namespace HomeFinder.ViewModels
 {
     public class MyPageVm
     {
-        public RealEstate RealEstate { get; set; }
+        public RealEstateVm RealEstate { get; set; }
 
     }
 }

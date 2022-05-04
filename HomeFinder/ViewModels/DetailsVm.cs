@@ -25,14 +25,14 @@ namespace HomeFinder.ViewModels
         [DisplayFormat(DataFormatString = "{0:d}")]
         public string ShowDate { get; set; }
 
-        public FormOfLease FormOfLease { get; set; }
+        public FormOfLeaseVm FormOfLease { get; set; }
         public int? SubsidiaryArea { get; set; }
         public int? LotArea { get; set; }
 
 
         public string BrokerName { get; set; }
 
-        public RealEstateTypes RealEstateType { get; set; }
-        public ICollection<RealEstateImage> RealEstateImages { get; set; }
+        public RealEstateTypeVm RealEstateType { get; set; }
+        public ICollection<RealEstateImageVm> RealEstateImages { get; set; }
     }
 }
