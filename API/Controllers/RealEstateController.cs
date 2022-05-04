@@ -97,6 +97,7 @@ namespace API.Controllers
                 }
 
                 var newRealEstate = await _repository.AddRealEstate(realEstate);
+
                 return CreatedAtAction(nameof(GetRealEstate), new { id = newRealEstate.Id }, newRealEstate);
             }
             catch (Exception)
@@ -129,9 +130,6 @@ namespace API.Controllers
             }
         }
 
-        //private bool RealEstateExists(int id)
-        //{
-        //    return _context.RealEstate.Any(e => e.Id == id);
-        //}
+   
     }
 }

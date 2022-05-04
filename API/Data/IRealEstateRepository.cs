@@ -12,6 +12,7 @@ namespace API.Data
         Task<RealEstate> AddRealEstate(RealEstate realEstate);
         Task<RealEstate> UpdateRealEstate(RealEstate realEstate);
         Task<RealEstate> DeleteRealEstate(int id);
+        // ADD SAVEALLASYNC METHOD
 
 
 

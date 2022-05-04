@@ -7,11 +7,10 @@ namespace BlazorBroker
 {
     public interface IRealEstateService
     {
+        // ÄNDRA TILL VIEWMODEL
         Task<IEnumerable<RealEstate>> GetRealEstates();
         Task<RealEstate> GetRealEstate(int id);
         Task UpdateRealEstate(RealEstate updatedRealEstate);
-
-
         Task AddRealEstate(RealEstate realEstate);
     }
 }
