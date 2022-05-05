@@ -5,224 +5,236 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using HomeFinder.Data;
 using HomeFinder.Models;
+using HomeFinder.Services;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace HomeFinder.Controllers
 {
     public class FavouritesController : Controller
     {
-        private readonly HomeFinderContext _context;
+        readonly IFavouritesService _service;
+        readonly UserManager<ApplicationUser> _userManager;
 
-        public FavouritesController(HomeFinderContext context)
+        public FavouritesController(IFavouritesService service, UserManager<ApplicationUser> userManager)
         {
-            _context = context;
+            _service = service;
+            _userManager = userManager;
         }
 
         // GET: Favourites
         public async Task<IActionResult> Index()
         {
-            var homeFinderContext = _context.Favourites.Include(f => f.RealEstate).Include(f => f.User);
-            return View(await homeFinderContext.ToListAsync());
-        }
-
-        // GET: Favourites/Details/5
-        public async Task<IActionResult> Details(string id)
-        {
-            if (id == null)
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
             {
-                return NotFound();
+                throw new Exception($"Kunde inte hitta användare");
             }
 
-            var favourite = await _context.Favourites
-                .Include(f => f.RealEstate)
-                .Include(f => f.User)
-                .FirstOrDefaultAsync(m => m.UserId == id);
-            if (favourite == null)
-            {
-                return NotFound();
-            }
-
-            return View(favourite);
-        }
-
-        // GET: Favourites/Create
-        public IActionResult Create()
-        {
-            ViewData["RealEstateId"] = new SelectList(_context.RealEstate, "Id", "Address");
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            var favourites = await _service.GetFavourites(user);
             return View();
         }
 
-        // POST: Favourites/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RealEstateId,UserId")] Favourite favourite)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(favourite);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["RealEstateId"] = new SelectList(_context.RealEstate, "Id", "Address", favourite.RealEstateId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", favourite.UserId);
-            return View(favourite);
-        }
+        // GET: Favourites/Details/5
+        //public async Task<IActionResult> Details(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-        // Kontrollera om användaren har realEstateId bland sina favoriter
-        // Ja => RemoveFromFavourites()
-        // Nej=> AddToFavourites()
-        [HttpPost]
-        public async Task<IActionResult> HandleFavourite(int realEstateId)
-        {
-            var user = await _context.Users.Include(u => u.Favourites).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
-            bool shouldAddToFavourites = true;
-            foreach (var item in user.Favourites)
-            {
-                if (item.RealEstateId == realEstateId)
-                {
-                    shouldAddToFavourites = false;
-                    break;
-                }
-            }
+        //    var favourite = await _service.Favourites
+        //        .Include(f => f.RealEstate)
+        //        .Include(f => f.User)
+        //        .FirstOrDefaultAsync(m => m.UserId == id);
+        //    if (favourite == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    /
+        //    return View(favourite);
+        //}
 
-            if (shouldAddToFavourites)
-            {
-               return await AddToFavourites(user.Id, realEstateId);
-            }
+        // GET: Favourites/Create
 
-            else
-            {
-                return await RemoveFromFavourites(user.Id, realEstateId);
-            }
-        }
+        //    public IActionResult Create()
+        //    {
+        //        ViewData["RealEstateId"] = new SelectList(_service.RealEstate, "Id", "Address");
+        //        ViewData["UserId"] = new SelectList(_service.Users, "Id", "Id");
+        //        return View();
+        //    }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddToFavourites(string userId, int realEstateId)
-        {   
-            var favourite = new Favourite();
-            favourite.RealEstateId = realEstateId;
-            favourite.UserId = userId;
+        //    // POST: Favourites/Create
+        //    // To protect from overposting attacks, enable the specific properties you want to bind to.
+        //    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //    [HttpPost]
+        //    [ValidateAntiForgeryToken]
+        //    public async Task<IActionResult> Create([Bind("RealEstateId,UserId")] Favourite favourite)
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            _service.Add(favourite);
+        //            await _service.SaveChangesAsync();
+        //            return RedirectToAction(nameof(Index));
+        //        }
+        //        ViewData["RealEstateId"] = new SelectList(_service.RealEstate, "Id", "Address", favourite.RealEstateId);
+        //        ViewData["UserId"] = new SelectList(_service.Users, "Id", "Id", favourite.UserId);
+        //        return View(favourite);
+        //    }
 
-            _context.Add(favourite);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Gallery");
-        }
+        //    // Kontrollera om användaren har realEstateId bland sina favoriter
+        //    // Ja => RemoveFromFavourites()
+        //    // Nej=> AddToFavourites()
+        //    [HttpPost]
+        //    public async Task<IActionResult> HandleFavourite(int realEstateId)
+        //    {
+        //        var user = await _service.Users.Include(u => u.Favourites).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+        //        bool shouldAddToFavourites = true;
+        //        foreach (var item in user.Favourites)
+        //        {
+        //            if (item.RealEstateId == realEstateId)
+        //            {
+        //                shouldAddToFavourites = false;
+        //                break;
+        //            }
+        //        }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveFromFavourites(string userId, int realEstateId)
-        {
-            var favourite = await _context.Favourites
-               .Include(f => f.RealEstate)
-               .Include(f => f.User)
-               .Where(m => m.RealEstateId == realEstateId)
-               .FirstOrDefaultAsync(m => m.UserId == userId);
+        //        if (shouldAddToFavourites)
+        //        {
+        //           return await AddToFavourites(user.Id, realEstateId);
+        //        }
 
-            _context.Favourites.Remove(favourite);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Gallery");
-        }
+        //        else
+        //        {
+        //            return await RemoveFromFavourites(user.Id, realEstateId);
+        //        }
+        //    }
 
-        // GET: Favourites/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //    [HttpPost]
+        //    [ValidateAntiForgeryToken]
+        //    public async Task<IActionResult> AddToFavourites(string userId, int realEstateId)
+        //    {   
+        //        var favourite = new Favourite();
+        //        favourite.RealEstateId = realEstateId;
+        //        favourite.UserId = userId;
 
-            var favourite = await _context.Favourites.FindAsync(id);
-            if (favourite == null)
-            {
-                return NotFound();
-            }
-            ViewData["RealEstateId"] = new SelectList(_context.RealEstate, "Id", "Address", favourite.RealEstateId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", favourite.UserId);
-            return View(favourite);
-        }
+        //        _service.Add(favourite);
+        //        await _service.SaveChangesAsync();
+        //        return RedirectToAction("Index", "Gallery");
+        //    }
 
-        // POST: Favourites/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("RealEstateId,UserId")] Favourite favourite)
-        {
-            if (id != favourite.UserId)
-            {
-                return NotFound();
-            }
+        //    [HttpPost]
+        //    [ValidateAntiForgeryToken]
+        //    public async Task<IActionResult> RemoveFromFavourites(string userId, int realEstateId)
+        //    {
+        //        var favourite = await _service.Favourites
+        //           .Include(f => f.RealEstate)
+        //           .Include(f => f.User)
+        //           .Where(m => m.RealEstateId == realEstateId)
+        //           .FirstOrDefaultAsync(m => m.UserId == userId);
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(favourite);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FavouriteExists(favourite.UserId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["RealEstateId"] = new SelectList(_context.RealEstate, "Id", "Address", favourite.RealEstateId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", favourite.UserId);
-            return View(favourite);
-        }
+        //        _service.Favourites.Remove(favourite);
+        //        await _service.SaveChangesAsync();
+        //        return RedirectToAction("Index", "Gallery");
+        //    }
 
-        // GET: Favourites/Delete/5
-        public async Task<IActionResult> Delete(Favourite fav)
-        {
-            if (fav.UserId == null)
-            {
-                return NotFound();
-            }
+        //    // GET: Favourites/Edit/5
+        //    public async Task<IActionResult> Edit(string id)
+        //    {
+        //        if (id == null)
+        //        {
+        //            return NotFound();
+        //        }
 
-            var favourite = await _context.Favourites
-                .Include(f => f.RealEstate)
-                .Include(f => f.User)
-                .Where(m => m.RealEstateId == fav.RealEstateId)
-                .FirstOrDefaultAsync(m => m.UserId == fav.UserId);
-            if (favourite == null)
-            {
-                return NotFound();
-            }
+        //        var favourite = await _service.Favourites.FindAsync(id);
+        //        if (favourite == null)
+        //        {
+        //            return NotFound();
+        //        }
+        //        ViewData["RealEstateId"] = new SelectList(_service.RealEstate, "Id", "Address", favourite.RealEstateId);
+        //        ViewData["UserId"] = new SelectList(_service.Users, "Id", "Id", favourite.UserId);
+        //        return View(favourite);
+        //    }
 
-            return View(favourite);
-        }
+        //    // POST: Favourites/Edit/5
+        //    // To protect from overposting attacks, enable the specific properties you want to bind to.
+        //    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //    [HttpPost]
+        //    [ValidateAntiForgeryToken]
+        //    public async Task<IActionResult> Edit(string id, [Bind("RealEstateId,UserId")] Favourite favourite)
+        //    {
+        //        if (id != favourite.UserId)
+        //        {
+        //            return NotFound();
+        //        }
 
-        // POST: Favourites/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Favourite fav)
-        {
-            var favourite = await _context.Favourites
-               .Include(f => f.RealEstate)
-               .Include(f => f.User)
-               .Where(m => m.RealEstateId == fav.RealEstateId)
-               .FirstOrDefaultAsync(m => m.UserId == fav.UserId);
+        //        if (ModelState.IsValid)
+        //        {
+        //            try
+        //            {
+        //                _service.Update(favourite);
+        //                await _service.SaveChangesAsync();
+        //            }
+        //            catch (DbUpdateConcurrencyException)
+        //            {
+        //                if (!FavouriteExists(favourite.UserId))
+        //                {
+        //                    return NotFound();
+        //                }
+        //                else
+        //                {
+        //                    throw;
+        //                }
+        //            }
+        //            return RedirectToAction(nameof(Index));
+        //        }
+        //        ViewData["RealEstateId"] = new SelectList(_service.RealEstate, "Id", "Address", favourite.RealEstateId);
+        //        ViewData["UserId"] = new SelectList(_service.Users, "Id", "Id", favourite.UserId);
+        //        return View(favourite);
+        //    }
 
-            _context.Favourites.Remove(favourite);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("MyFavourites", "Account");
-        }
+        //    // GET: Favourites/Delete/5
+        //    public async Task<IActionResult> Delete(Favourite fav)
+        //    {
+        //        if (fav.UserId == null)
+        //        {
+        //            return NotFound();
+        //        }
 
-        private bool FavouriteExists(string id)
-        {
-            return _context.Favourites.Any(e => e.UserId == id);
-        }
+        //        var favourite = await _service.Favourites
+        //            .Include(f => f.RealEstate)
+        //            .Include(f => f.User)
+        //            .Where(m => m.RealEstateId == fav.RealEstateId)
+        //            .FirstOrDefaultAsync(m => m.UserId == fav.UserId);
+        //        if (favourite == null)
+        //        {
+        //            return NotFound();
+        //        }
+
+        //        return View(favourite);
+        //    }
+
+        //    // POST: Favourites/Delete/5
+        //    [HttpPost, ActionName("Delete")]
+        //    [ValidateAntiForgeryToken]
+        //    public async Task<IActionResult> DeleteConfirmed(Favourite fav)
+        //    {
+        //        var favourite = await _service.Favourites
+        //           .Include(f => f.RealEstate)
+        //           .Include(f => f.User)
+        //           .Where(m => m.RealEstateId == fav.RealEstateId)
+        //           .FirstOrDefaultAsync(m => m.UserId == fav.UserId);
+
+        //        _service.Favourites.Remove(favourite);
+        //        await _service.SaveChangesAsync();
+        //        return RedirectToAction("MyFavourites", "Account");
+        //    }
+
+        //    private bool FavouriteExists(string id)
+        //    {
+        //        return _service.Favourites.Any(e => e.UserId == id);
+        //    }
     }
 }
+

@@ -12,6 +12,10 @@ namespace API.Data
         Task<RealEstate> AddRealEstate(RealEstate realEstate);
         Task<RealEstate> UpdateRealEstate(RealEstate realEstate);
         Task<RealEstate> DeleteRealEstate(int id);
+        Task<IEnumerable<RealEstate>> GetUserFavourites(string userId);
+        Task<RealEstate> GetRealEstateForBroker(int id);
+
+
         // ADD SAVEALLASYNC METHOD
 
 

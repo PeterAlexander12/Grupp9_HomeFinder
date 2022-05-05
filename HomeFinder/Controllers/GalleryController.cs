@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using HomeFinder.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,25 +7,28 @@ using Microsoft.EntityFrameworkCore;
 using HomeFinder.Models;
 using HomeFinder.ViewModels;
 using System.Globalization;
+using HomeFinder.Services;
 
 namespace HomeFinder.Controllers
 {
     public class GalleryController : Controller
     {
-        private readonly HomeFinderContext _context;
-        public GalleryController(HomeFinderContext context)
+        private readonly IRealEstateService _service;
+     
+        public GalleryController(IRealEstateService service)
         {
-            _context = context;
+            _service = service;
         }
-        public async Task<IActionResult> Index(string searchTerm, string maxSlide, string minSlide, List<int> realEstateType, int minLivingSpace, int maxLivingSpace, string minArea, string maxArea,
+        public async Task<IActionResult> Index(string searchTerm, string maxSlide, string minSlide, List<int> realEstateTypeVm, int minLivingSpace, int maxLivingSpace, string minArea, string maxArea,
             int minRoom, int maxRoom, string minBuildYear, string maxBuildYear, string removeFilter)
         {
-            var realEstates = _context.RealEstate.Select(r => r);
+            var realEstates = await _service.GetRealEstates();
 
-            ViewBag.Favourites = _context.Favourites.Select(f => f);
+            //ViewBag.Favourites = _context.Favourites.Select(f => f);
+
             if (!string.IsNullOrEmpty(removeFilter) && removeFilter.Equals("Rensa filter"))
             {
-                return View(await realEstates.ToListAsync());
+                return View(realEstates.ToList());
             }
 
             if (!string.IsNullOrEmpty(searchTerm))
@@ -51,24 +53,24 @@ namespace HomeFinder.Controllers
                 }
             }
 
-            if (realEstateType.Count > 0)
+            if (realEstateTypeVm.Count > 0)
             {
 
-                if (realEstateType.Count == 1)
+                if (realEstateTypeVm.Count == 1)
                 {
-                    realEstates = realEstates.Where(r => (int)r.RealEstateType == realEstateType.ElementAt(0));
+                    realEstates = realEstates.Where(r => (int)r.RealEstateType == realEstateTypeVm.ElementAt(0));
                 }
 
-                if (realEstateType.Count == 2)
+                if (realEstateTypeVm.Count == 2)
                 {
-                    realEstates = realEstates.Where(r => (int)r.RealEstateType == realEstateType.ElementAt(0) || (int)r.RealEstateType == realEstateType.ElementAt(1));
+                    realEstates = realEstates.Where(r => (int)r.RealEstateType == realEstateTypeVm.ElementAt(0) || (int)r.RealEstateType == realEstateTypeVm.ElementAt(1));
                 }
 
-                if (realEstateType.Count == 3)
+                if (realEstateTypeVm.Count == 3)
                 {
-                    realEstates = realEstates.Where(r => (int)r.RealEstateType == realEstateType.ElementAt(0)
-                    || (int)r.RealEstateType == realEstateType.ElementAt(1)
-                    || (int)r.RealEstateType == realEstateType.ElementAt(2));
+                    realEstates = realEstates.Where(r => (int)r.RealEstateType == realEstateTypeVm.ElementAt(0)
+                    || (int)r.RealEstateType == realEstateTypeVm.ElementAt(1)
+                    || (int)r.RealEstateType == realEstateTypeVm.ElementAt(2));
                 }
             }
 
@@ -137,18 +139,12 @@ namespace HomeFinder.Controllers
                 }
             }
 
-            return View(await realEstates.ToListAsync());
+            return View(realEstates.ToList());
         }
 
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var realEstate = await _context.RealEstate.Include(r => r.Broker).Include(r => r.RealEstateImages)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var realEstate = await _service.GetRealEstate(id);
 
             string brokerDisplayName;
 
@@ -184,13 +180,13 @@ namespace HomeFinder.Controllers
             return View(model);
 
         }
-        public async Task<IActionResult> AdvSearch()
-        {
-            var realEstates = _context.RealEstate.Select(r => r);
+        //public async Task<IActionResult> AdvSearch()
+        //{
+        //    var realEstates = _context.RealEstate.Select(r => r);
 
             
 
-            return View(await realEstates.ToListAsync());
-        }
+        //    return View(await realEstates.ToListAsync());
+        //}
     }
 }

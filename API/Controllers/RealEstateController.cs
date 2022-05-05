@@ -24,13 +24,29 @@ namespace API.Controllers
             _repository = repository;
         }
 
-        // GET: api/RealEstate
+        // GET: api/RealEstates
         [HttpGet]
         public async Task<ActionResult> GetRealEstates()
         {
             try
             {
                 return Ok(await _repository.GetRealEstates());
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
+
+        // GET: api/Favourites/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetFavourites(string userId)
+        {
+            try
+            {
+                return Ok(await _repository.GetRealEstates());
+
 
             }
             catch (Exception)

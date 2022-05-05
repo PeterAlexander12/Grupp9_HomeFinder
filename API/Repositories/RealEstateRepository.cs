@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using HomeFinder.Data;
 using HomeFinder.Models;
@@ -22,8 +23,16 @@ namespace API.Data
 
         public async Task<RealEstate> GetRealEstate(int id)
         {
-            return await _context.RealEstate.Include(r => r.RegistrationsOfInterest).FirstOrDefaultAsync(r => r.Id == id );
+            return await _context.RealEstate.Include(r => r.Broker).Include(r => r.RealEstateImages)
+                .FirstOrDefaultAsync(m => m.Id == id);
         }
+
+        public async Task<RealEstate> GetRealEstateForBroker(int id)
+        {
+            return await _context.RealEstate.Include(r => r.Broker).Include(r => r.RealEstateImages).Include(r => r.RegistrationsOfInterest)
+                .FirstOrDefaultAsync(m => m.Id == id);
+        }
+
 
         public async Task<RealEstate> AddRealEstate(RealEstate realEstate)
         {
@@ -71,6 +80,21 @@ namespace API.Data
             }
 
             return null;
+        }
+
+        public async Task<IEnumerable<RealEstate>> GetUserFavourites(string userId)
+        {
+            var result = new List<RealEstate>();
+            await foreach (var f in _context.Favourites)
+            {
+                if (f.UserId == userId)
+                {
+                    result.Add(f.RealEstate);
+                }
+            }
+
+            return result;
+
         }
     }
 }

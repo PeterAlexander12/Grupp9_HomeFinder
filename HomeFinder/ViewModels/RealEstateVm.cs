@@ -42,6 +42,7 @@ namespace HomeFinder.ViewModels
         [Display(Name = "Bostadstyp")]
 
         public RealEstateTypeVm RealEstateType { get; set; }
+
         [Display(Name = "Upplåtelseform")]
         public FormOfLeaseVm FormOfLease { get; set; }
         public ICollection<RealEstateImageVm> RealEstateImages { get; set; }

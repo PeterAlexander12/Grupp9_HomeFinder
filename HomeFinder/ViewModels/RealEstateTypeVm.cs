@@ -1,6 +1,11 @@
 ﻿namespace HomeFinder.ViewModels
 {
-    public class RealEstateTypeVm
-    {
-    }
+    
+        public enum RealEstateTypes
+        {
+            Hus,
+            Lägenhet,
+            Gård
+        }
+    
 }

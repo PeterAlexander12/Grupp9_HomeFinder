@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using HomeFinder.Models;
 using HomeFinder.ViewModels;
 
 namespace HomeFinder.Services
@@ -10,5 +11,7 @@ namespace HomeFinder.Services
         Task<RealEstateVm> GetRealEstate(int id);
         Task UpdateRealEstate(RealEstateVm updatedRealEstate);
         Task AddRealEstate(RealEstateVm realEstate);
+        
+
     }
 }

@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using HomeFinder.Models;
 using HomeFinder.ViewModels;
 
 namespace HomeFinder.Services
@@ -37,5 +38,7 @@ namespace HomeFinder.Services
             var response = await _httpClient.PostAsJsonAsync("https://localhost:44387/api/RealEstate", realEstate);
             response.EnsureSuccessStatusCode();
         }
+
+        
     }
 }
