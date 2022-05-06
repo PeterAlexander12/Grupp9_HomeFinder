@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
-using HomeFinder.Data;
-using HomeFinder.Models;
+using API.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,14 +17,14 @@ namespace API.Controllers
     {
         readonly IRealEstateRepository _repository;
 
-        public RealEstateController(HomeFinderContext context, IRealEstateRepository repository)
+        public RealEstateController(IRealEstateRepository repository)
         {
             _repository = repository;
         }
 
         // GET: api/RealEstate
         [HttpGet]
-        public async Task<ActionResult> GetRealEstates()
+        public async Task<ActionResult<List<RealEstateVm>>> GetRealEstates()
         {
             try
             {
@@ -41,7 +39,7 @@ namespace API.Controllers
 
         // GET: api/RealEstate/5
         [HttpGet("{id}")]
-        public async Task<ActionResult> GetRealEstate(int id)
+        public Task<ActionResult<RealEstateVm>> GetRealEstate(int id)
         {
             try
             {
@@ -110,7 +108,7 @@ namespace API.Controllers
 
         // DELETE: api/RealEstate/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<RealEstate>> DeleteRealEstate(int id)
+        public async Task<ActionResult> DeleteRealEstate(int id)
         {
             try
             {

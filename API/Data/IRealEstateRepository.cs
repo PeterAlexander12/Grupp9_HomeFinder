@@ -1,20 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using HomeFinder.Models;
+using API.ViewModels;
 
 namespace API.Data
 {
     public interface IRealEstateRepository
     {
-        Task<IEnumerable<RealEstate>> GetRealEstates();
-        Task<RealEstate> GetRealEstate(int id);
-        Task<RealEstate> AddRealEstate(RealEstate realEstate);
-        Task<RealEstate> UpdateRealEstate(RealEstate realEstate);
-        Task<RealEstate> DeleteRealEstate(int id);
 
-
-
-
+        Task UpdateRealEstateAsync(int id, PostRealEstateVm model);
+        Task UpdateRealEstateAsync(int id, PatchRealEstateVm model);
+        Task<IEnumerable<RealEstateVm>> GetRealEstates();
+        Task<RealEstateVm> GetRealEstateAsync(string id);
+        Task<RealEstateVm> GetRealEstateAsync(int id);
+        Task<PostRealEstateVm> AddRealEstateAsync(PostRealEstateVm model);
+        Task DeleteRealEstateAsync(int id);
+        Task<bool> SaveAllAsync();
     }
 }

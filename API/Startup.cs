@@ -1,4 +1,3 @@
-using HomeFinder.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,7 +30,8 @@ namespace API
         {
 
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            services.AddDbContext<HomeFinderContext>(options =>
+
+            services.AddDbContext<RealEstateContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("HomeFinderContext")));
             services.AddSwaggerGen(c =>
             {

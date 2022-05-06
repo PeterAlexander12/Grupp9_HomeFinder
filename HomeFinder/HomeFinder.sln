@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "..\API\API.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBroker", "..\BlazorBroker\BlazorBroker.csproj", "{C5648993-33C8-4802-B485-AFBB6F1ED672}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary", "..\ClassLibrary\ClassLibrary.csproj", "{7D484793-B268-43CF-945F-3FCAC3BF0900}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{C5648993-33C8-4802-B485-AFBB6F1ED672}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5648993-33C8-4802-B485-AFBB6F1ED672}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5648993-33C8-4802-B485-AFBB6F1ED672}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D484793-B268-43CF-945F-3FCAC3BF0900}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D484793-B268-43CF-945F-3FCAC3BF0900}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D484793-B268-43CF-945F-3FCAC3BF0900}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D484793-B268-43CF-945F-3FCAC3BF0900}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

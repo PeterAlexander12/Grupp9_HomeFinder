@@ -1,23 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using HomeFinder.Data;
-using HomeFinder.Models;
+using API.Data;
+using API.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
     public class RealEstateRepository : IRealEstateRepository
     {
-        readonly HomeFinderContext _context;
 
-        public RealEstateRepository(HomeFinderContext context)
+        public RealEstateRepository()
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<RealEstate>> GetRealEstates()
+        public async Task<IEnumerable<RealEstateVm>> GetRealEstates()
         {
+            // use automapper
+
+
             return await _context.RealEstate.ToListAsync();
+
         }
 
         public async Task<RealEstate> GetRealEstate(int id)
@@ -25,9 +28,9 @@ namespace API.Data
             return await _context.RealEstate.Include(r => r.RegistrationsOfInterest).FirstOrDefaultAsync(r => r.Id == id );
         }
 
-        public async Task<RealEstate> AddRealEstate(RealEstate realEstate)
+        public async Task AddRealEstate(PostRealEstateVm model)
         {
-            var result = await _context.RealEstate.AddAsync(realEstate);
+            var result = await _context.RealEstate.AddAsync(model);
             await _context.SaveChangesAsync();
             return result.Entity;
         }
@@ -60,7 +63,7 @@ namespace API.Data
             return null;
         }
 
-        public async Task<RealEstate> DeleteRealEstate(int id)
+        public async Task DeleteRealEstateAsync(int id)
         {
             var result = await _context.RealEstate.FirstOrDefaultAsync(r => r.Id == id);
             if (result != null)
