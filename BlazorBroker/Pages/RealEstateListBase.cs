@@ -1,4 +1,4 @@
-﻿using ClassLibrary;
+﻿using BlazorBroker.ViewModels;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace BlazorBroker.Pages
         [Inject]
         public IRealEstateService RealEstateService { get; set; }
 
-        public IEnumerable<RealEstate> RealEstates { get; set; }
+        public IEnumerable<RealEstateViewModel> RealEstates { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

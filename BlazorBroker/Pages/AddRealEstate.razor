@@ -1,5 +1,5 @@
 ﻿@page "/AddRealEstate"
-@using ClassLibrary
+@using BlazorBroker.ViewModels
 @inject RealEstateService RealEstateService
 @inject NavigationManager NavigationManager
 
@@ -14,7 +14,7 @@
 </EditForm>
 
 @code{
-    public RealEstate RealEstate { get; set; } =  new RealEstate();
+    public PostRealEstateViewModel RealEstate { get; set; } =  new PostRealEstateViewModel();
     async Task OnValidSubmit()
     {
         await RealEstateService.AddRealEstate(RealEstate);

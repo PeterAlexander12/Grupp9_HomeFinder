@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using BlazorBroker.ViewModels;
 using ClassLibrary;
 using Microsoft.AspNetCore.Components;
 
@@ -16,24 +17,24 @@ namespace BlazorBroker
             _httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<RealEstate>> GetRealEstates()
+        public async Task<IEnumerable<RealEstateViewModel>> GetRealEstates()
         {
-            return await _httpClient.GetFromJsonAsync<RealEstate[]>("/api/RealEstate");
+            return await _httpClient.GetFromJsonAsync<RealEstateViewModel[]>("/api/RealEstate");
         }
 
-        public async Task<RealEstate> GetRealEstate(int id)
+        public async Task<RealEstateViewModel> GetRealEstate(int id)
         {
-            return await _httpClient.GetFromJsonAsync<RealEstate>($"/api/RealEstate/{id}");
+            return await _httpClient.GetFromJsonAsync<RealEstateViewModel>($"/api/RealEstate/{id}");
 
         }
 
-        public async Task UpdateRealEstate(RealEstate updatedRealEstate)
+        public async Task UpdateRealEstate(PostRealEstateViewModel updatedRealEstate)
         {
             var response = await _httpClient.PutAsJsonAsync("https://localhost:44387/api/RealEstate", updatedRealEstate);
             response.EnsureSuccessStatusCode();
         }
 
-        public async Task AddRealEstate (RealEstate realEstate)
+        public async Task AddRealEstate (PostRealEstateViewModel realEstate)
         {
             var response = await _httpClient.PostAsJsonAsync("https://localhost:44387/api/RealEstate", realEstate);
             response.EnsureSuccessStatusCode();

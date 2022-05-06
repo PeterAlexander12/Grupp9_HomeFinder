@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using ClassLibrary;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
+using BlazorBroker.ViewModels;
 
 namespace BlazorBroker.Pages
 {
     public class RealEstateDetailsBase : ComponentBase
     {
-        public RealEstate RealEstate { get; set; } = new();
+        public RealEstateViewModel RealEstate { get; set; } = new();
 
         [Inject]
         public IRealEstateService RealEstateService { get; set; }
