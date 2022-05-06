@@ -216,7 +216,7 @@ namespace HomeFinder.Controllers
             return View("/home/index");
         }
 
-    [Authorize]
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -226,12 +226,13 @@ namespace HomeFinder.Controllers
         public IActionResult MyPage()
         {
             // SKICKA ADRESS OCH BILDLÄNK TILL VIEW
-            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user = _context.Users.FirstOrDefault(u => u.Id == id);
-            var regOfInt = _context.RegistrationOfInterest.Where(r => r.User == user).Select(r => r.RealEstate).ToList();
+            
+            var model = _service.
+                
+            //    RegistrationOfInterest.Where(r => r.User == user).Select(r => r.RealEstate).ToList();
             //regOfInt = regOfInt.Where(r => r.User == user);
 
-            return View(regOfInt);
+            return View(model);
             
         }
 

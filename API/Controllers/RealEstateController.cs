@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
-using HomeFinder.Data;
-using HomeFinder.Models;
+using API.Repositories;
+using API.ViewModels;
+using Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,21 @@ namespace API.Controllers
         // GET: api/RealEstates
         [HttpGet]
         public async Task<ActionResult> GetRealEstates()
+        {
+            try
+            {
+                return Ok(await _repository.GetRealEstates());
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
+
+        // GET: api/RealEstates/
+        [HttpGet]
+        public async Task<ActionResult> GetRealEstates(string search)
         {
             try
             {
@@ -80,18 +96,18 @@ namespace API.Controllers
         // PUT: api/RealEstate/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<ActionResult<RealEstate>> PutRealEstate(RealEstate realEstate)
+        public async Task<ActionResult<RealEstate>> PutRealEstate(RealEstateVm model)
         {
             try
             {
-                var realEstateToUpdate = await _repository.GetRealEstate(realEstate.Id);
+                var realEstateToUpdate = await _repository.GetRealEstate(model.Id);
 
                 if (realEstateToUpdate == null)
                 {
-                    return NotFound($"RealEstate with Id = {realEstate.Id} not found");
+                    return NotFound($"RealEstate with Id = {model.Id} not found");
                 }
 
-                return await _repository.UpdateRealEstate(realEstate);
+                return await _repository.UpdateRealEstateAsync(model);
             }
             catch (Exception)
             {

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using HomeFinder.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Reflection.Metadata;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using Models;
 
-namespace HomeFinder.Data
+
+namespace API.Data
 {
     public class HomeFinderContext : IdentityDbContext<ApplicationUser>
     {

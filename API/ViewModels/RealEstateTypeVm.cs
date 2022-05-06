@@ -1,4 +1,4 @@
-﻿namespace HomeFinder.ViewModels
+﻿namespace API.ViewModels
 {
     
         public enum RealEstateTypeVm

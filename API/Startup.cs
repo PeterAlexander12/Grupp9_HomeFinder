@@ -1,4 +1,4 @@
-using HomeFinder.Data;
+using API.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,7 +13,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using API.Data;
+using API.Repositories;
+using Microsoft.AspNetCore.Identity;
+using Models;
+using AutoMapper;
+using Vehicles_API.Helpers;
 
 namespace API
 {
@@ -38,6 +42,9 @@ namespace API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
             services.AddScoped<IRealEstateRepository, RealEstateRepository>();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddDefaultTokenProviders();
+
 
         }
 

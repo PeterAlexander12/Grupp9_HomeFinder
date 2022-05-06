@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
-namespace ClassLibrary
+namespace Models
 {
     public class RealEstate
     {
@@ -38,13 +37,13 @@ namespace ClassLibrary
         [Display(Name = "Visningstid")]
         public DateTime ShowDate { get; set; }
 
-        //public ApplicationUser Broker { get; set; }
+        public ApplicationUser Broker { get; set; }
         //[Display(Name = "Bostadstyp")]
         //public RealEstateTypes RealEstateType { get; set; }
         //[Display(Name = "Upplåtelseform")]
         //public FormOfLease FormOfLease { get; set; }
         public ICollection<RealEstateImage> RealEstateImages { get; set; }
-        //public IList<Favourite> Favourites { get; set; }
+        public IList<Favourite> Favourites { get; set; }
         public List<RegistrationOfInterest> RegistrationsOfInterest { get; set; }
     }
 }

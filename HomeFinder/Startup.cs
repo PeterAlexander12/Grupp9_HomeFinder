@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using HomeFinder.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Vehicles_API.Helpers;
 
 namespace HomeFinder
 {
@@ -33,6 +34,7 @@ namespace HomeFinder
             //        options.UseSqlServer(Configuration.GetConnectionString("HomeFinderContext")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddDefaultTokenProviders();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 
             services.AddAuthentication()

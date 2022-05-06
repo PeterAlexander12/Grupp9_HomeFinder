@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using HomeFinder.Models;
-using HomeFinder.ViewModels;
+using Models;
 
 namespace HomeFinder.Services
 {
     public interface IRealEstateService
     {
-        Task<IEnumerable<RealEstateVm>> GetRealEstates();
-        Task<RealEstateVm> GetRealEstate(int id);
-        Task UpdateRealEstate(RealEstateVm updatedRealEstate);
-        Task AddRealEstate(RealEstateVm realEstate);
+        Task<IEnumerable<RealEstate>> GetRealEstates();
+        Task<IEnumerable<RealEstate>> GetRealEstates(string searchTerm);
+        Task<RealEstate> GetRealEstate(int id);
+        Task UpdateRealEstate(RealEstate updatedRealEstate);
+        Task AddRealEstate(RealEstate realEstate);
         
 
     }

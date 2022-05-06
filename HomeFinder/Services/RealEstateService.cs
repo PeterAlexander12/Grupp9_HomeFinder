@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using HomeFinder.Models;
+using Models;
 using HomeFinder.ViewModels;
 
 namespace HomeFinder.Services
@@ -11,29 +11,41 @@ namespace HomeFinder.Services
     {
         readonly HttpClient _httpClient;
 
+
         public RealEstateService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<RealEstateVm>> GetRealEstates()
+        public async Task<IEnumerable<RealEstate>> GetRealEstates()
         {
-            return await _httpClient.GetFromJsonAsync<RealEstateVm[]>("/api/RealEstate");
+            return await _httpClient.GetFromJsonAsync<RealEstate[]>("/api/RealEstate");
         }
 
-        public async Task<RealEstateVm> GetRealEstate(int id)
+        public Task<IEnumerable<RealEstate>> GetRealEstates(string searchTerm)
         {
-            return await _httpClient.GetFromJsonAsync<RealEstateVm>($"/api/RealEstate/{id}");
+            throw new System.NotImplementedException();
+        }
+
+        public async Task<RealEstate> GetRealEstate(int id)
+        {
+            return await _httpClient.GetFromJsonAsync<RealEstate>($"/api/RealEstate/{id}");
 
         }
 
-        public async Task UpdateRealEstate(RealEstateVm updatedRealEstate)
+        public async Task<RealEstate> GetRealEstate(int id)
+        {
+            return await _httpClient.GetFromJsonAsync<RealEstate>($"/api/RealEstate/{id}");
+
+        }
+
+        public async Task UpdateRealEstate(RealEstate updatedRealEstate)
         {
             var response = await _httpClient.PutAsJsonAsync("https://localhost:44387/api/RealEstate", updatedRealEstate);
             response.EnsureSuccessStatusCode();
         }
         
-        public async Task AddRealEstate(RealEstateVm realEstate)
+        public async Task AddRealEstate(RealEstate realEstate)
         {
             var response = await _httpClient.PostAsJsonAsync("https://localhost:44387/api/RealEstate", realEstate);
             response.EnsureSuccessStatusCode();

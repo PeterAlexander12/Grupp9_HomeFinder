@@ -1,4 +1,4 @@
-﻿namespace HomeFinder.Models
+﻿namespace Models
 {
     public enum RealEstateTypes
     {

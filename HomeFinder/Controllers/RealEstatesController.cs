@@ -5,26 +5,28 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using HomeFinder.Data;
-using HomeFinder.Models;
+using Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using HomeFinder.Services;
 using Microsoft.Extensions.FileProviders;
 
 namespace HomeFinder.Controllers
 {
     public class RealEstatesController : Controller
     {
-        private readonly HomeFinderContext _context;
-        public RealEstatesController(HomeFinderContext context)
+        readonly IRealEstateService _service;
+
+        public RealEstatesController(IRealEstateService service)
         {
-            _context = context;
+            _service = service;
         }
 
         // GET: RealEstates
         public async Task<IActionResult> Index(string searchTerm)
         {
-            var realEstates = _context.RealEstate.Select(r => r);
+            //var realEstates = _context.RealEstate.Select(r => r);
+            var realEstates = _service.GetRealEstates();
 ;
             if (!string.IsNullOrEmpty(searchTerm))
             {

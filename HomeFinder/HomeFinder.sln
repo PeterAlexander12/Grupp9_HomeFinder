@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "..\API\API.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorBroker", "..\BlazorBroker\BlazorBroker.csproj", "{C5648993-33C8-4802-B485-AFBB6F1ED672}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary", "..\ClassLibrary\ClassLibrary.csproj", "{7D484793-B268-43CF-945F-3FCAC3BF0900}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "..\ClassLibrary\Models.csproj", "{7D484793-B268-43CF-945F-3FCAC3BF0900}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
