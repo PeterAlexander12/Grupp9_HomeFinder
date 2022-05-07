@@ -13,6 +13,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
+using API.Helpers;
+using API.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace API
 {
@@ -38,6 +41,8 @@ namespace API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
             services.AddScoped<IRealEstateRepository, RealEstateRepository>();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddDefaultTokenProviders();
 
         }
 

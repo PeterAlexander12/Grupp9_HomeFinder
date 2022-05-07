@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using API.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using API.Models;
 
-namespace HomeFinder.Data
+namespace API.Data
 {
     public class RealEstateContext : IdentityDbContext
     {

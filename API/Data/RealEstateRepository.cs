@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using API.Data;
 using API.ViewModels;
-using HomeFinder.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
