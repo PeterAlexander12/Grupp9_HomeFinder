@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using API.Data;
+using API.Models;
 using API.ViewModels;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -9,72 +13,71 @@ namespace API.Data
     public class RealEstateRepository : IRealEstateRepository
     {
         readonly RealEstateContext _context;
+        readonly IMapper _mapper;
 
-        public RealEstateRepository(RealEstateContext context)
+        public RealEstateRepository(RealEstateContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        //public async Task<IEnumerable<RealEstateVm>> GetRealEstates()
-        //{
-        //    // use automapper
+        public async Task<IEnumerable<RealEstateVm>> GetRealEstates()
+        {
+            return await _context.RealEstate.ProjectTo<RealEstateVm>(_mapper.ConfigurationProvider).ToListAsync();
+        }
 
+        public async Task<RealEstateVm> GetRealEstateAsync(int id)
+        {
+            return await _context.RealEstate.Where(r => r.Id == id)
+                .ProjectTo<RealEstateVm>(_mapper.ConfigurationProvider)
+                .SingleOrDefaultAsync();
+        }
 
-        //    return await _context.RealEstate.ToListAsync();
+        public async Task AddRealEstateAsync(PostRealEstateVm model)
+        {
+            var realEstateToAdd = _mapper.Map<RealEstate>(model);
+            await _context.RealEstate.AddAsync(realEstateToAdd);
+        }
 
-        //}
+        public async Task UpdateRealEstateAsync(int id, PostRealEstateVm model)
+        {
+            var realEstate = await _context.RealEstate.FindAsync(id);
+            if (realEstate is null)
+            {
+                throw new Exception($"Hittade ingen fastighet med id {id}");
+            }
 
-        //public async Task<RealEstate> GetRealEstate(int id)
-        //{
-        //    return await _context.RealEstate.Include(r => r.RegistrationsOfInterest).FirstOrDefaultAsync(r => r.Id == id );
-        //}
+            _mapper.Map(model, realEstate);
 
-        //public async Task AddRealEstate(PostRealEstateVm model)
-        //{
-        //    var result = await _context.RealEstate.AddAsync(model);
-        //    await _context.SaveChangesAsync();
-        //    return result.Entity;
-        //}
+        }
 
-        //public async Task<RealEstate> UpdateRealEstate(RealEstate realEstate)
-        //{
-        //    var result = await _context.RealEstate.FirstOrDefaultAsync(r => r.Id == realEstate.Id);
+        public async Task UpdateRealEstateAsync(int id, PatchRealEstateVm model)
+        {
+            var realEstate = await _context.RealEstate.FindAsync(id);
+            if (realEstate is null)
+            {
+                throw new Exception($"Hittade ingen fastighet med id {id}");
+            }
 
-        //    if (result != null)
-        //    {
-        //        result.Address = realEstate.Address;
-        //        result.City = realEstate.City;
-        //        result.ConstructionYear = realEstate.ConstructionYear;
-        //        result.CoverPictureURL = realEstate.CoverPictureURL;
-        //        result.Description = realEstate.Description;
-        //        result.LivingArea = realEstate.LivingArea;
-        //        result.NumberOfRooms = realEstate.NumberOfRooms;
-        //        result.Price = realEstate.Price;
-        //        result.Address = realEstate.Address;
-        //        result.ConstructionYear = realEstate.ConstructionYear;
+            _mapper.Map(model, realEstate);
+        }
 
-        //        result.Favourites = realEstate.Favourites;
-        //        result.RealEstateImages = realEstate.RealEstateImages;
+        public async Task DeleteRealEstateAsync(int id)
+        {
+            var realEstate = await _context.RealEstate.FindAsync(id);
+            if (realEstate is null)
+            {
+                throw new Exception($"Hittade ingen fastighet med id {id}");
+            }
 
-        //        await _context.SaveChangesAsync();
+            _context.RealEstate.Remove(realEstate);
 
-        //        return result;
-        //    }
+        }
 
-        //    return null;
-        //}
+        public async Task<bool> SaveAllAsync()
+        {
+            return await _context.SaveChangesAsync() > 0;
+        }
 
-        //public async Task DeleteRealEstateAsync(int id)
-        //{
-        //    var result = await _context.RealEstate.FirstOrDefaultAsync(r => r.Id == id);
-        //    if (result != null)
-        //    {
-        //        _context.RealEstate.Remove(result);
-        //        await _context.SaveChangesAsync();
-        //        return result;
-        //    }
-
-        //    return null;
-        //}
     }
 }

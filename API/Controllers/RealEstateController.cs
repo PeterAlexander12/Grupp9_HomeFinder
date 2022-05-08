@@ -40,11 +40,11 @@ namespace API.Controllers
 
         // GET: api/RealEstate/5
         [HttpGet("{id}")]
-        public Task<ActionResult<RealEstateVm>> GetRealEstate(int id)
+        public async Task<ActionResult<RealEstateVm>> GetRealEstate(int id)
         {
             try
             {
-                var realEstate = await _repository.GetRealEstate(id);
+                var realEstate = await _repository.GetRealEstateAsync(id);
 
                 if (realEstate == null)
                 {
@@ -63,18 +63,18 @@ namespace API.Controllers
         // PUT: api/RealEstate/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<ActionResult<RealEstate>> PutRealEstate(RealEstate realEstate)
+        public async Task<ActionResult> UpdateRealEstate(int id, PatchRealEstateVm model)
         {
             try
             {
-                var realEstateToUpdate = await _repository.GetRealEstate(realEstate.Id);
+                var realEstateToUpdate = await _repository.GetRealEstateAsync(model.Id);
 
                 if (realEstateToUpdate == null)
                 {
-                    return NotFound($"RealEstate with Id = {realEstate.Id} not found");
+                    return NotFound($"RealEstate with Id = {model.Id} not found");
                 }
 
-                return await _repository.UpdateRealEstate(realEstate);
+                return await _repository.UpdateRealEstateAsync(id, model );
             }
             catch (Exception)
             {

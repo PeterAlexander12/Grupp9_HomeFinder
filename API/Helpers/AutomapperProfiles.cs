@@ -9,12 +9,10 @@ namespace API.Helpers
         public AutoMapperProfiles()
         {
             // Map från -> till
-            CreateMap<RealEstateVm, RealEstate>();
+            CreateMap<PostRealEstateVm, RealEstate>();
             CreateMap<RealEstate, RealEstateVm>();
-
-            //CreateMap<PutManufacturerViewModel, Manufacturer>();
-            //CreateMap<Manufacturer, ManufacturerViewModel>()
-            //  .ForMember(dest => dest.ManufacturorId, options => options.MapFrom(src => src.Id));
+            CreateMap<PutRealEstateVm, RealEstate>();
+            
         }
     }
 }
