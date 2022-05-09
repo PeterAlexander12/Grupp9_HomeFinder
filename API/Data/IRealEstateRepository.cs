@@ -12,6 +12,7 @@ namespace API.Data
         Task UpdateRealEstateAsync(int id, PatchRealEstateVm model);
         Task<IEnumerable<RealEstateVm>> GetRealEstates();
         Task<RealEstateVm> GetRealEstateAsync(int id);
+        Task<RealEstateVm> GetRealEstateAsync(string address);
         Task AddRealEstateAsync(PostRealEstateVm model);
         Task DeleteRealEstateAsync(int id);
         Task<bool> SaveAllAsync();

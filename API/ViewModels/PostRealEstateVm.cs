@@ -7,7 +7,6 @@ namespace API.ViewModels
 {
     public class PostRealEstateVm
     {
-        public int Id { get; set; }
 
         [Required]
         [Display(Name = "Adress")]
@@ -34,14 +33,5 @@ namespace API.ViewModels
         public DateTime ConstructionYear { get; set; }
         [Display(Name = "Visningstid")]
         public DateTime ShowDate { get; set; }
-
-        //public ApplicationUser Broker { get; set; }
-        //[Display(Name = "Bostadstyp")]
-        //public RealEstateTypes RealEstateType { get; set; }
-        //[Display(Name = "Upplåtelseform")]
-        //public FormOfLease FormOfLease { get; set; }
-        //public ICollection<RealEstateImage> RealEstateImages { get; set; }
-        //public IList<Favourite> Favourites { get; set; }
-        //public List<RegistrationOfInterest> RegistrationsOfInterest { get; set; }
     }
 }

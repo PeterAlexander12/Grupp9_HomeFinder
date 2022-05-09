@@ -23,7 +23,7 @@ namespace API.Controllers
             _repository = repository;
         }
 
-        // GET: api/RealEstate
+        // GET: api/RealEstates
         [HttpGet]
         public async Task<ActionResult<List<RealEstateVm>>> GetRealEstates()
         {
@@ -60,51 +60,96 @@ namespace API.Controllers
             }
         }
 
-        // PUT: api/RealEstate/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateRealEstate(int id, PatchRealEstateVm model)
+        // GET: api/RealEstate/byaddress/address
+        [HttpGet("byaddress/{address}")]
+        public async Task<ActionResult<RealEstateVm>> GetRealEstate(int id, string address)
         {
+            var model = await _repository.GetRealEstateAsync(address);
+
             try
             {
-                var realEstateToUpdate = await _repository.GetRealEstateAsync(model.Id);
+                var realEstate = await _repository.GetRealEstateAsync(id);
 
-                if (realEstateToUpdate == null)
+                if (realEstate is null)
                 {
-                    return NotFound($"RealEstate with Id = {model.Id} not found");
+                    return NotFound($"Vi kunde inte hitta någon fastighet med adress {address}.");
                 }
 
-                return await _repository.UpdateRealEstateAsync(id, model );
+                return Ok(realEstate);
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data");
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving data from the database");
+            }
+        }
+
+        // PUT: api/RealEstate/5
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateRealEstate(int id, PostRealEstateVm model)
+        {
+            try
+            {
+                await _repository.UpdateRealEstateAsync(id, model);
+
+                if (await _repository.SaveAllAsync())
+                {
+                    return NoContent();
+                }
+
+                return StatusCode(500, "Ett fel inträffade när fastigheten skulle uppdateras");
+            }
+
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
             }
             
         }
 
-        // POST: api/RealEstates
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<RealEstate>> PostRealEstate(RealEstate realEstate)
+        // PATCH: api/RealEstate/5
+        [HttpPatch("{id}")]
+        public async Task<ActionResult> UpdateRealEstate(int id, PatchRealEstateVm model)
         {
             try
             {
-                if (realEstate == null)
+                await _repository.UpdateRealEstateAsync(id, model);
+
+                if (await _repository.SaveAllAsync())
                 {
-                    return BadRequest();
+                    return NoContent();
                 }
 
-                var newRealEstate = await _repository.AddRealEstate(realEstate);
-                return CreatedAtAction(nameof(GetRealEstate), new { id = newRealEstate.Id }, newRealEstate);
+                return StatusCode(500, "Ett fel inträffade när fastigheten skulle uppdateras");
             }
-            catch (Exception)
+
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error creating new RealEstate");
-
+                return StatusCode(500, ex.Message);
             }
+        }
 
+        // POST: api/RealEstates
+        [HttpPost]
+        public async Task<ActionResult> AddRealEstate(PostRealEstateVm model)
+        {
 
+            try
+            {
+                if (await _repository.GetRealEstateAsync(model.Address) is not null)
+                {
+                    return BadRequest($"Det finns redan en fastighet registrerad på angiven adress.");
+                }
+
+                await _repository.AddRealEstateAsync(model);
+
+                return await _repository.SaveAllAsync() ? StatusCode(201) : StatusCode(500, "Det gick inte att spara fastigheten");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            
         }
 
         // DELETE: api/RealEstate/5
@@ -113,24 +158,20 @@ namespace API.Controllers
         {
             try
             {
-                var realEstateToDelete = await _repository.GetRealEstate(id);
+                await _repository.DeleteRealEstateAsync(id);
 
-                if (realEstateToDelete == null)
+                if (await _repository.SaveAllAsync())
                 {
-                    return NotFound($"RealEstate with Id = {id} not found");
+                    return NoContent();
                 }
 
-                return await _repository.DeleteRealEstate(id);
+                return StatusCode(500, "Ett fel har inträffat");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data");
+                return StatusCode(500, ex.Message);
             }
         }
-
-        //private bool RealEstateExists(int id)
-        //{
-        //    return _context.RealEstate.Any(e => e.Id == id);
-        //}
+        
     }
 }

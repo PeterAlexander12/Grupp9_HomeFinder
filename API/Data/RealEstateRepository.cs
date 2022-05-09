@@ -6,6 +6,7 @@ using API.Models;
 using API.ViewModels;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -23,12 +24,19 @@ namespace API.Data
 
         public async Task<IEnumerable<RealEstateVm>> GetRealEstates()
         {
-            return await _context.RealEstate.ProjectTo<RealEstateVm>(_mapper.ConfigurationProvider).ToListAsync();
+            return await _context.RealEstates.ProjectTo<RealEstateVm>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
         public async Task<RealEstateVm> GetRealEstateAsync(int id)
         {
-            return await _context.RealEstate.Where(r => r.Id == id)
+            return await _context.RealEstates.Where(r => r.Id == id)
+                .ProjectTo<RealEstateVm>(_mapper.ConfigurationProvider)
+                .SingleOrDefaultAsync();
+        }
+
+        public async Task<RealEstateVm> GetRealEstateAsync(string address)
+        {
+            return await _context.RealEstates.Where(r => r.Address == address)
                 .ProjectTo<RealEstateVm>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
         }
@@ -36,12 +44,12 @@ namespace API.Data
         public async Task AddRealEstateAsync(PostRealEstateVm model)
         {
             var realEstateToAdd = _mapper.Map<RealEstate>(model);
-            await _context.RealEstate.AddAsync(realEstateToAdd);
+            await _context.RealEstates.AddAsync(realEstateToAdd);
         }
 
         public async Task UpdateRealEstateAsync(int id, PostRealEstateVm model)
         {
-            var realEstate = await _context.RealEstate.FindAsync(id);
+            var realEstate = await _context.RealEstates.FindAsync(id);
             if (realEstate is null)
             {
                 throw new Exception($"Hittade ingen fastighet med id {id}");
@@ -53,7 +61,7 @@ namespace API.Data
 
         public async Task UpdateRealEstateAsync(int id, PatchRealEstateVm model)
         {
-            var realEstate = await _context.RealEstate.FindAsync(id);
+            var realEstate = await _context.RealEstates.FindAsync(id);
             if (realEstate is null)
             {
                 throw new Exception($"Hittade ingen fastighet med id {id}");
@@ -64,13 +72,13 @@ namespace API.Data
 
         public async Task DeleteRealEstateAsync(int id)
         {
-            var realEstate = await _context.RealEstate.FindAsync(id);
+            var realEstate = await _context.RealEstates.FindAsync(id);
             if (realEstate is null)
             {
                 throw new Exception($"Hittade ingen fastighet med id {id}");
             }
 
-            _context.RealEstate.Remove(realEstate);
+            _context.RealEstates.Remove(realEstate);
 
         }
 

@@ -6,7 +6,6 @@ namespace API.ViewModels
 {
     public class PatchRealEstateVm
     {
-        public int Id { get; set; }
 
         [Required]
         [Display(Name = "Adress")]

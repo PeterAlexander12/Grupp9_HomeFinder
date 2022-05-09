@@ -11,7 +11,6 @@ namespace API.Helpers
             // Map från -> till
             CreateMap<PostRealEstateVm, RealEstate>();
             CreateMap<RealEstate, RealEstateVm>();
-            CreateMap<PutRealEstateVm, RealEstate>();
             
         }
     }

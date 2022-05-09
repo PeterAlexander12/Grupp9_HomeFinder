@@ -35,14 +35,14 @@ namespace API
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddDbContext<RealEstateContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("HomeFinderContext")));
+                options.UseSqlServer(Configuration.GetConnectionString("RealEstateContext")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
             services.AddScoped<IRealEstateRepository, RealEstateRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddDefaultTokenProviders();
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddDefaultTokenProviders().AddEntityFrameworkStores<RealEstateContext>();
 
         }
 
