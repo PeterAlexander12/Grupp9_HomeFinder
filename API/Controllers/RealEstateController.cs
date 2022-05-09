@@ -23,8 +23,8 @@ namespace API.Controllers
             _repository = repository;
         }
 
-        // GET: api/RealEstates
-        [HttpGet]
+        // GET: api/RealEstatelist
+        [HttpGet("list")]
         public async Task<ActionResult<List<RealEstateVm>>> GetRealEstates()
         {
             try
@@ -62,20 +62,19 @@ namespace API.Controllers
 
         // GET: api/RealEstate/byaddress/address
         [HttpGet("byaddress/{address}")]
-        public async Task<ActionResult<RealEstateVm>> GetRealEstate(int id, string address)
+        public async Task<ActionResult<RealEstateVm>> GetRealEstate(string address)
         {
-            var model = await _repository.GetRealEstateAsync(address);
 
             try
             {
-                var realEstate = await _repository.GetRealEstateAsync(id);
+                var model = await _repository.GetRealEstateAsync(address);
 
-                if (realEstate is null)
+                if (model is null)
                 {
                     return NotFound($"Vi kunde inte hitta någon fastighet med adress {address}.");
                 }
 
-                return Ok(realEstate);
+                return Ok(model);
             }
             catch (Exception)
             {
