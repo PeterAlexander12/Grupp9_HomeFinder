@@ -74,13 +74,13 @@ namespace HomeFinder.Controllers
 
             if (minLivingSpace > 0 || maxLivingSpace > 0)
             {
-                if (minLivingSpace > 0)
-                {
-                    realEstates = realEstates.Where(r => r.LivingArea > minLivingSpace);
-                }
-                else if (minLivingSpace > 0 && maxLivingSpace > 0)
+                if (minLivingSpace > 0 && maxLivingSpace > 0)
                 {
                     realEstates = realEstates.Where(r => r.LivingArea > minLivingSpace && r.LivingArea < maxLivingSpace);
+                }
+                else if (minLivingSpace > 0)
+                {
+                    realEstates = realEstates.Where(r => r.LivingArea > minLivingSpace);
                 }
                 else
                 {
@@ -101,13 +101,13 @@ namespace HomeFinder.Controllers
 
             if (minRoom > 0 || maxRoom > 0)
             {
-                if (minRoom > 0)
-                {
-                    realEstates = realEstates.Where(r => r.NumberOfRooms >= minRoom);
-                }
-                else if (minRoom > 0 && maxRoom > 0)
+                if (minRoom > 0 && maxRoom > 0)
                 {
                     realEstates = realEstates.Where(r => r.NumberOfRooms >= minRoom && r.NumberOfRooms <= maxRoom);
+                }
+                else if (minRoom > 0)
+                {
+                    realEstates = realEstates.Where(r => r.NumberOfRooms >= minRoom);
                 }
                 else
                 {

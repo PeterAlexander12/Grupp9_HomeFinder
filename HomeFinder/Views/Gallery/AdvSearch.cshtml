@@ -99,16 +99,16 @@
                                 <div class="d-flex flex-row w-50 mt-0 mr-2">
                                     <select class="w-50 m-1" id="minLivingSpace" name="minLivingSpace">
                                         <option>Alla</option>
-                                        @for (var i = 20; i <= 200; i+=5)
-                                       {
-                                           <option>minst @i m²</option>
-                                       }
+                                          @for (var i = 20; i <= 200; i+=5)
+                                          {
+                                              <option value="@i">minst @i m²</option>
+                                          }
                                     </select>
                                     <select class="w-50 m-1" id="maxLivingSpace" name="maxLivingSpace">
                                         <option>Alla</option>
                                             @for (var i = 20; i <= 200; i+=5)
                                             {
-                                               <option>minst @i m²</option>
+                                               <option value="@i">max @i m²</option>
                                             }
                                     </select>
                                 </div>
@@ -138,30 +138,30 @@
                                         <option>Alla</option>
                                             @for (double i = 1; i < 4; i+= 0.5)
                                            {
-                                               <option>@i rum</option>
+                                               <option value="@i">@i rum</option>
                                            }
                                            @for (var i = 4; i < 9; i++)
                                           {
-                                              <option>@i rum</option>
+                                              <option value="@i">@i rum</option>
                                           }
                                           @for (var i = 10; i <= 15; i+=5)
                                          {
-                                             <option>@i rum</option>
+                                             <option value="@i">@i rum</option>
                                          }
                                     </select>
-                                    <select class="w-50 m-1"     id="maxRoom" name="maxRoom">
+                                    <select class="w-50 m-1" id="maxRoom" name="maxRoom">
                                          <option>Alla</option>
                                             @for (double i = 1; i < 4; i+= 0.5)
                                            {
-                                               <option>@i rum</option>
+                                               <option value="@i">@i rum</option>
                                            }
                                            @for (var i = 4; i < 9; i++)
                                           {
-                                              <option>@i rum</option>
+                                              <option value="@i">@i rum</option>
                                           }
                                           @for (var i = 10; i <= 15; i+=5)
                                          {
-                                             <option>@i rum</option>
+                                             <option value="@i">@i rum</option>
                                          }
                                     </select>
                                 </div>
